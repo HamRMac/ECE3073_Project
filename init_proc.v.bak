@@ -1,0 +1,86 @@
+module init_proc(
+	CLOCK_50,
+	SW,
+	LEDR,
+	VGA_R,
+	VGA_B,
+	VGA_G,
+	VGA_HS,
+	VGA_VS,
+	DRAM_ADDR,
+	DRAM_BA,
+	DRAM_CAS_N,
+	DRAM_CKE,
+	DRAM_CLK,
+	DRAM_CS_N,
+	DRAM_DQ,
+	DRAM_LDQM,
+	DRAM_RAS_N,
+	DRAM_UDQM,
+	DRAM_WE_N
+	
+);
+
+	// Define IO
+	input CLOCK_50;
+	input [9:0] SW;
+	input [9:0] LEDR;
+	
+	// Define SDRAM IO
+	output [12:0] DRAM_ADDR;
+	output [1:0] DRAM_BA;
+	output DRAM_CAS_N;
+	output DRAM_CKE;
+	output DRAM_CLK;
+	output DRAM_CS_N;
+	inout [15:0] DRAM_DQ;
+	output DRAM_LDQM;
+	output DRAM_RAS_N;
+	output DRAM_UDQM;
+	output DRAM_WE_N;
+	
+	// Define VGA IO
+	wire VGA_CLOCK;
+
+	output [3:0] VGA_R;
+	output [3:0] VGA_G;
+	output [3:0] VGA_B;
+	output VGA_HS;
+	output VGA_VS;
+	wire [18:0] VGA_ADDR;
+	wire [3:0] PB_input;
+	wire [14:0] PB_WA;
+	wire PB_WE;
+	wire [3:0] PB_output;
+	
+	
+	// Define VGA Clock Using PLL
+	pll_block vga_pll(
+		.inclk0(CLOCK_50),
+		.c0(VGA_CLOCK)
+	);
+
+	// Define VGA Controller
+	vga_controller vga_ctl(
+		.VGA_DATA(SW[3:0]),
+		.VGA_CLK(VGA_CLOCK),
+		
+		.VGA_ADDR(VGA_ADDR[18:0]),
+		.VGA_R(VGA_R[3:0]),
+		.VGA_G(VGA_G[3:0]),
+		.VGA_B(VGA_B[3:0]),
+		.VGA_HS(VGA_HS),
+		.VGA_VS(VGA_VS)
+	);
+
+	// Define Video Ram
+	ram2port pixel_buffer(
+		.clock(VGA_CLOCK),
+		.data(PB_input[3:0]),
+		.rdaddress(VGA_ADDR[14:0]),
+		.wraddress(PB_WA[14:0]),
+		.wren(PB_WE),
+		.q(PB_output[3:0])
+	);
+
+endmodule

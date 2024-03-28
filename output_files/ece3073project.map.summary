@@ -1,16 +1,16 @@
-Analysis & Synthesis Status : Successful - Thu Mar 14 17:05:27 2024
+Analysis & Synthesis Status : Successful - Wed Mar 27 01:38:51 2024
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ece3073project
-Top-level Entity Name : init_vga
+Top-level Entity Name : init_proc
 Family : MAX 10
-Total logic elements : 72
-    Total combinational functions : 72
-    Dedicated logic registers : 38
-Total registers : 38
-Total pins : 25
+Total logic elements : 5,168
+    Total combinational functions : 4,051
+    Dedicated logic registers : 2,948
+Total registers : 2948
+Total pins : 76
 Total virtual pins : 0
-Total memory bits : 0
-Embedded Multiplier 9-bit elements : 0
-Total PLLs : 1
+Total memory bits : 1,198,080
+Embedded Multiplier 9-bit elements : 6
+Total PLLs : 2
 UFM blocks : 0
 ADC blocks : 0
