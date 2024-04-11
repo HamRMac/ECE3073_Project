@@ -94,7 +94,7 @@ module init_proc(
 	// Instantiate NiosII proc
 	niosII_processor nios2_proc(
 			.clk_clk(CLOCK_50),     //   clk.clk
-			.reset_reset_n(KEY[0]),
+			.reset_reset_n(1'b1),
 			.key_export(KEY[1:0]),       //        key.export
 			.ledr_export(LEDR[9:0]),      //       ledr.export
 			.pb_adr_export(PB_WA[14:0]),    //     pb_adr.export

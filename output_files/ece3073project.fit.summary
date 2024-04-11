@@ -1,12 +1,12 @@
-Fitter Status : Successful - Wed Mar 27 01:39:44 2024
+Fitter Status : Successful - Thu Apr 11 18:19:04 2024
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ece3073project
 Top-level Entity Name : init_proc
 Family : MAX 10
 Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 4,696 / 49,760 ( 9 % )
-    Total combinational functions : 4,057 / 49,760 ( 8 % )
+Total logic elements : 4,674 / 49,760 ( 9 % )
+    Total combinational functions : 4,056 / 49,760 ( 8 % )
     Dedicated logic registers : 2,839 / 49,760 ( 6 % )
 Total registers : 2908
 Total pins : 76 / 360 ( 21 % )

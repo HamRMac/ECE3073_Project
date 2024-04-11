@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ece3073project
-Wed Mar 27 01:38:51 2024
+Thu Apr 11 18:17:01 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -236,13 +236,13 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Mar 27 01:38:51 2024       ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 11 18:17:00 2024       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ece3073project                              ;
 ; Top-level Entity Name              ; init_proc                                   ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 5,168                                       ;
-;     Total combinational functions  ; 4,051                                       ;
+; Total logic elements               ; 5,167                                       ;
+;     Total combinational functions  ; 4,050                                       ;
 ;     Dedicated logic registers      ; 2,948                                       ;
 ; Total registers                    ; 2948                                        ;
 ; Total pins                         ; 76                                          ;
@@ -492,16 +492,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 5,168          ;
+; Estimated Total logic elements              ; 5,167          ;
 ;                                             ;                ;
-; Total combinational functions               ; 4051           ;
+; Total combinational functions               ; 4050           ;
 ; Logic element usage by number of LUT inputs ;                ;
 ;     -- 4 input functions                    ; 2176           ;
 ;     -- 3 input functions                    ; 1215           ;
-;     -- <=2 input functions                  ; 660            ;
+;     -- <=2 input functions                  ; 659            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 3733           ;
+;     -- normal mode                          ; 3732           ;
 ;     -- arithmetic mode                      ; 318            ;
 ;                                             ;                ;
 ; Total registers                             ; 2948           ;
@@ -518,7 +518,7 @@ refer to the applicable agreement for further details.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 3148           ;
-; Total fan-out                               ; 32052          ;
+; Total fan-out                               ; 32050          ;
 ; Average fan-out                             ; 4.21           ;
 +---------------------------------------------+----------------+
 
@@ -528,9 +528,9 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+------------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                                                                                                                                         ; Entity Name                                           ; Library Name     ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+------------------+
-; |init_proc                                                                                                                              ; 4051 (0)            ; 2948 (0)                  ; 1198080     ; 0          ; 6            ; 0       ; 3         ; 76   ; 0            ; 0          ; |init_proc                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ; init_proc                                             ; work             ;
-;    |niosII_processor:nios2_proc|                                                                                                        ; 3778 (0)            ; 2821 (0)                  ; 1121280     ; 0          ; 6            ; 0       ; 3         ; 0    ; 0            ; 0          ; |init_proc|niosII_processor:nios2_proc                                                                                                                                                                                                                                                                                                                                                                                                                                      ; niosII_processor                                      ; niosII_processor ;
-;       |altera_reset_controller:rst_controller|                                                                                          ; 7 (6)               ; 16 (10)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |init_proc|niosII_processor:nios2_proc|altera_reset_controller:rst_controller                                                                                                                                                                                                                                                                                                                                                                                               ; altera_reset_controller                               ; niosII_processor ;
+; |init_proc                                                                                                                              ; 4050 (0)            ; 2948 (0)                  ; 1198080     ; 0          ; 6            ; 0       ; 3         ; 76   ; 0            ; 0          ; |init_proc                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ; init_proc                                             ; work             ;
+;    |niosII_processor:nios2_proc|                                                                                                        ; 3777 (0)            ; 2821 (0)                  ; 1121280     ; 0          ; 6            ; 0       ; 3         ; 0    ; 0            ; 0          ; |init_proc|niosII_processor:nios2_proc                                                                                                                                                                                                                                                                                                                                                                                                                                      ; niosII_processor                                      ; niosII_processor ;
+;       |altera_reset_controller:rst_controller|                                                                                          ; 6 (5)               ; 16 (10)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |init_proc|niosII_processor:nios2_proc|altera_reset_controller:rst_controller                                                                                                                                                                                                                                                                                                                                                                                               ; altera_reset_controller                               ; niosII_processor ;
 ;          |altera_reset_synchronizer:alt_rst_req_sync_uq1|                                                                               ; 1 (1)               ; 3 (3)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |init_proc|niosII_processor:nios2_proc|altera_reset_controller:rst_controller|altera_reset_synchronizer:alt_rst_req_sync_uq1                                                                                                                                                                                                                                                                                                                                                ; altera_reset_synchronizer                             ; niosII_processor ;
 ;          |altera_reset_synchronizer:alt_rst_sync_uq1|                                                                                   ; 0 (0)               ; 3 (3)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |init_proc|niosII_processor:nios2_proc|altera_reset_controller:rst_controller|altera_reset_synchronizer:alt_rst_sync_uq1                                                                                                                                                                                                                                                                                                                                                    ; altera_reset_synchronizer                             ; niosII_processor ;
 ;       |niosII_processor_KEY_IN:key_in|                                                                                                  ; 8 (8)               ; 10 (10)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |init_proc|niosII_processor:nios2_proc|niosII_processor_KEY_IN:key_in                                                                                                                                                                                                                                                                                                                                                                                                       ; niosII_processor_KEY_IN                               ; niosII_processor ;
@@ -7120,13 +7120,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------+-------+----------+----------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "niosII_processor:nios2_proc"                                                               ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; ledr_export ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "niosII_processor:nios2_proc"                                                                 ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; reset_reset_n ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ledr_export   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------+
@@ -7159,15 +7160,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     SLD               ; 6                           ;
 ;     plain             ; 143                         ;
 ; cycloneiii_io_obuf    ; 16                          ;
-; cycloneiii_lcell_comb ; 3908                        ;
+; cycloneiii_lcell_comb ; 3907                        ;
 ;     arith             ; 310                         ;
 ;         1 data inputs ; 1                           ;
 ;         2 data inputs ; 187                         ;
 ;         3 data inputs ; 122                         ;
-;     normal            ; 3598                        ;
+;     normal            ; 3597                        ;
 ;         0 data inputs ; 4                           ;
 ;         1 data inputs ; 65                          ;
-;         2 data inputs ; 367                         ;
+;         2 data inputs ; 366                         ;
 ;         3 data inputs ; 1057                        ;
 ;         4 data inputs ; 2105                        ;
 ; cycloneiii_mac_mult   ; 3                           ;
@@ -7185,7 +7186,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:15     ;
+; Top            ; 00:00:44     ;
 +----------------+--------------+
 
 
@@ -7195,9 +7196,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Mar 27 01:37:13 2024
+    Info: Processing started: Thu Apr 11 18:12:55 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ece3073project -c ece3073project
-Critical Warning (138067): Current license file does not support incremental compilation. The Quartus Prime software removes all the user-specified design partitions in the design automatically.
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file niosii_processor/synthesis/niosii_processor.v
@@ -8299,9 +8299,8 @@ Info (12128): Elaborating entity "altera_reset_controller" for hierarchy "niosII
 Info (12128): Elaborating entity "altera_reset_synchronizer" for hierarchy "niosII_processor:nios2_proc|altera_reset_controller:rst_controller|altera_reset_synchronizer:alt_rst_sync_uq1" File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_controller.v Line: 208
 Info (12128): Elaborating entity "altera_reset_synchronizer" for hierarchy "niosII_processor:nios2_proc|altera_reset_controller:rst_controller|altera_reset_synchronizer:alt_rst_req_sync_uq1" File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_controller.v Line: 220
 Warning (12020): Port "jdo" on the entity instantiation of "the_niosII_processor_NIOS_PROC_cpu_nios2_oci_itrace" is connected to a signal of width 38. The formal width of the signal in the module is 16.  The extra bits will be ignored. File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.v Line: 3216
-Critical Warning (138067): Current license file does not support incremental compilation. The Quartus Prime software removes all the user-specified design partitions in the design automatically.
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2024.03.27.01:38:11 Progress: Loading slde1579371/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2024.04.11.18:15:16 Progress: Loading slde1579371/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -8377,19 +8376,19 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "LEDR[7]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
     Warning (15610): No output dependent on input pin "LEDR[8]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
     Warning (15610): No output dependent on input pin "LEDR[9]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-Info (21057): Implemented 6064 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 6063 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 26 input pins
     Info (21059): Implemented 38 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 5552 logic cells
+    Info (21061): Implemented 5551 logic cells
     Info (21064): Implemented 423 RAM segments
     Info (21065): Implemented 2 PLLs
     Info (21062): Implemented 6 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 33 warnings
-    Info: Peak virtual memory: 5006 megabytes
-    Info: Processing ended: Wed Mar 27 01:38:51 2024
-    Info: Elapsed time: 00:01:38
-    Info: Total CPU time (on all processors): 00:02:09
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
+    Info: Peak virtual memory: 4989 megabytes
+    Info: Processing ended: Thu Apr 11 18:17:01 2024
+    Info: Elapsed time: 00:04:06
+    Info: Total CPU time (on all processors): 00:03:20
 
 
 +------------------------------------------+

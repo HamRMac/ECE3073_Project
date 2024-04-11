@@ -1,364 +1,715 @@
-16:47:43 **** Clean-only build of configuration Nios II for project project_main ****
+17:54:19 **** Clean-only build of configuration Nios II for project project_main_bsp ****
 make clean 
-[project_main clean complete]
-16:47:49 **** Build of configuration Nios II for project project_main ****
+[BSP clean complete]
+18:01:18 **** Incremental Build of configuration Nios II for project project_main ****
 make all 
 Info: Building ../project_main_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+Compiling alt_alarm_start.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_alarm_start.o HAL/src/alt_alarm_start.c
+Compiling alt_busy_sleep.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_busy_sleep.o HAL/src/alt_busy_sleep.c
+Compiling alt_close.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_close.o HAL/src/alt_close.c
+Compiling alt_dcache_flush.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_dcache_flush.o HAL/src/alt_dcache_flush.c
+Compiling alt_dcache_flush_all.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_dcache_flush_all.o HAL/src/alt_dcache_flush_all.c
+Compiling alt_dcache_flush_no_writeback.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_dcache_flush_no_writeback.o HAL/src/alt_dcache_flush_no_writeback.c
+Compiling alt_dev.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_dev.o HAL/src/alt_dev.c
+Compiling alt_dev_llist_insert.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_dev_llist_insert.o HAL/src/alt_dev_llist_insert.c
+Compiling alt_dma_rxchan_open.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_dma_rxchan_open.o HAL/src/alt_dma_rxchan_open.c
+Compiling alt_dma_txchan_open.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_dma_txchan_open.o HAL/src/alt_dma_txchan_open.c
+Compiling alt_do_ctors.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_do_ctors.o HAL/src/alt_do_ctors.c
+Compiling alt_do_dtors.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_do_dtors.o HAL/src/alt_do_dtors.c
+Compiling alt_ecc_fatal_entry.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_ecc_fatal_entry.o HAL/src/alt_ecc_fatal_entry.S
+Compiling alt_ecc_fatal_exception.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_ecc_fatal_exception.o HAL/src/alt_ecc_fatal_exception.c
+Compiling alt_env_lock.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_env_lock.o HAL/src/alt_env_lock.c
+Compiling alt_environ.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_environ.o HAL/src/alt_environ.c
+Compiling alt_errno.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_errno.o HAL/src/alt_errno.c
+Compiling alt_exception_entry.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_exception_entry.o HAL/src/alt_exception_entry.S
+Compiling alt_exception_muldiv.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_exception_muldiv.o HAL/src/alt_exception_muldiv.S
+Compiling alt_exception_trap.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_exception_trap.o HAL/src/alt_exception_trap.S
+Compiling alt_execve.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_execve.o HAL/src/alt_execve.c
+Compiling alt_exit.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_exit.o HAL/src/alt_exit.c
+Compiling alt_fcntl.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_fcntl.o HAL/src/alt_fcntl.c
+Compiling alt_fd_lock.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_fd_lock.o HAL/src/alt_fd_lock.c
+Compiling alt_fd_unlock.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_fd_unlock.o HAL/src/alt_fd_unlock.c
+Compiling alt_find_dev.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_find_dev.o HAL/src/alt_find_dev.c
+Compiling alt_find_file.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_find_file.o HAL/src/alt_find_file.c
+Compiling alt_flash_dev.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_flash_dev.o HAL/src/alt_flash_dev.c
+Compiling alt_fork.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_fork.o HAL/src/alt_fork.c
+Compiling alt_fs_reg.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_fs_reg.o HAL/src/alt_fs_reg.c
+Compiling alt_fstat.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_fstat.o HAL/src/alt_fstat.c
+Compiling alt_get_fd.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_get_fd.o HAL/src/alt_get_fd.c
+Compiling alt_getchar.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_getchar.o HAL/src/alt_getchar.c
+Compiling alt_getpid.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_getpid.o HAL/src/alt_getpid.c
+Compiling alt_gettod.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_gettod.o HAL/src/alt_gettod.c
+Compiling alt_gmon.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_gmon.o HAL/src/alt_gmon.c
+Compiling alt_icache_flush.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_icache_flush.o HAL/src/alt_icache_flush.c
+Compiling alt_icache_flush_all.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_icache_flush_all.o HAL/src/alt_icache_flush_all.c
+Compiling alt_iic.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_iic.o HAL/src/alt_iic.c
+Compiling alt_iic_isr_register.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_iic_isr_register.o HAL/src/alt_iic_isr_register.c
+Compiling alt_instruction_exception_entry.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_instruction_exception_entry.o HAL/src/alt_instruction_exception_entry.c
+Compiling alt_instruction_exception_register.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_instruction_exception_register.o HAL/src/alt_instruction_exception_register.c
+Compiling alt_io_redirect.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_io_redirect.o HAL/src/alt_io_redirect.c
+Compiling alt_ioctl.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_ioctl.o HAL/src/alt_ioctl.c
+Compiling alt_irq_entry.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_irq_entry.o HAL/src/alt_irq_entry.S
+Compiling alt_irq_handler.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_irq_handler.o HAL/src/alt_irq_handler.c
+Compiling alt_irq_register.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_irq_register.o HAL/src/alt_irq_register.c
+Compiling alt_irq_vars.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_irq_vars.o HAL/src/alt_irq_vars.c
+Compiling alt_isatty.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_isatty.o HAL/src/alt_isatty.c
+Compiling alt_kill.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_kill.o HAL/src/alt_kill.c
+Compiling alt_link.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_link.o HAL/src/alt_link.c
+Compiling alt_load.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_load.o HAL/src/alt_load.c
+Compiling alt_log_macro.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_log_macro.o HAL/src/alt_log_macro.S
+Compiling alt_log_printf.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_log_printf.o HAL/src/alt_log_printf.c
+Compiling alt_lseek.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_lseek.o HAL/src/alt_lseek.c
+Compiling alt_main.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_main.o HAL/src/alt_main.c
+Compiling alt_malloc_lock.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_malloc_lock.o HAL/src/alt_malloc_lock.c
+Compiling alt_mcount.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_mcount.o HAL/src/alt_mcount.S
+Compiling alt_open.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_open.o HAL/src/alt_open.c
+Compiling alt_printf.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_printf.o HAL/src/alt_printf.c
+Compiling alt_putchar.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_putchar.o HAL/src/alt_putchar.c
+Compiling alt_putcharbuf.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_putcharbuf.o HAL/src/alt_putcharbuf.c
+Compiling alt_putstr.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_putstr.o HAL/src/alt_putstr.c
+Compiling alt_read.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_read.o HAL/src/alt_read.c
+Compiling alt_release_fd.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_release_fd.o HAL/src/alt_release_fd.c
+Compiling alt_remap_cached.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_remap_cached.o HAL/src/alt_remap_cached.c
+Compiling alt_remap_uncached.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_remap_uncached.o HAL/src/alt_remap_uncached.c
+Compiling alt_rename.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_rename.o HAL/src/alt_rename.c
+Compiling alt_sbrk.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_sbrk.o HAL/src/alt_sbrk.c
+Compiling alt_settod.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_settod.o HAL/src/alt_settod.c
+Compiling alt_software_exception.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/alt_software_exception.o HAL/src/alt_software_exception.S
+Compiling alt_stat.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_stat.o HAL/src/alt_stat.c
+Compiling alt_tick.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_tick.o HAL/src/alt_tick.c
+Compiling alt_times.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_times.o HAL/src/alt_times.c
+Compiling alt_uncached_free.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_uncached_free.o HAL/src/alt_uncached_free.c
+Compiling alt_uncached_malloc.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_uncached_malloc.o HAL/src/alt_uncached_malloc.c
+Compiling alt_unlink.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_unlink.o HAL/src/alt_unlink.c
+Compiling alt_usleep.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_usleep.o HAL/src/alt_usleep.c
+Compiling alt_wait.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_wait.o HAL/src/alt_wait.c
+Compiling alt_write.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/alt_write.o HAL/src/alt_write.c
+Compiling altera_nios2_gen2_irq.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/HAL/src/altera_nios2_gen2_irq.o HAL/src/altera_nios2_gen2_irq.c
+Compiling crt0.S...
+nios2-elf-gcc -MP -MMD -c   '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global    -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED  -Wa,-gdwarf2  -o obj/HAL/src/crt0.o HAL/src/crt0.S
+Compiling alt_sys_init.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/alt_sys_init.o alt_sys_init.c
+Compiling altera_avalon_jtag_uart_fd.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_jtag_uart_fd.o drivers/src/altera_avalon_jtag_uart_fd.c
+Compiling altera_avalon_jtag_uart_init.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_jtag_uart_init.o drivers/src/altera_avalon_jtag_uart_init.c
+Compiling altera_avalon_jtag_uart_ioctl.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_jtag_uart_ioctl.o drivers/src/altera_avalon_jtag_uart_ioctl.c
+Compiling altera_avalon_jtag_uart_read.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_jtag_uart_read.o drivers/src/altera_avalon_jtag_uart_read.c
+Compiling altera_avalon_jtag_uart_write.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_jtag_uart_write.o drivers/src/altera_avalon_jtag_uart_write.c
+Compiling altera_avalon_timer_sc.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_timer_sc.o drivers/src/altera_avalon_timer_sc.c
+Compiling altera_avalon_timer_ts.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_timer_ts.o drivers/src/altera_avalon_timer_ts.c
+Compiling altera_avalon_timer_vars.c...
+nios2-elf-gcc -xc -MP -MMD -c  -I./HAL/inc -I. -I./drivers/inc -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    '-Os' -g -Wall  -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global   -o obj/drivers/src/altera_avalon_timer_vars.o drivers/src/altera_avalon_timer_vars.c
+Creating libhal_bsp.a...
+rm -f -f libhal_bsp.a
+nios2-elf-ar -src libhal_bsp.a obj/HAL/src/alt_alarm_start.o obj/HAL/src/alt_busy_sleep.o obj/HAL/src/alt_close.o obj/HAL/src/alt_dcache_flush.o obj/HAL/src/alt_dcache_flush_all.o obj/HAL/src/alt_dcache_flush_no_writeback.o obj/HAL/src/alt_dev.o obj/HAL/src/alt_dev_llist_insert.o obj/HAL/src/alt_dma_rxchan_open.o obj/HAL/src/alt_dma_txchan_open.o obj/HAL/src/alt_do_ctors.o obj/HAL/src/alt_do_dtors.o obj/HAL/src/alt_ecc_fatal_entry.o obj/HAL/src/alt_ecc_fatal_exception.o obj/HAL/src/alt_env_lock.o obj/HAL/src/alt_environ.o obj/HAL/src/alt_errno.o obj/HAL/src/alt_exception_entry.o obj/HAL/src/alt_exception_muldiv.o obj/HAL/src/alt_exception_trap.o obj/HAL/src/alt_execve.o obj/HAL/src/alt_exit.o obj/HAL/src/alt_fcntl.o obj/HAL/src/alt_fd_lock.o obj/HAL/src/alt_fd_unlock.o obj/HAL/src/alt_find_dev.o obj/HAL/src/alt_find_file.o obj/HAL/src/alt_flash_dev.o obj/HAL/src/alt_fork.o obj/HAL/src/alt_fs_reg.o obj/HAL/src/alt_fstat.o obj/HAL/src/alt_get_fd.o obj/HAL/src/alt_getchar.o obj/HAL/src/alt_getpid.o obj/HAL/src/alt_gettod.o obj/HAL/src/alt_gmon.o obj/HAL/src/alt_icache_flush.o obj/HAL/src/alt_icache_flush_all.o obj/HAL/src/alt_iic.o obj/HAL/src/alt_iic_isr_register.o obj/HAL/src/alt_instruction_exception_entry.o obj/HAL/src/alt_instruction_exception_register.o obj/HAL/src/alt_io_redirect.o obj/HAL/src/alt_ioctl.o obj/HAL/src/alt_irq_entry.o obj/HAL/src/alt_irq_handler.o obj/HAL/src/alt_irq_register.o obj/HAL/src/alt_irq_vars.o obj/HAL/src/alt_isatty.o obj/HAL/src/alt_kill.o obj/HAL/src/alt_link.o obj/HAL/src/alt_load.o obj/HAL/src/alt_log_macro.o obj/HAL/src/alt_log_printf.o obj/HAL/src/alt_lseek.o obj/HAL/src/alt_main.o obj/HAL/src/alt_malloc_lock.o obj/HAL/src/alt_mcount.o obj/HAL/src/alt_open.o obj/HAL/src/alt_printf.o obj/HAL/src/alt_putchar.o obj/HAL/src/alt_putcharbuf.o obj/HAL/src/alt_putstr.o obj/HAL/src/alt_read.o obj/HAL/src/alt_release_fd.o obj/HAL/src/alt_remap_cached.o obj/HAL/src/alt_remap_uncached.o obj/HAL/src/alt_rename.o obj/HAL/src/alt_sbrk.o obj/HAL/src/alt_settod.o obj/HAL/src/alt_software_exception.o obj/HAL/src/alt_stat.o obj/HAL/src/alt_tick.o obj/HAL/src/alt_times.o obj/HAL/src/alt_uncached_free.o obj/HAL/src/alt_uncached_malloc.o obj/HAL/src/alt_unlink.o obj/HAL/src/alt_usleep.o obj/HAL/src/alt_wait.o obj/HAL/src/alt_write.o obj/HAL/src/altera_nios2_gen2_irq.o obj/HAL/src/crt0.o obj/alt_sys_init.o obj/drivers/src/altera_avalon_jtag_uart_fd.o obj/drivers/src/altera_avalon_jtag_uart_init.o obj/drivers/src/altera_avalon_jtag_uart_ioctl.o obj/drivers/src/altera_avalon_jtag_uart_read.o obj/drivers/src/altera_avalon_jtag_uart_write.o obj/drivers/src/altera_avalon_timer_sc.o obj/drivers/src/altera_avalon_timer_ts.o obj/drivers/src/altera_avalon_timer_vars.o
 [BSP build complete]
 Info: Compiling main.c to obj/default/main.o
 nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1388 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-16:47:51 **** Incremental Build of configuration Nios II for project project_main_bsp ****
-make all 
-[BSP build complete]
-16:48:00 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-[project_main build complete]
-16:49:09 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-[project_main build complete]
-16:52:47 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1372 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-16:55:00 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1368 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-16:55:31 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1364 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-16:57:18 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1324 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-16:59:48 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-[project_main build complete]
-17:00:40 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1316 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:01:12 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1320 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:01:48 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1316 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:02:34 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1320 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:03:12 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 872 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:04:56 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-[project_main build complete]
-17:05:56 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-main.c: In function 'main':
-main.c:41:7: warning: variable 'data' set but not used [-Wunused-but-set-variable]
-   int data;
-       ^
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 872 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:06:57 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-main.c: In function 'main':
-main.c:41:7: warning: variable 'data' set but not used [-Wunused-but-set-variable]
-   int data;
-       ^
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1340 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:08:25 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1804 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:09:34 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-In file included from main.c:2:0:
-main.c: In function 'main':
-../project_main_bsp//HAL/inc/io.h:61:71: error: expected expression before ')' token
-   __builtin_stwio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)), (DATA))
-                                                                       ^
-main.c:52:4: note: in expansion of macro 'IOWR_32DIRECT'
-    IOWR_32DIRECT(PB_DATA_BASE,0,);
-    ^
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:16:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:109:2: warning: implicit declaration of function 'IOWR_ALTERA_AVALON_PIO_IRQ_MASK' [-Wimplicit-function-declaration]
+  IOWR_ALTERA_AVALON_PIO_IRQ_MASK(KEY_IN_BASE, 0x3);
+  ^
+main.c:111:2: warning: implicit declaration of function 'IOWR_ALTERA_AVALON_PIO_EDGE_CAP' [-Wimplicit-function-declaration]
+  IOWR_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE, 0x0);
+  ^
+main.c:116:5: error: 'KEY_IN_ISR' undeclared (first use in this function)
+     KEY_IN_ISR,
+     ^
+main.c:116:5: note: each undeclared identifier is reported only once for each function it appears in
+main.c: In function 'KEY_IN_ISR':
+main.c:128:50: error: 'context' undeclared (first use in this function)
+  void* button_edge_capture_ptr = (volatile int*) context;
+                                                  ^
+main.c:133:2: warning: dereferencing 'void *' pointer
+  *button_edge_capture_ptr =
+  ^
+main.c:134:2: warning: implicit declaration of function 'IORD_ALTERA_AVALON_PIO_EDGE_CAP' [-Wimplicit-function-declaration]
+  IORD_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE);
+  ^
+main.c:134:2: error: invalid use of void expression
+main.c:135:20: warning: dereferencing 'void *' pointer
+  alt_printf("%x\n",*button_edge_capture_ptr);
+                    ^
+main.c:135:2: error: invalid use of void expression
+  alt_printf("%x\n",*button_edge_capture_ptr);
+  ^
 make: *** [obj/default/main.o] Error 1
-17:10:25 **** Incremental Build of configuration Nios II for project project_main ****
+18:02:21 **** Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:05:09 **** Incremental Build of configuration Nios II for project project_main ****
 make all 
 Info: Building ../project_main_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
 [BSP build complete]
 Info: Compiling main.c to obj/default/main.o
 nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-In file included from main.c:2:0:
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:109:34: warning: initialization discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  void* button_edge_capture_ptr = (volatile int*) context;
+                                  ^
+main.c:118:5: error: 'KEY_IN_ISR' undeclared (first use in this function)
+     KEY_IN_ISR,
+     ^
+main.c:118:5: note: each undeclared identifier is reported only once for each function it appears in
+main.c: In function 'KEY_IN_ISR':
+main.c:130:50: error: 'context' undeclared (first use in this function)
+  void* button_edge_capture_ptr = (volatile int*) context;
+                                                  ^
+main.c:135:2: warning: dereferencing 'void *' pointer
+  *button_edge_capture_ptr =
+  ^
+main.c:136:2: error: invalid use of void expression
+  IORD_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE);
+  ^
+main.c:137:20: warning: dereferencing 'void *' pointer
+  alt_printf("%x\n",*button_edge_capture_ptr);
+                    ^
+main.c:137:2: error: invalid use of void expression
+  alt_printf("%x\n",*button_edge_capture_ptr);
+  ^
 main.c: In function 'main':
-../project_main_bsp//HAL/inc/io.h:61:71: error: expected expression before ')' token
-   __builtin_stwio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)), (DATA))
-                                                                       ^
-main.c:52:4: note: in expansion of macro 'IOWR_32DIRECT'
-    IOWR_32DIRECT(PB_DATA_BASE,0,);
-    ^
+main.c:146:2: error: too few arguments to function 'init_button_pio'
+  init_button_pio();
+  ^
+main.c:105:13: note: declared here
+ static void init_button_pio(void* context)
+             ^
 make: *** [obj/default/main.o] Error 1
-17:10:28 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+18:05:14 **** Incremental Build of configuration Nios II for project project_main_bsp ****
 make all 
 [BSP build complete]
-17:10:30 **** Incremental Build of configuration Nios II for project project_main ****
+18:07:21 **** Incremental Build of configuration Nios II for project project_main ****
 make all 
 Info: Building ../project_main_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
 [BSP build complete]
 Info: Compiling main.c to obj/default/main.o
 nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-In file included from main.c:2:0:
-main.c: In function 'main':
-../project_main_bsp//HAL/inc/io.h:61:71: error: expected expression before ')' token
-   __builtin_stwio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)), (DATA))
-                                                                       ^
-main.c:52:4: note: in expansion of macro 'IOWR_32DIRECT'
-    IOWR_32DIRECT(PB_DATA_BASE,0,);
-    ^
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'KEY_IN_ISR':
+main.c:111:50: error: 'context' undeclared (first use in this function)
+  void* button_edge_capture_ptr = (volatile int*) context;
+                                                  ^
+main.c:111:50: note: each undeclared identifier is reported only once for each function it appears in
+main.c:116:2: warning: dereferencing 'void *' pointer
+  *button_edge_capture_ptr =
+  ^
+main.c:117:2: error: invalid use of void expression
+  IORD_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE);
+  ^
+main.c:118:20: warning: dereferencing 'void *' pointer
+  alt_printf("%x\n",*button_edge_capture_ptr);
+                    ^
+main.c:118:2: error: invalid use of void expression
+  alt_printf("%x\n",*button_edge_capture_ptr);
+  ^
+main.c: In function 'init_button_pio':
+main.c:137:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
 make: *** [obj/default/main.o] Error 1
-17:10:55 **** Incremental Build of configuration Nios II for project project_main ****
+18:07:27 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:08:12 **** Incremental Build of configuration Nios II for project project_main ****
 make all 
 Info: Building ../project_main_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
 [BSP build complete]
 Info: Compiling main.c to obj/default/main.o
 nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
-nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 1372 Bytes program size (code + initialized data).
-Info:                    32767 KBytes free for stack + heap.
-Info: Creating project_main.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
-[project_main build complete]
-17:11:35 **** Incremental Build of configuration Nios II for project project_main ****
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'KEY_IN_ISR':
+main.c:111:34: warning: initialization discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  void* button_edge_capture_ptr = (volatile int*) isr_context;
+                                  ^
+main.c:116:2: warning: dereferencing 'void *' pointer
+  *button_edge_capture_ptr = IORD_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE);
+  ^
+main.c:116:2: error: invalid use of void expression
+main.c:117:20: warning: dereferencing 'void *' pointer
+  alt_printf("%x\n",*button_edge_capture_ptr);
+                    ^
+main.c:117:2: error: invalid use of void expression
+  alt_printf("%x\n",*button_edge_capture_ptr);
+  ^
+main.c: In function 'init_button_pio':
+main.c:136:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
+make: *** [obj/default/main.o] Error 1
+18:08:18 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:10:30 **** Incremental Build of configuration Nios II for project project_main ****
 make all 
 Info: Building ../project_main_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
 [BSP build complete]
 Info: Compiling main.c to obj/default/main.o
 nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:136:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
 Info: Linking project_main.elf
 nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
 nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 880 Bytes program size (code + initialized data).
+Info: (project_main.elf) 2868 Bytes program size (code + initialized data).
 Info:                    32767 KBytes free for stack + heap.
 Info: Creating project_main.objdump
 nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
 [project_main build complete]
-17:42:29 **** Incremental Build of configuration Nios II for project project_main ****
+18:10:41 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:11:40 **** Incremental Build of configuration Nios II for project project_main ****
 make all 
 Info: Building ../project_main_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
 [BSP build complete]
-Info: Compiling exception_handler.c to obj/default/exception_handler.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/exception_handler.o exception_handler.c
+[project_main build complete]
+18:12:34 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:20:27 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:22:56 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
 Info: Compiling main.c to obj/default/main.o
 nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/exception_handler.o obj/default/main.o -lm -msys-lib=m
-c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: section .reset loaded at [0000000004040480,000000000404048f] overlaps section .rodata loaded at [0000000004040480,00000000040404a3]
-obj/default/exception_handler.o: In function `interrupt_handler':
-C:\Users\katja\Documents\ECE3073\Project\software\project_main/exception_handler.c:143: undefined reference to `FLAG_ADDR'
-C:\Users\katja\Documents\ECE3073\Project\software\project_main/exception_handler.c:146: undefined reference to `LEDARRAY_ADDR'
-C:\Users\katja\Documents\ECE3073\Project\software\project_main/exception_handler.c:145: undefined reference to `ledValue'
-C:\Users\katja\Documents\ECE3073\Project\software\project_main/exception_handler.c:145: undefined reference to `ledValue'
-collect2.exe: error: ld returned 1 exit status
-make: *** [project_main.elf] Error 1
-17:43:08 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
-Info: Compiling exception_handler.c to obj/default/exception_handler.o
-nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/exception_handler.o exception_handler.c
-Info: Linking project_main.elf
-nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/exception_handler.o obj/default/main.o -lm -msys-lib=m
-c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: section .reset loaded at [0000000004040454,0000000004040463] overlaps section .rodata loaded at [0000000004040454,0000000004040477]
-collect2.exe: error: ld returned 1 exit status
-make: *** [project_main.elf] Error 1
-17:43:49 **** Incremental Build of configuration Nios II for project project_main ****
-make all 
-Info: Building ../project_main_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
-[BSP build complete]
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:136:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
 Info: Linking project_main.elf
 nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
 nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
-Info: (project_main.elf) 880 Bytes program size (code + initialized data).
+Info: (project_main.elf) 2868 Bytes program size (code + initialized data).
 Info:                    32767 KBytes free for stack + heap.
 Info: Creating project_main.objdump
 nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
 [project_main build complete]
-17:48:44 **** Incremental Build of configuration Nios II for project project_main ****
+18:23:03 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:23:38 **** Incremental Build of configuration Nios II for project project_main ****
 make all 
 Info: Building ../project_main_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
 [BSP build complete]
 [project_main build complete]
+18:23:42 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:23:46 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:27:05 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+Info: Linking project_main.elf
+nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
+nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
+Info: (project_main.elf) 1684 Bytes program size (code + initialized data).
+Info:                    32767 KBytes free for stack + heap.
+Info: Creating project_main.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
+[project_main build complete]
+18:27:15 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:27:21 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:28:29 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:28:34 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:28:39 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:30:19 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:31:14 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:121:43: error: 'edge_capture' undeclared (first use in this function)
+  void* button_edge_capture_ptr = (void*) &edge_capture;
+                                           ^
+main.c:121:43: note: each undeclared identifier is reported only once for each function it appears in
+main.c:130:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
+make: *** [obj/default/main.o] Error 1
+18:31:29 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:121:43: error: 'edge_capture' undeclared (first use in this function)
+  void* button_edge_capture_ptr = (void*) &edge_capture;
+                                           ^
+main.c:121:43: note: each undeclared identifier is reported only once for each function it appears in
+main.c:130:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
+make: *** [obj/default/main.o] Error 1
+18:31:36 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:31:50 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:130:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
+Info: Linking project_main.elf
+nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
+nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
+Info: (project_main.elf) 2868 Bytes program size (code + initialized data).
+Info:                    32767 KBytes free for stack + heap.
+Info: Creating project_main.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
+[project_main build complete]
+18:31:59 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:32:15 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:33:40 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:133:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
+Info: Linking project_main.elf
+nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
+nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
+Info: (project_main.elf) 2896 Bytes program size (code + initialized data).
+Info:                    32767 KBytes free for stack + heap.
+Info: Creating project_main.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
+[project_main build complete]
+18:33:51 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
+18:33:56 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+[project_main build complete]
+18:36:17 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+Info: Linking project_main.elf
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:133:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
+nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
+Info: (project_main.elf) 2868 Bytes program size (code + initialized data).
+Info:                    32767 KBytes free for stack + heap.
+Info: Creating project_main.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
+[project_main build complete]
+18:52:42 **** Incremental Build of configuration Nios II for project project_main ****
+make all 
+Info: Building ../project_main_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../project_main_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../project_main_bsp//HAL/inc -I../project_main_bsp/ -I../project_main_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.c
+In file included from main.c:3:0:
+../project_main_bsp/system.h:158:21: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ #define KEY_IN_BASE 0x4081050
+                     ^
+main.c:18:21: note: in expansion of macro 'KEY_IN_BASE'
+ int * key_in_base = KEY_IN_BASE;
+                     ^
+main.c: In function 'init_button_pio':
+main.c:133:5: warning: passing argument 3 of 'alt_ic_isr_register' from incompatible pointer type [-Wincompatible-pointer-types]
+     KEY_IN_ISR,
+     ^
+In file included from main.c:6:0:
+../project_main_bsp//HAL/inc/sys/alt_irq.h:195:12: note: expected 'alt_isr_func {aka void (*)(void *)}' but argument is of type 'void (*)(void *, alt_u32) {aka void (*)(void *, long unsigned int)}'
+ extern int alt_ic_isr_register(alt_u32 ic_id,
+            ^
+Info: Linking project_main.elf
+nios2-elf-g++  -T'../project_main_bsp//linker.x' -msys-crt0='../project_main_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../project_main_bsp/  -msmallc  -Wl,-Map=project_main.map   -Os -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o project_main.elf obj/default/main.o -lm -msys-lib=m
+nios2-elf-insert project_main.elf --thread_model hal --cpu_name NIOS_PROC --qsys true --simulation_enabled false --stderr_dev UART_JTAG --stdin_dev UART_JTAG --stdout_dev UART_JTAG --sopc_system_name niosII_processor --quartus_project_dir "C:/Users/katja/Documents/ECE3073/Project" --jdi ../..//output_files/ece3073project.jdi --sopcinfo C:/Users/katja/Documents/ECE3073/Project/software/project_main_bsp/../../niosII_processor.sopcinfo
+Info: (project_main.elf) 2868 Bytes program size (code + initialized data).
+Info:                    32767 KBytes free for stack + heap.
+Info: Creating project_main.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source project_main.elf >project_main.objdump
+[project_main build complete]
+18:52:45 **** Incremental Build of configuration Nios II for project project_main_bsp ****
+make all 
+[BSP build complete]
