@@ -437,5 +437,4 @@ set_global_assignment -name VERILOG_FILE init_vga.v
 set_global_assignment -name VERILOG_FILE init_proc.v
 set_global_assignment -name QIP_FILE pll_VGA.qip
 set_global_assignment -name QIP_FILE pll_SDRAM.qip
-set_global_assignment -name VERILOG_FILE vga_address_map.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

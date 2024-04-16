@@ -10,7 +10,7 @@
 					<folderInfo id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.2091256228." name="/" resourcePath="">
 						<toolChain id="altera.nios2.mingw.gcc4.1118646031" name="MinGW Nios II GCC4" superClass="altera.nios2.mingw.gcc4">
 							<targetPlatform id="altera.nios2.mingw.gcc4.133563716" name="Nios II" superClass="altera.nios2.mingw.gcc4"/>
-							<builder buildPath="${workspace_loc://project_main}" id="altera.tool.gnu.builder.mingw.172757637" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="altera.tool.gnu.builder.mingw"/>
+							<builder buildPath="${workspace_loc://project_main}" id="altera.tool.gnu.builder.mingw.172757637" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="altera.tool.gnu.builder.mingw"/>
 							<tool id="altera.tool.gnu.c.compiler.mingw.1006814680" name="Nios II GCC C Compiler" superClass="altera.tool.gnu.c.compiler.mingw">
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.15876643" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -79,5 +79,10 @@
 				<runAllBuilders>false</runAllBuilders>
 			</target>
 		</buildTargets>
+	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Nios II">
+			<resource resourceType="PROJECT" workspacePath="/project_main"/>
+		</configuration>
 	</storageModule>
 </cproject>

@@ -1,5 +1,5 @@
 Flow report for ece3073project
-Thu Apr 11 18:20:08 2024
+Tue Apr 16 21:54:28 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Apr 11 18:19:29 2024       ;
+; Flow Status                        ; Successful - Tue Apr 16 21:54:09 2024       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ece3073project                              ;
 ; Top-level Entity Name              ; init_proc                                   ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/11/2024 18:13:02 ;
+; Start date & time ; 04/16/2024 21:50:16 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ece3073project      ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+--------------------------------------------------------------------+----------------+------------------+------------+
 ; Assignment Name                     ; Value                                                              ; Default Value  ; Entity Name      ; Section Id ;
 +-------------------------------------+--------------------------------------------------------------------+----------------+------------------+------------+
-; COMPILER_SIGNATURE_ID               ; 61762877007157.171282318007072                                     ; --             ; --               ; --         ;
+; COMPILER_SIGNATURE_ID               ; 24062491136.171326821506528                                        ; --             ; --               ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                                 ; --             ; --               ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                                  ; --             ; --               ; --         ;
 ; MISC_FILE                           ; niosII_processor/synthesis/../niosII_processor.cmp                 ; --             ; --               ; --         ;
@@ -111,11 +111,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:03:47     ; 1.0                     ; 4989 MB             ; 00:03:07                           ;
-; Fitter               ; 00:02:01     ; 1.3                     ; 5469 MB             ; 00:01:52                           ;
-; Assembler            ; 00:00:16     ; 1.0                     ; 4713 MB             ; 00:00:11                           ;
-; Timing Analyzer      ; 00:00:37     ; 1.5                     ; 4887 MB             ; 00:00:34                           ;
-; Total                ; 00:06:41     ; --                      ; --                  ; 00:05:44                           ;
+; Analysis & Synthesis ; 00:02:42     ; 1.0                     ; 5005 MB             ; 00:02:36                           ;
+; Fitter               ; 00:00:52     ; 1.2                     ; 5558 MB             ; 00:01:08                           ;
+; Assembler            ; 00:00:08     ; 1.0                     ; 4714 MB             ; 00:00:06                           ;
+; Timing Analyzer      ; 00:00:17     ; 1.6                     ; 4875 MB             ; 00:00:22                           ;
+; Total                ; 00:03:59     ; --                      ; --                  ; 00:04:12                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

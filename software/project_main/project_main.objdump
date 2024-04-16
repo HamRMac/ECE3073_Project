@@ -11,7 +11,7 @@ Program Header:
     LOAD off    0x00001020 vaddr 0x04040020 paddr 0x04040020 align 2**12
          filesz 0x0000097c memsz 0x0000097c flags r-x
     LOAD off    0x00002000 vaddr 0x02000000 paddr 0x0404099c align 2**12
-         filesz 0x00000078 memsz 0x00000198 flags rw-
+         filesz 0x00000078 memsz 0x00000194 flags rw-
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -25,9 +25,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   4 .rwdata       0000000c  0200006c  04040a08  0000206c  2**2
                   CONTENTS, ALLOC, LOAD, DATA, SMALL_DATA
-  5 .bss          00000120  02000078  04040a14  00002078  2**2
+  5 .bss          0000011c  02000078  04040a14  00002078  2**2
                   ALLOC, SMALL_DATA
-  6 .SDRAM        00000000  02000198  02000198  00002078  2**0
+  6 .SDRAM        00000000  02000194  02000194  00002078  2**0
                   CONTENTS
   7 .NIOS_MEM     00000000  04040a14  04040a14  00002078  2**0
                   CONTENTS
@@ -35,43 +35,43 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   9 .debug_aranges 000002d8  00000000  00000000  000020a0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_info   00001cac  00000000  00000000  00002378  2**0
+ 10 .debug_info   00001c9b  00000000  00000000  00002378  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_abbrev 00000fa7  00000000  00000000  00004024  2**0
+ 11 .debug_abbrev 00000fa7  00000000  00000000  00004013  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   00000f0e  00000000  00000000  00004fcb  2**0
+ 12 .debug_line   00000f16  00000000  00000000  00004fba  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_frame  00000384  00000000  00000000  00005edc  2**2
+ 13 .debug_frame  00000384  00000000  00000000  00005ed0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00000d61  00000000  00000000  00006260  2**0
+ 14 .debug_str    00000d61  00000000  00000000  00006254  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_loc    0000096b  00000000  00000000  00006fc1  2**0
+ 15 .debug_loc    0000096b  00000000  00000000  00006fb5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_alt_sim_info 00000030  00000000  00000000  0000792c  2**2
+ 16 .debug_alt_sim_info 00000030  00000000  00000000  00007920  2**2
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_ranges 00000170  00000000  00000000  00007960  2**3
+ 17 .debug_ranges 00000170  00000000  00000000  00007950  2**3
                   CONTENTS, READONLY, DEBUGGING
- 18 .thread_model 00000003  00000000  00000000  00008caa  2**0
+ 18 .thread_model 00000003  00000000  00000000  00008c82  2**0
                   CONTENTS, READONLY
- 19 .cpu          00000009  00000000  00000000  00008cad  2**0
+ 19 .cpu          00000009  00000000  00000000  00008c85  2**0
                   CONTENTS, READONLY
- 20 .qsys         00000001  00000000  00000000  00008cb6  2**0
+ 20 .qsys         00000001  00000000  00000000  00008c8e  2**0
                   CONTENTS, READONLY
- 21 .simulation_enabled 00000001  00000000  00000000  00008cb7  2**0
+ 21 .simulation_enabled 00000001  00000000  00000000  00008c8f  2**0
                   CONTENTS, READONLY
- 22 .stderr_dev   00000009  00000000  00000000  00008cb8  2**0
+ 22 .stderr_dev   00000009  00000000  00000000  00008c90  2**0
                   CONTENTS, READONLY
- 23 .stdin_dev    00000009  00000000  00000000  00008cc1  2**0
+ 23 .stdin_dev    00000009  00000000  00000000  00008c99  2**0
                   CONTENTS, READONLY
- 24 .stdout_dev   00000009  00000000  00000000  00008cca  2**0
+ 24 .stdout_dev   00000009  00000000  00000000  00008ca2  2**0
                   CONTENTS, READONLY
- 25 .sopc_system_name 00000010  00000000  00000000  00008cd3  2**0
+ 25 .sopc_system_name 00000010  00000000  00000000  00008cab  2**0
                   CONTENTS, READONLY
- 26 .quartus_project_dir 00000028  00000000  00000000  00008ce3  2**0
+ 26 .quartus_project_dir 00000028  00000000  00000000  00008cbb  2**0
                   CONTENTS, READONLY
- 27 .jdi          00005673  00000000  00000000  00008d0b  2**0
+ 27 .jdi          00005673  00000000  00000000  00008ce3  2**0
                   CONTENTS, READONLY
- 28 .sopcinfo     000612be  00000000  00000000  0000e37e  2**0
+ 28 .sopcinfo     000612be  00000000  00000000  0000e356  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 04040000 l    d  .entry	00000000 .entry
@@ -80,7 +80,7 @@ SYMBOL TABLE:
 02000000 l    d  .rodata	00000000 .rodata
 0200006c l    d  .rwdata	00000000 .rwdata
 02000078 l    d  .bss	00000000 .bss
-02000198 l    d  .SDRAM	00000000 .SDRAM
+02000194 l    d  .SDRAM	00000000 .SDRAM
 04040a14 l    d  .NIOS_MEM	00000000 .NIOS_MEM
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .debug_aranges	00000000 .debug_aranges
@@ -112,30 +112,30 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 altera_nios2_gen2_irq.c
 00000000 l    df *ABS*	00000000 alt_icache_flush.c
 00000000 l    df *ABS*	00000000 strlen.c
-02000094 g     O .bss	00000004 alt_instruction_exception_handler
+02000090 g     O .bss	00000004 alt_instruction_exception_handler
 04040634 g     F .text	0000002c alt_main
-02000098 g     O .bss	00000100 alt_irq
+02000094 g     O .bss	00000100 alt_irq
 04040a08 g       *ABS*	00000000 __flash_rwdata_start
 04040818 g     F .text	00000038 alt_putstr
 04040940 g     F .text	00000008 altera_nios2_gen2_irq_init
 04040000 g     F .entry	0000001c __reset
 0200007c g     O .bss	00000004 edge_capture
 04040020 g       *ABS*	00000000 __flash_exceptions_start
-0200008c g     O .bss	00000004 alt_argv
+02000088 g     O .bss	00000004 alt_argv
 0200806c g       *ABS*	00000000 _gp
 040401d4 g     F .text	00000040 clrBuffer
 040408cc g     F .text	00000074 alt_exception_cause_generated_bad_addr
 04040948 g     F .text	00000038 alt_icache_flush
-02000198 g       *ABS*	00000000 __bss_end
+02000194 g       *ABS*	00000000 __bss_end
 040404ec g     F .text	00000068 alt_iic_isr_register
 040404d4 g     F .text	00000018 alt_ic_irq_enabled
-02000084 g     O .bss	00000004 alt_irq_active
+02000080 g     O .bss	00000004 alt_irq_active
 040400fc g     F .exceptions	00000060 alt_irq_handler
 040408a8 g     F .text	00000018 alt_dcache_flush_all
 02000078 g       *ABS*	00000000 __ram_rwdata_end
 0200006c g       *ABS*	00000000 __ram_rodata_end
 00000000 g       *ABS*	00000000 __alt_mem_SDRAM
-02000198 g       *ABS*	00000000 end
+02000194 g       *ABS*	00000000 end
 0404015c g     F .exceptions	0000002c alt_instruction_exception_entry
 04000000 g       *ABS*	00000000 __alt_stack_pointer
 04040874 g     F .text	00000034 altera_avalon_jtag_uart_write
@@ -144,24 +144,23 @@ SYMBOL TABLE:
 04040870 g     F .text	00000004 alt_sys_init
 0200006c g       *ABS*	00000000 __ram_rwdata_start
 02000000 g       *ABS*	00000000 __ram_rodata_start
-02000198 g       *ABS*	00000000 __alt_stack_base
+02000194 g       *ABS*	00000000 __alt_stack_base
 040403a0 g     F .text	0000005c KEY_IN_ISR
 02000078 g       *ABS*	00000000 __bss_start
 040403fc g     F .text	00000064 main
-02000088 g     O .bss	00000004 alt_envp
+02000084 g     O .bss	00000004 alt_envp
 04040214 g     F .text	0000018c writeImage
 0404099c g       *ABS*	00000000 __flash_rodata_start
 04040850 g     F .text	00000020 alt_irq_init
-02000090 g     O .bss	00000004 alt_argc
+0200008c g     O .bss	00000004 alt_argc
 04040020 g       .exceptions	00000000 alt_irq_entry
 04040020 g       *ABS*	00000000 __ram_exceptions_start
 04040460 g     F .text	00000004 alt_ic_isr_register
 02000078 g       *ABS*	00000000 _edata
-02000198 g       *ABS*	00000000 _end
+02000194 g       *ABS*	00000000 _end
 04040188 g       *ABS*	00000000 __ram_exceptions_end
 02000078 g     O .bss	00000001 flipImgFlags
 0404049c g     F .text	00000038 alt_ic_irq_disable
-02000080 g     O .bss	00000004 flags
 04000000 g       *ABS*	00000000 __alt_data_end
 04040020 g     F .exceptions	00000000 alt_exception
 0404001c g       .entry	00000000 _exit
@@ -426,7 +425,7 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_irq_pending (void)
 #ifdef ALT_ENHANCED_INTERRUPT_API_PRESENT
         alt_irq[i].handler(alt_irq[i].context); 
  404010c:	04008034 	movhi	r16,512
- 4040110:	84002604 	addi	r16,r16,152
+ 4040110:	84002504 	addi	r16,r16,148
 
   active = alt_irq_pending ();
 
@@ -502,7 +501,7 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_irq_pending (void)
 #endif /* NIOS2_HAS_EXTRA_EXCEPTION_INFO */
 
   if(alt_instruction_exception_handler) {
- 4040164:	d0e00a17 	ldw	r3,-32728(gp)
+ 4040164:	d0e00917 	ldw	r3,-32732(gp)
  4040168:	18000426 	beq	r3,zero,404017c <alt_instruction_exception_entry+0x20>
  * check the validity of the cause argument before proceeding.
  */
@@ -585,7 +584,7 @@ Disassembly of section .text:
     movhi r3, %hi(__bss_end)
  40401b0:	00c08034 	movhi	r3,512
     ori r3, r3, %lo(__bss_end)
- 40401b4:	18c06614 	ori	r3,r3,408
+ 40401b4:	18c06514 	ori	r3,r3,404
 
     beq r2, r3, 1f
  40401b8:	10c00326 	beq	r2,r3,40401c8 <_start+0x40>
@@ -620,8 +619,8 @@ alt_after_alt_main:
  40401d0:	003fff06 	br	40401d0 <__flash_rwdata_start+0xfffff7c8>
 
 040401d4 <clrBuffer>:
+ *  when processor restarts/program initialises
  */
-
 void clrBuffer() {
 	for (int i = 0; i < BUF_MAX_PIX; i++) {
 		  // Set Buffer Address
@@ -633,10 +632,10 @@ void clrBuffer() {
 		  // Write Data
 		  IOWR_32DIRECT(PB_DATA_BASE,0,0);
  40401dc:	01410234 	movhi	r5,1032
- * LEDR_OUT_BASE
- * KEY_IN_BASE
+ *  clrBuffer()
+ *  Clears the pixel buffer. Used to clear screen
+ *  when processor restarts/program initialises
  */
-
 void clrBuffer() {
 	for (int i = 0; i < BUF_MAX_PIX; i++) {
  40401e0:	0005883a 	mov	r2,zero
@@ -650,10 +649,10 @@ void clrBuffer() {
 		  // Write Data
 		  IOWR_32DIRECT(PB_DATA_BASE,0,0);
  40401f0:	29440c04 	addi	r5,r5,4144
- * LEDR_OUT_BASE
- * KEY_IN_BASE
+ *  clrBuffer()
+ *  Clears the pixel buffer. Used to clear screen
+ *  when processor restarts/program initialises
  */
-
 void clrBuffer() {
 	for (int i = 0; i < BUF_MAX_PIX; i++) {
  40401f4:	0112c004 	movi	r4,19200
@@ -669,10 +668,10 @@ void clrBuffer() {
 		  // Disable writing
 		  IOWR_32DIRECT(PBUFF_WREN_BASE,0,0);
  4040204:	18000035 	stwio	zero,0(r3)
- * LEDR_OUT_BASE
- * KEY_IN_BASE
+ *  clrBuffer()
+ *  Clears the pixel buffer. Used to clear screen
+ *  when processor restarts/program initialises
  */
-
 void clrBuffer() {
 	for (int i = 0; i < BUF_MAX_PIX; i++) {
  4040208:	10800044 	addi	r2,r2,1
@@ -686,9 +685,11 @@ void clrBuffer() {
  4040210:	f800283a 	ret
 
 04040214 <writeImage>:
-
-// Function it uses the last 2 bits
-// 0x1 is x flip, 0x2 is y flip
+ * Writes the images in SDRAM to the pixel buffer
+ * Uses the 2 LSBs to determine if the image should
+ * be flipped when it is drawn
+ * 0x1 is x flip, 0x2 is y flip
+ */
 void writeImage(char flipFlags) {
  4040214:	defff804 	addi	sp,sp,-32
  4040218:	dc000015 	stw	r16,0(sp)
@@ -696,11 +697,11 @@ void writeImage(char flipFlags) {
 	alt_putstr("WRITING IMAGE TO BUFFER\n");
  4040220:	01008034 	movhi	r4,512
  4040224:	21000004 	addi	r4,r4,0
-	return;
-}
-
-// Function it uses the last 2 bits
-// 0x1 is x flip, 0x2 is y flip
+ * Writes the images in SDRAM to the pixel buffer
+ * Uses the 2 LSBs to determine if the image should
+ * be flipped when it is drawn
+ * 0x1 is x flip, 0x2 is y flip
+ */
 void writeImage(char flipFlags) {
  4040228:	dfc00715 	stw	ra,28(sp)
  404022c:	dd800615 	stw	r22,24(sp)
@@ -726,13 +727,17 @@ void writeImage(char flipFlags) {
 	char xFlipped = (flipFlags & 0x1) != 0;
  4040260:	8080004c 	andi	r2,r16,1
  4040264:	8400008c 	andi	r16,r16,2
-	char yFlipped = (flipFlags & 0x2) != 0;
+	// To correct this we check if the image is requested to be
+	// flipped in y only. If it is we flip the x direction back
+	// to correct for the errant x flip.
+	// If y is not needed to be flipped, we only flip if x needs
+	// to be flipped
 	char performXFlip = yFlipped ? xFlipped^yFlipped : xFlipped;
  4040268:	80000426 	beq	r16,zero,404027c <writeImage+0x68>
  404026c:	1180005c 	xori	r6,r2,1
  4040270:	043fffc4 	movi	r16,-1
 
-	// Define Base For Flip
+	// Define Base For Flip and add offset if required
 	int base = 0;
 	if (yFlipped) {
 		base += heightAddr;
@@ -740,19 +745,19 @@ void writeImage(char flipFlags) {
  4040278:	00000306 	br	4040288 <writeImage+0x74>
  404027c:	100d883a 	mov	r6,r2
  4040280:	04000044 	movi	r16,1
-	char xFlipped = (flipFlags & 0x1) != 0;
-	char yFlipped = (flipFlags & 0x2) != 0;
+	// If y is not needed to be flipped, we only flip if x needs
+	// to be flipped
 	char performXFlip = yFlipped ? xFlipped^yFlipped : xFlipped;
 
-	// Define Base For Flip
+	// Define Base For Flip and add offset if required
 	int base = 0;
  4040284:	0005883a 	mov	r2,zero
  4040288:	814027e4 	muli	r5,r16,159
-			pixelAddr2 = base+readOffset2*(yFlipped ? -1 : 1);
-
+			// Get the data from this pixel addresses above
 			data1 = IORD_32DIRECT(SDRAM_BASEADDR,readOffset1*4)>>24;
 			data2 = IORD_32DIRECT(SDRAM_BASEADDR,readOffset2*4)>>24;
 
+			// Write the first pixel to the correct location in the buffer
 			IOWR_32DIRECT(PB_ADR_BASE,0,(performXFlip ? pixelAddr2 : pixelAddr1));
  404028c:	31803fcc 	andi	r6,r6,255
  4040290:	87c02824 	muli	ra,r16,160
@@ -763,26 +768,26 @@ void writeImage(char flipFlags) {
  40402a0:	03c10234 	movhi	r15,1032
 			IOWR_32DIRECT(PB_DATA_BASE,0,data1);
  40402a4:	04c10234 	movhi	r19,1032
-
+	int readOffset2;
 	int pixelAddr1;
 	int pixelAddr2;
 
-	// Flip in the x-direction
+	// Loop to draw the image to the screen
 	for (int i = 0; i < heightAddr; i = i + IMG_WIDTH) {
  40402a8:	05800074 	movhi	r22,1
  40402ac:	288b883a 	add	r5,r5,r2
-			IOWR_32DIRECT(PB_ADR_BASE,0,(performXFlip ? pixelAddr2 : pixelAddr1));
 			IOWR_32DIRECT(PBUFF_WREN_BASE,0,1);
 			IOWR_32DIRECT(PB_DATA_BASE,0,data1);
 			IOWR_32DIRECT(PBUFF_WREN_BASE,0,0);
 
+			// Write the first pixel to the correct location in the buffer
 			IOWR_32DIRECT(PB_ADR_BASE,0,(performXFlip ? pixelAddr1 : pixelAddr2));
  40402b0:	0007883a 	mov	r3,zero
-			pixelAddr2 = base+readOffset2*(yFlipped ? -1 : 1);
-
+			// Get the data from this pixel addresses above
 			data1 = IORD_32DIRECT(SDRAM_BASEADDR,readOffset1*4)>>24;
 			data2 = IORD_32DIRECT(SDRAM_BASEADDR,readOffset2*4)>>24;
 
+			// Write the first pixel to the correct location in the buffer
 			IOWR_32DIRECT(PB_ADR_BASE,0,(performXFlip ? pixelAddr2 : pixelAddr1));
  40402b4:	31bfe004 	addi	r6,r6,-128
  40402b8:	94841004 	addi	r18,r18,4160
@@ -794,40 +799,40 @@ void writeImage(char flipFlags) {
 	int pixelAddr1;
 	int pixelAddr2;
 
-	// Flip in the x-direction
+	// Loop to draw the image to the screen
 	for (int i = 0; i < heightAddr; i = i + IMG_WIDTH) {
 		for (int j = 0; j < IMG_WIDTH/2; j++){
  40402c8:	05405004 	movi	r21,320
-
+	int readOffset2;
 	int pixelAddr1;
 	int pixelAddr2;
 
-	// Flip in the x-direction
+	// Loop to draw the image to the screen
 	for (int i = 0; i < heightAddr; i = i + IMG_WIDTH) {
  40402cc:	b58a6004 	addi	r22,r22,10624
 	char performXFlip = yFlipped ? xFlipped^yFlipped : xFlipped;
 
-	// Define Base For Flip
+	// Define Base For Flip and add offset if required
 	int base = 0;
 	if (yFlipped) {
 		base += heightAddr;
  40402d0:	0011883a 	mov	r8,zero
  40402d4:	000f883a 	mov	r7,zero
  40402d8:	0009883a 	mov	r4,zero
-
 			pixelAddr1 = base+readOffset1*(yFlipped ? -1 : 1);
 			pixelAddr2 = base+readOffset2*(yFlipped ? -1 : 1);
 
+			// Get the data from this pixel addresses above
 			data1 = IORD_32DIRECT(SDRAM_BASEADDR,readOffset1*4)>>24;
 			data2 = IORD_32DIRECT(SDRAM_BASEADDR,readOffset2*4)>>24;
  40402dc:	1c409f04 	addi	r17,r3,636
  40402e0:	11d5883a 	add	r10,r2,r7
  40402e4:	4159883a 	add	r12,r8,r5
-			readOffset2 = i + IMG_WIDTH - j - 1;
-
+			// Calculate which pixel to read
 			pixelAddr1 = base+readOffset1*(yFlipped ? -1 : 1);
 			pixelAddr2 = base+readOffset2*(yFlipped ? -1 : 1);
 
+			// Get the data from this pixel addresses above
 			data1 = IORD_32DIRECT(SDRAM_BASEADDR,readOffset1*4)>>24;
  40402e8:	20d3883a 	add	r9,r4,r3
  40402ec:	4ac00037 	ldwio	r11,0(r9)
@@ -837,6 +842,7 @@ void writeImage(char flipFlags) {
  40402f8:	4a400037 	ldwio	r9,0(r9)
  40402fc:	4813d63a 	srai	r9,r9,24
 
+			// Write the first pixel to the correct location in the buffer
 			IOWR_32DIRECT(PB_ADR_BASE,0,(performXFlip ? pixelAddr2 : pixelAddr1));
  4040300:	3000021e 	bne	r6,zero,404030c <writeImage+0xf8>
  4040304:	501b883a 	mov	r13,r10
@@ -852,6 +858,7 @@ void writeImage(char flipFlags) {
  4040320:	02c10234 	movhi	r11,1032
  4040324:	5ac40804 	addi	r11,r11,4128
 
+			// Write the first pixel to the correct location in the buffer
 			IOWR_32DIRECT(PB_ADR_BASE,0,(performXFlip ? pixelAddr1 : pixelAddr2));
  4040328:	3000011e 	bne	r6,zero,4040330 <writeImage+0x11c>
  404032c:	6015883a 	mov	r10,r12
@@ -872,18 +879,18 @@ void writeImage(char flipFlags) {
 	int pixelAddr1;
 	int pixelAddr2;
 
-	// Flip in the x-direction
+	// Loop to draw the image to the screen
 	for (int i = 0; i < heightAddr; i = i + IMG_WIDTH) {
 		for (int j = 0; j < IMG_WIDTH/2; j++){
  404035c:	257fe01e 	bne	r4,r21,40402e0 <__flash_rwdata_start+0xfffff8d8>
  4040360:	18c0a004 	addi	r3,r3,640
  4040364:	17c5883a 	add	r2,r2,ra
  4040368:	2fcb883a 	add	r5,r5,ra
-
+	int readOffset2;
 	int pixelAddr1;
 	int pixelAddr2;
 
-	// Flip in the x-direction
+	// Loop to draw the image to the screen
 	for (int i = 0; i < heightAddr; i = i + IMG_WIDTH) {
  404036c:	1dbfd81e 	bne	r3,r22,40402d0 <__flash_rwdata_start+0xfffff8c8>
 			IOWR_32DIRECT(PB_DATA_BASE,0,data2);
@@ -914,10 +921,10 @@ void writeImage(char flipFlags) {
  404039c:	40408181 	jmpi	4040818 <alt_putstr>
 
 040403a0 <KEY_IN_ISR>:
-}
-
-
-// Define the handler
+ * Currently just checks which button was pressed,
+ * updates the global flip flag accordingly and then
+ * redraws the image to the screen
+ */
 void KEY_IN_ISR(void * isr_context, alt_u32 id)
 {
  40403a0:	defffe04 	addi	sp,sp,-8
@@ -926,26 +933,27 @@ void KEY_IN_ISR(void * isr_context, alt_u32 id)
 	alt_putstr("Interrupt Triggered\n");
  40403ac:	01008034 	movhi	r4,512
  40403b0:	21000f04 	addi	r4,r4,60
-}
-
-
-// Define the handler
+ * Currently just checks which button was pressed,
+ * updates the global flip flag accordingly and then
+ * redraws the image to the screen
+ */
 void KEY_IN_ISR(void * isr_context, alt_u32 id)
 {
  40403b4:	dfc00115 	stw	ra,4(sp)
 	alt_putstr("Interrupt Triggered\n");
  40403b8:	40408180 	call	4040818 <alt_putstr>
+	// Retrieve the memory address to store the edge capture data
 	volatile int* button_edge_capture_ptr = (volatile int*) isr_context;
+	// Get edge capture data
 	*button_edge_capture_ptr = IORD_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE);
  40403bc:	00810234 	movhi	r2,1032
  40403c0:	10841704 	addi	r2,r2,4188
  40403c4:	10c00037 	ldwio	r3,0(r2)
  40403c8:	80c00015 	stw	r3,0(r16)
-	//alt_printf("%x\n",*button_edge_capture_ptr);
 	// Write to the edge capture register to reset it.
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE, 0);
  40403cc:	10000035 	stwio	zero,0(r2)
-
+	// Flip the flag in the global variable as required and redraw image
 	flipImgFlags = flipImgFlags ^ (*button_edge_capture_ptr);
  40403d0:	81000017 	ldw	r4,0(r16)
  40403d4:	d0a00303 	ldbu	r2,-32756(gp)
@@ -959,40 +967,38 @@ void KEY_IN_ISR(void * isr_context, alt_u32 id)
  40403ec:	dfc00117 	ldw	ra,4(sp)
  40403f0:	dc000017 	ldw	r16,0(sp)
  40403f4:	dec00204 	addi	sp,sp,8
-	//alt_printf("%x\n",*button_edge_capture_ptr);
+	*button_edge_capture_ptr = IORD_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE);
 	// Write to the edge capture register to reset it.
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE, 0);
-
+	// Flip the flag in the global variable as required and redraw image
 	flipImgFlags = flipImgFlags ^ (*button_edge_capture_ptr);
 	writeImage(flipImgFlags);
  40403f8:	40402141 	jmpi	4040214 <writeImage>
 
 040403fc <main>:
-}
-
+ * - Clears the buffer
+ * - Draws the initial image to the screen
+ */
 int main()
 { 
-
 	alt_putstr("Begin VGA\n");
  40403fc:	01008034 	movhi	r4,512
-		  0x0
-  );
-}
-
+ * - Sets up the interrupt handler
+ * - Clears the buffer
+ * - Draws the initial image to the screen
+ */
 int main()
 { 
  4040400:	defffe04 	addi	sp,sp,-8
-
 	alt_putstr("Begin VGA\n");
  4040404:	21001504 	addi	r4,r4,84
-		  0x0
-  );
-}
-
+ * - Sets up the interrupt handler
+ * - Clears the buffer
+ * - Draws the initial image to the screen
+ */
 int main()
 { 
  4040408:	dfc00115 	stw	ra,4(sp)
-
 	alt_putstr("Begin VGA\n");
  404040c:	40408180 	call	4040818 <alt_putstr>
 
@@ -1064,12 +1070,12 @@ static ALT_INLINE alt_irq_context ALT_ALWAYS_INLINE
 
   alt_irq_active |= (1 << id);
  4040474:	00c00044 	movi	r3,1
- 4040478:	d0a00617 	ldw	r2,-32744(gp)
+ 4040478:	d0a00517 	ldw	r2,-32748(gp)
  404047c:	194a983a 	sll	r5,r3,r5
  4040480:	288ab03a 	or	r5,r5,r2
- 4040484:	d1600615 	stw	r5,-32744(gp)
+ 4040484:	d1600515 	stw	r5,-32748(gp)
   NIOS2_WRITE_IENABLE (alt_irq_active);
- 4040488:	d0a00617 	ldw	r2,-32744(gp)
+ 4040488:	d0a00517 	ldw	r2,-32748(gp)
  404048c:	100170fa 	wrctl	ienable,r2
   status &= ~NIOS2_STATUS_PIE_MSK;
   status |= (context & NIOS2_STATUS_PIE_MSK);
@@ -1107,12 +1113,12 @@ static ALT_INLINE alt_irq_context ALT_ALWAYS_INLINE
 
   alt_irq_active &= ~(1 << id);
  40404ac:	00ffff84 	movi	r3,-2
- 40404b0:	d0a00617 	ldw	r2,-32744(gp)
+ 40404b0:	d0a00517 	ldw	r2,-32748(gp)
  40404b4:	194a183a 	rol	r5,r3,r5
  40404b8:	288a703a 	and	r5,r5,r2
- 40404bc:	d1600615 	stw	r5,-32744(gp)
+ 40404bc:	d1600515 	stw	r5,-32748(gp)
   NIOS2_WRITE_IENABLE (alt_irq_active);
- 40404c0:	d0a00617 	ldw	r2,-32744(gp)
+ 40404c0:	d0a00517 	ldw	r2,-32748(gp)
  40404c4:	100170fa 	wrctl	ienable,r2
   status &= ~NIOS2_STATUS_PIE_MSK;
   status |= (context & NIOS2_STATUS_PIE_MSK);
@@ -1185,7 +1191,7 @@ static ALT_INLINE alt_irq_context ALT_ALWAYS_INLINE
     alt_irq[id].handler = isr;
  4040510:	280490fa 	slli	r2,r5,3
  4040514:	00c08034 	movhi	r3,512
- 4040518:	18c02604 	addi	r3,r3,152
+ 4040518:	18c02504 	addi	r3,r3,148
  404051c:	1885883a 	add	r2,r3,r2
  4040520:	11800015 	stw	r6,0(r2)
     alt_irq[id].context = isr_context;
@@ -1372,9 +1378,9 @@ void alt_main (void)
 
 #ifdef ALT_NO_EXIT
   main (alt_argc, alt_argv, alt_envp);
- 4040648:	d1a00717 	ldw	r6,-32740(gp)
- 404064c:	d1600817 	ldw	r5,-32736(gp)
- 4040650:	d1200917 	ldw	r4,-32732(gp)
+ 4040648:	d1a00617 	ldw	r6,-32744(gp)
+ 404064c:	d1600717 	ldw	r5,-32740(gp)
+ 4040650:	d1200817 	ldw	r4,-32736(gp)
   close(STDOUT_FILENO);
   exit (result);
 #endif

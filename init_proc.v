@@ -1,3 +1,17 @@
+// *********************************
+//
+//	ECE3073 Project
+// Milestone 1 - Task 2 & 3
+// Initialises the NIOS processor with required peripherals
+// 
+// Authors:
+//		Hamish McCoy (32474741)
+//		Thomas Huang (32501617)
+// Last Edited: 1/04/2024
+//
+//
+// *********************************
+
 module init_proc(
 	CLOCK_50,
 	SW,
@@ -22,7 +36,7 @@ module init_proc(
 	
 );
 
-	// Define IO
+	// Define Standard IO
 	input CLOCK_50;
 	input [9:0] SW;
 	input [9:0] LEDR;
@@ -75,7 +89,7 @@ module init_proc(
 		.VGA_VS(VGA_VS)
 	);
 
-	// Define Video Ram
+	// Define Video Ram (pixel buffer)
 	ram2port pixel_buffer(
 		.clock(VGA_CLOCK),
 		.data(PB_input[3:0]),
@@ -93,23 +107,23 @@ module init_proc(
 	
 	// Instantiate NiosII proc
 	niosII_processor nios2_proc(
-			.clk_clk(CLOCK_50),     //   clk.clk
+			.clk_clk(CLOCK_50),
 			.reset_reset_n(1'b1),
-			.key_export(KEY[1:0]),       //        key.export
-			.ledr_export(LEDR[9:0]),      //       ledr.export
-			.pb_adr_export(PB_WA[14:0]),    //     pb_adr.export
-			.pb_data_export(PB_input[3:0]),   //    pb_data.export
-			.sw_export(SW[9:0]),         //         sw.export
+			.key_export(KEY[1:0]),
+			.ledr_export(LEDR[9:0]),
+			.pb_adr_export(PB_WA[14:0]),
+			.pb_data_export(PB_input[3:0]),
+			.sw_export(SW[9:0]),
 			.pbuff_wren_export(PB_WE),
-			.sdram_wire_addr(DRAM_ADDR[12:0]),  // sdram.addr
-			.sdram_wire_ba(DRAM_BA[1:0]),    //      .ba
-			.sdram_wire_cas_n(DRAM_CAS_N), //      .cas_n
-			.sdram_wire_cke(DRAM_CKE),   //      .cke
-			.sdram_wire_cs_n(DRAM_CS_N),  //      .cs_n
-			.sdram_wire_dq(DRAM_DQ[15:0]),    //      .dq
-			.sdram_wire_dqm({DRAM_UDQM,DRAM_LDQM}),   //      .dqm
-			.sdram_wire_ras_n(DRAM_RAS_N), //      .ras_n
-			.sdram_wire_we_n(DRAM_WE_N)   //      .we_n
+			.sdram_wire_addr(DRAM_ADDR[12:0]),
+			.sdram_wire_ba(DRAM_BA[1:0]),
+			.sdram_wire_cas_n(DRAM_CAS_N),
+			.sdram_wire_cke(DRAM_CKE),
+			.sdram_wire_cs_n(DRAM_CS_N),
+			.sdram_wire_dq(DRAM_DQ[15:0]),
+			.sdram_wire_dqm({DRAM_UDQM,DRAM_LDQM}),
+			.sdram_wire_ras_n(DRAM_RAS_N),
+			.sdram_wire_we_n(DRAM_WE_N)
 	);
 
 endmodule

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ece3073project
-Thu Apr 11 18:17:01 2024
+Tue Apr 16 21:53:03 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -236,7 +236,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 11 18:17:00 2024       ;
+; Analysis & Synthesis Status        ; Successful - Tue Apr 16 21:53:03 2024       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ece3073project                              ;
 ; Top-level Entity Name              ; init_proc                                   ;
@@ -7186,7 +7186,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:44     ;
+; Top            ; 00:00:33     ;
 +----------------+--------------+
 
 
@@ -7196,7 +7196,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Apr 11 18:12:55 2024
+    Info: Processing started: Tue Apr 16 21:50:11 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ece3073project -c ece3073project
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -7365,22 +7365,20 @@ Info (12021): Found 1 design units, including 1 entities, in source file vga_con
 Info (12021): Found 1 design units, including 1 entities, in source file ram2port.v
     Info (12023): Found entity 1: ram2port File: C:/Users/katja/Documents/ECE3073/Project/ram2port.v Line: 39
 Info (12021): Found 1 design units, including 1 entities, in source file init_vga.v
-    Info (12023): Found entity 1: init_vga File: C:/Users/katja/Documents/ECE3073/Project/init_vga.v Line: 1
+    Info (12023): Found entity 1: init_vga File: C:/Users/katja/Documents/ECE3073/Project/init_vga.v Line: 16
 Info (12021): Found 1 design units, including 1 entities, in source file init_proc.v
-    Info (12023): Found entity 1: init_proc File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 1
+    Info (12023): Found entity 1: init_proc File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 15
 Info (12021): Found 1 design units, including 1 entities, in source file pll_vga.v
     Info (12023): Found entity 1: pll_VGA File: C:/Users/katja/Documents/ECE3073/Project/pll_VGA.v Line: 39
 Info (12021): Found 1 design units, including 1 entities, in source file pll_sdram.v
     Info (12023): Found entity 1: pll_SDRAM File: C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.v Line: 39
-Info (12021): Found 1 design units, including 1 entities, in source file vga_address_map.v
-    Info (12023): Found entity 1: vga_address_map File: C:/Users/katja/Documents/ECE3073/Project/vga_address_map.v Line: 1
 Warning (10236): Verilog HDL Implicit Net warning at vga_controller.v(62): created implicit net for "pixelValid" File: C:/Users/katja/Documents/ECE3073/Project/vga_controller.v Line: 62
 Warning (10037): Verilog HDL or VHDL warning at niosII_processor_SDRAM.v(318): conditional expression evaluates to a constant File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_SDRAM.v Line: 318
 Warning (10037): Verilog HDL or VHDL warning at niosII_processor_SDRAM.v(328): conditional expression evaluates to a constant File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_SDRAM.v Line: 328
 Warning (10037): Verilog HDL or VHDL warning at niosII_processor_SDRAM.v(338): conditional expression evaluates to a constant File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_SDRAM.v Line: 338
 Warning (10037): Verilog HDL or VHDL warning at niosII_processor_SDRAM.v(682): conditional expression evaluates to a constant File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_SDRAM.v Line: 682
 Info (12127): Elaborating entity "init_proc" for the top level hierarchy
-Info (12128): Elaborating entity "pll_VGA" for hierarchy "pll_VGA:vga_pll" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 63
+Info (12128): Elaborating entity "pll_VGA" for hierarchy "pll_VGA:vga_pll" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 77
 Info (12128): Elaborating entity "altpll" for hierarchy "pll_VGA:vga_pll|altpll:altpll_component" File: C:/Users/katja/Documents/ECE3073/Project/pll_VGA.v Line: 90
 Info (12130): Elaborated megafunction instantiation "pll_VGA:vga_pll|altpll:altpll_component" File: C:/Users/katja/Documents/ECE3073/Project/pll_VGA.v Line: 90
 Info (12133): Instantiated megafunction "pll_VGA:vga_pll|altpll:altpll_component" with the following parameter: File: C:/Users/katja/Documents/ECE3073/Project/pll_VGA.v Line: 90
@@ -7441,7 +7439,7 @@ Info (12133): Instantiated megafunction "pll_VGA:vga_pll|altpll:altpll_component
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_vga_altpll.v
     Info (12023): Found entity 1: pll_VGA_altpll File: C:/Users/katja/Documents/ECE3073/Project/db/pll_vga_altpll.v Line: 29
 Info (12128): Elaborating entity "pll_VGA_altpll" for hierarchy "pll_VGA:vga_pll|altpll:altpll_component|pll_VGA_altpll:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altpll.tdf Line: 897
-Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_controller:vga_ctl" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 76
+Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_controller:vga_ctl" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 90
 Warning (10230): Verilog HDL assignment warning at vga_controller.v(43): truncated value with size 32 to match size of target (19) File: C:/Users/katja/Documents/ECE3073/Project/vga_controller.v Line: 43
 Warning (10230): Verilog HDL assignment warning at vga_controller.v(53): truncated value with size 32 to match size of target (19) File: C:/Users/katja/Documents/ECE3073/Project/vga_controller.v Line: 53
 Warning (10230): Verilog HDL assignment warning at vga_controller.v(59): truncated value with size 32 to match size of target (1) File: C:/Users/katja/Documents/ECE3073/Project/vga_controller.v Line: 59
@@ -7449,7 +7447,7 @@ Warning (10230): Verilog HDL assignment warning at vga_controller.v(60): truncat
 Warning (10230): Verilog HDL assignment warning at vga_controller.v(69): truncated value with size 32 to match size of target (19) File: C:/Users/katja/Documents/ECE3073/Project/vga_controller.v Line: 69
 Warning (10230): Verilog HDL assignment warning at vga_controller.v(70): truncated value with size 32 to match size of target (19) File: C:/Users/katja/Documents/ECE3073/Project/vga_controller.v Line: 70
 Warning (10230): Verilog HDL assignment warning at vga_controller.v(73): truncated value with size 32 to match size of target (19) File: C:/Users/katja/Documents/ECE3073/Project/vga_controller.v Line: 73
-Info (12128): Elaborating entity "ram2port" for hierarchy "ram2port:pixel_buffer" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 86
+Info (12128): Elaborating entity "ram2port" for hierarchy "ram2port:pixel_buffer" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 100
 Info (12128): Elaborating entity "altsyncram" for hierarchy "ram2port:pixel_buffer|altsyncram:altsyncram_component" File: C:/Users/katja/Documents/ECE3073/Project/ram2port.v Line: 88
 Info (12130): Elaborated megafunction instantiation "ram2port:pixel_buffer|altsyncram:altsyncram_component" File: C:/Users/katja/Documents/ECE3073/Project/ram2port.v Line: 88
 Info (12133): Instantiated megafunction "ram2port:pixel_buffer|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/katja/Documents/ECE3073/Project/ram2port.v Line: 88
@@ -7484,7 +7482,7 @@ Info (12128): Elaborating entity "decode_4j9" for hierarchy "ram2port:pixel_buff
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_n1b.tdf
     Info (12023): Found entity 1: mux_n1b File: C:/Users/katja/Documents/ECE3073/Project/db/mux_n1b.tdf Line: 22
 Info (12128): Elaborating entity "mux_n1b" for hierarchy "ram2port:pixel_buffer|altsyncram:altsyncram_component|altsyncram_63n1:auto_generated|mux_n1b:mux3" File: C:/Users/katja/Documents/ECE3073/Project/db/altsyncram_63n1.tdf Line: 48
-Info (12128): Elaborating entity "pll_SDRAM" for hierarchy "pll_SDRAM:sdramPll" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 92
+Info (12128): Elaborating entity "pll_SDRAM" for hierarchy "pll_SDRAM:sdramPll" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 106
 Info (12128): Elaborating entity "altpll" for hierarchy "pll_SDRAM:sdramPll|altpll:altpll_component" File: C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.v Line: 90
 Info (12130): Elaborated megafunction instantiation "pll_SDRAM:sdramPll|altpll:altpll_component" File: C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.v Line: 90
 Info (12133): Instantiated megafunction "pll_SDRAM:sdramPll|altpll:altpll_component" with the following parameter: File: C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.v Line: 90
@@ -7545,7 +7543,7 @@ Info (12133): Instantiated megafunction "pll_SDRAM:sdramPll|altpll:altpll_compon
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_sdram_altpll.v
     Info (12023): Found entity 1: pll_SDRAM_altpll File: C:/Users/katja/Documents/ECE3073/Project/db/pll_sdram_altpll.v Line: 29
 Info (12128): Elaborating entity "pll_SDRAM_altpll" for hierarchy "pll_SDRAM:sdramPll|altpll:altpll_component|pll_SDRAM_altpll:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altpll.tdf Line: 897
-Info (12128): Elaborating entity "niosII_processor" for hierarchy "niosII_processor:nios2_proc" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 113
+Info (12128): Elaborating entity "niosII_processor" for hierarchy "niosII_processor:nios2_proc" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 127
 Info (12128): Elaborating entity "niosII_processor_KEY_IN" for hierarchy "niosII_processor:nios2_proc|niosII_processor_KEY_IN:key_in" File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/niosII_processor.v Line: 125
 Info (12128): Elaborating entity "niosII_processor_LEDR_OUT" for hierarchy "niosII_processor:nios2_proc|niosII_processor_LEDR_OUT:ledr_out" File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/niosII_processor.v Line: 136
 Info (12128): Elaborating entity "niosII_processor_NIOS_MEM" for hierarchy "niosII_processor:nios2_proc|niosII_processor_NIOS_MEM:nios_mem" File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/niosII_processor.v Line: 150
@@ -8300,7 +8298,7 @@ Info (12128): Elaborating entity "altera_reset_synchronizer" for hierarchy "nios
 Info (12128): Elaborating entity "altera_reset_synchronizer" for hierarchy "niosII_processor:nios2_proc|altera_reset_controller:rst_controller|altera_reset_synchronizer:alt_rst_req_sync_uq1" File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_controller.v Line: 220
 Warning (12020): Port "jdo" on the entity instantiation of "the_niosII_processor_NIOS_PROC_cpu_nios2_oci_itrace" is connected to a signal of width 38. The formal width of the signal in the module is 16.  The extra bits will be ignored. File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.v Line: 3216
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2024.04.11.18:15:16 Progress: Loading slde1579371/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2024.04.16.21:51:58 Progress: Loading slde1579371/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -8359,23 +8357,23 @@ Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity
 Info (13000): Registers with preset signals will power-up high File: C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_SDRAM.v Line: 442
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "DRAM_CKE" is stuck at VCC File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 35
+    Warning (13410): Pin "DRAM_CKE" is stuck at VCC File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 49
 Info (286031): Timing-Driven Synthesis is running on partition "Top"
 Info (17049): 339 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 2 node(s), including 0 DDIO, 2 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 10 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "LEDR[0]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[1]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[2]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[3]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[4]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[5]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[6]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[7]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[8]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
-    Warning (15610): No output dependent on input pin "LEDR[9]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 28
+    Warning (15610): No output dependent on input pin "LEDR[0]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[1]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[2]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[3]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[4]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[5]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[6]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[7]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[8]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
+    Warning (15610): No output dependent on input pin "LEDR[9]" File: C:/Users/katja/Documents/ECE3073/Project/init_proc.v Line: 42
 Info (21057): Implemented 6063 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 26 input pins
     Info (21059): Implemented 38 output pins
@@ -8385,10 +8383,10 @@ Info (21057): Implemented 6063 device resources after synthesis - the final reso
     Info (21065): Implemented 2 PLLs
     Info (21062): Implemented 6 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
-    Info: Peak virtual memory: 4989 megabytes
-    Info: Processing ended: Thu Apr 11 18:17:01 2024
-    Info: Elapsed time: 00:04:06
-    Info: Total CPU time (on all processors): 00:03:20
+    Info: Peak virtual memory: 5005 megabytes
+    Info: Processing ended: Tue Apr 16 21:53:03 2024
+    Info: Elapsed time: 00:02:52
+    Info: Total CPU time (on all processors): 00:02:45
 
 
 +------------------------------------------+

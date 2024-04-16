@@ -1,3 +1,18 @@
+// *********************************
+//
+//	ECE3073 Project
+// Milestone 1 - Task 1
+// Initialises the VGA display and uses switches to
+// Write a value to each pixel
+// 
+// Authors:
+//		Hamish McCoy (32474741)
+//		Thomas Huang (32501617)
+// Last Edited: 26/03/2024
+//
+//
+// *********************************
+
 module init_vga(
 	CLOCK_50,
 	SW,
