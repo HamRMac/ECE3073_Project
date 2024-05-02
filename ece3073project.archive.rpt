@@ -1,0 +1,172 @@
+Archive Project report for ece3073project
+Tue Apr 16 23:03:23 2024
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Archive Project Summary
+  3. Archive Project Messages
+  4. Files Archived
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------+
+; Archive Project Summary                                        ;
++------------------------+---------------------------------------+
+; Archive Project Status ; Successful - Tue Apr 16 23:03:23 2024 ;
+; Revision Name          ; ece3073project                        ;
+; Top-level Entity Name  ; init_proc                             ;
+; Family                 ; MAX 10                                ;
++------------------------+---------------------------------------+
+
+
++--------------------------+
+; Archive Project Messages ;
++--------------------------+
+Info: File Set 'Custom' contains:
+    Info: Programming output files
+    Info: Automatically detected source files
+    Info: Project source and settings files
+Warning: Hierarchical Platform Designer systems and custom IP components(_hw.tcl and associated files) are not archived by the Quartus Archiver
+Info: Archive will store files relative to the closest common parent directory
+Info (13213): Using common directory C:/Users/katja/Documents/ECE3073/Project/
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated archive 'C:/Users/katja/Documents/ECE3073/Project/ece3073project.qar'
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated report 'ece3073project.archive.rpt'
+Info (23030): Evaluation of Tcl script c:/intelfpga_lite/18.1/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 4890 megabytes
+    Info: Processing ended: Tue Apr 16 23:03:23 2024
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:06
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Files Archived                                                                                                    ;
++-------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                         ;
++-------------------------------------------------------------------------------------------------------------------+
+; c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf                                                      ;
+; ece3073project.qpf                                                                                                ;
+; ece3073project.qsf                                                                                                ;
+; init_proc.v                                                                                                       ;
+; init_vga.v                                                                                                        ;
+; niosII_processor/synthesis/../../niosII_processor.qsys                                                            ;
+; niosII_processor/synthesis/../../niosII_processor.sopcinfo                                                        ;
+; niosII_processor/synthesis/../niosII_processor.cmp                                                                ;
+; niosII_processor/synthesis/niosII_processor.debuginfo                                                             ;
+; niosII_processor/synthesis/niosII_processor.qip                                                                   ;
+; niosII_processor/synthesis/niosII_processor.regmap                                                                ;
+; niosII_processor/synthesis/niosII_processor.v                                                                     ;
+; niosII_processor/synthesis/submodules/altera_avalon_sc_fifo.v                                                     ;
+; niosII_processor/synthesis/submodules/altera_avalon_st_pipeline_base.v                                            ;
+; niosII_processor/synthesis/submodules/altera_avalon_st_pipeline_stage.sv                                          ;
+; niosII_processor/synthesis/submodules/altera_default_burst_converter.sv                                           ;
+; niosII_processor/synthesis/submodules/altera_incr_burst_converter.sv                                              ;
+; niosII_processor/synthesis/submodules/altera_merlin_address_alignment.sv                                          ;
+; niosII_processor/synthesis/submodules/altera_merlin_arbitrator.sv                                                 ;
+; niosII_processor/synthesis/submodules/altera_merlin_burst_adapter.sv                                              ;
+; niosII_processor/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv                                         ;
+; niosII_processor/synthesis/submodules/altera_merlin_burst_adapter_new.sv                                          ;
+; niosII_processor/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv                                       ;
+; niosII_processor/synthesis/submodules/altera_merlin_burst_uncompressor.sv                                         ;
+; niosII_processor/synthesis/submodules/altera_merlin_master_agent.sv                                               ;
+; niosII_processor/synthesis/submodules/altera_merlin_master_translator.sv                                          ;
+; niosII_processor/synthesis/submodules/altera_merlin_reorder_memory.sv                                             ;
+; niosII_processor/synthesis/submodules/altera_merlin_slave_agent.sv                                                ;
+; niosII_processor/synthesis/submodules/altera_merlin_slave_translator.sv                                           ;
+; niosII_processor/synthesis/submodules/altera_merlin_traffic_limiter.sv                                            ;
+; niosII_processor/synthesis/submodules/altera_merlin_width_adapter.sv                                              ;
+; niosII_processor/synthesis/submodules/altera_reset_controller.sdc                                                 ;
+; niosII_processor/synthesis/submodules/altera_reset_controller.v                                                   ;
+; niosII_processor/synthesis/submodules/altera_reset_synchronizer.v                                                 ;
+; niosII_processor/synthesis/submodules/altera_wrap_burst_converter.sv                                              ;
+; niosII_processor/synthesis/submodules/niosII_processor_irq_mapper.sv                                              ;
+; niosII_processor/synthesis/submodules/niosII_processor_KEY_IN.v                                                   ;
+; niosII_processor/synthesis/submodules/niosII_processor_LEDR_OUT.v                                                 ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0.v                                        ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter.v                      ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter_009.v                  ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter_009_error_adapter_0.sv ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv     ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_demux.sv                             ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_demux_001.sv                         ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_mux.sv                               ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_mux_001.sv                           ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router.sv                                ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_001.sv                            ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_002.sv                            ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_003.sv                            ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_011.sv                            ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_demux.sv                             ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_demux_001.sv                         ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_mux.sv                               ;
+; niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_mux_001.sv                           ;
+; niosII_processor/synthesis/submodules/niosII_processor_nios2_gen2_0_cpu.sdc                                       ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_MEM.v                                                 ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC.v                                                ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.ocp                                          ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.sdc                                          ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.v                                            ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_bht_ram.mif                                  ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_dc_tag_ram.mif                               ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_debug_slave_sysclk.v                         ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_debug_slave_tck.v                            ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_debug_slave_wrapper.v                        ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_ic_tag_ram.mif                               ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_mult_cell.v                                  ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_ociram_default_contents.mif                  ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_rf_ram_a.mif                                 ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_rf_ram_b.mif                                 ;
+; niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_test_bench.v                                 ;
+; niosII_processor/synthesis/submodules/niosII_processor_PB_ADR.v                                                   ;
+; niosII_processor/synthesis/submodules/niosII_processor_PB_DATA.v                                                  ;
+; niosII_processor/synthesis/submodules/niosII_processor_PBUFF_WREN.v                                               ;
+; niosII_processor/synthesis/submodules/niosII_processor_SDRAM.v                                                    ;
+; niosII_processor/synthesis/submodules/niosII_processor_SW_IN.v                                                    ;
+; niosII_processor/synthesis/submodules/niosII_processor_TIMER.v                                                    ;
+; niosII_processor/synthesis/submodules/niosII_processor_UART_JTAG.v                                                ;
+; output_files/ece3073project.jdi                                                                                   ;
+; output_files/ece3073project.pof                                                                                   ;
+; output_files/ece3073project.sld                                                                                   ;
+; output_files/ece3073project.sof                                                                                   ;
+; pll_SDRAM.ppf                                                                                                     ;
+; pll_SDRAM.qip                                                                                                     ;
+; pll_SDRAM.v                                                                                                       ;
+; pll_SDRAM_bb.v                                                                                                    ;
+; pll_VGA.ppf                                                                                                       ;
+; pll_VGA.qip                                                                                                       ;
+; pll_VGA.v                                                                                                         ;
+; pll_VGA_bb.v                                                                                                      ;
+; ram2port.qip                                                                                                      ;
+; ram2port.v                                                                                                        ;
+; ram2port_bb.v                                                                                                     ;
+; vga_controller.v                                                                                                  ;
++-------------------------------------------------------------------------------------------------------------------+
+
+

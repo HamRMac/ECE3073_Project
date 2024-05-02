@@ -1,0 +1,113 @@
+Quartus Prime Archive log --	C:/Users/katja/Documents/ECE3073/Project/ece3073project.qarlog
+
+Archive:	C:/Users/katja/Documents/ECE3073/Project/ece3073project.qar
+Date:		Tue Apr 16 23:03:22 2024
+Quartus Prime		18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/katja/Documents/ECE3073/Project/ece3073project.qpf
+C:/Users/katja/Documents/ECE3073/Project/ece3073project.qsf
+C:/Users/katja/Documents/ECE3073/Project/init_proc.v
+C:/Users/katja/Documents/ECE3073/Project/init_vga.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor.qsys
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor.sopcinfo
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/niosII_processor.cmp
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/niosII_processor.debuginfo
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/niosII_processor.qip
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/niosII_processor.regmap
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/niosII_processor.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_avalon_sc_fifo.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_avalon_st_pipeline_base.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_avalon_st_pipeline_stage.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_default_burst_converter.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_incr_burst_converter.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_address_alignment.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_arbitrator.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_burst_adapter.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_burst_adapter_new.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_master_agent.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_master_translator.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_reorder_memory.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_slave_agent.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_slave_translator.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_traffic_limiter.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_merlin_width_adapter.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_controller.sdc
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_controller.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_synchronizer.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_wrap_burst_converter.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_KEY_IN.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_LEDR_OUT.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_MEM.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.ocp
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.sdc
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_bht_ram.mif
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_dc_tag_ram.mif
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_debug_slave_sysclk.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_debug_slave_tck.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_debug_slave_wrapper.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_ic_tag_ram.mif
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_mult_cell.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_ociram_default_contents.mif
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_rf_ram_a.mif
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_rf_ram_b.mif
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_PROC_cpu_test_bench.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_PBUFF_WREN.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_PB_ADR.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_PB_DATA.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_SDRAM.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_SW_IN.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_TIMER.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_UART_JTAG.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_irq_mapper.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter_009.v
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter_009_error_adapter_0.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_demux.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_demux_001.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_mux.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_cmd_mux_001.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_001.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_002.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_003.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_router_011.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_demux.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_demux_001.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_mux.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_mux_001.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_nios2_gen2_0_cpu.sdc
+C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.jdi
+C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.pof
+C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.sld
+C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.sof
+C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.ppf
+C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.qip
+C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.v
+C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM_bb.v
+C:/Users/katja/Documents/ECE3073/Project/pll_VGA.ppf
+C:/Users/katja/Documents/ECE3073/Project/pll_VGA.qip
+C:/Users/katja/Documents/ECE3073/Project/pll_VGA.v
+C:/Users/katja/Documents/ECE3073/Project/pll_VGA_bb.v
+C:/Users/katja/Documents/ECE3073/Project/ram2port.qip
+C:/Users/katja/Documents/ECE3073/Project/ram2port.v
+C:/Users/katja/Documents/ECE3073/Project/ram2port_bb.v
+C:/Users/katja/Documents/ECE3073/Project/vga_controller.v
+c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 96 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Tue Apr 16 23:07:14 2024
+Source archive file:	C:/Users/katja/Documents/ECE3073/Project/ece3073project.qar
+Archive was extracted into	C:/Users/katja/Documents/ECE3073/Project/ece3073project_restored/
+		 - successfully.
