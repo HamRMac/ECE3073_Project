@@ -21,6 +21,8 @@
 
 // Include dependencies
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "includes.h"
 // MS 1 dependencies
 #include "io.h"
@@ -46,6 +48,7 @@ OS_STK    displayImageTask_stk[TASK_STACKSIZE];
 #define SDRAM_BASEADDR 0x0000000
 // Define VGA Characteristics
 #define IMG_WIDTH 160
+#define IMG_HEIGHT 120
 #define BUF_LAST_ROW_ADDR 19040
 #define BUF_MAX_PIX 19200
 
@@ -61,6 +64,11 @@ volatile int keyPressedContext;
 
 // Create all required semaphores
 OS_EVENT* semKeyChange;
+
+// Define reusable kernels
+int kernDownscale2x[4] = {1,1,1,1};
+int testPatch[6]  = {1,3,5,1,3,5};
+int testKernel[4] = {2,3,-1,1};
 
 /* ------------------------- *
  *      END GLOBAL SETUP	 *
@@ -221,26 +229,88 @@ static void initButtonIRQ()
  *    BEGIN MS2 FUNCTIONS	 *
  * ------------------------- */
 
-INT32U conv(
-		int* imgArray,
-		int imgMaxX,
-		int imgMaxY,
-		int xPos,
-		int yPos,
+int conv(
+		int* imgPatch,
 		int* kernel,
-		int kernelSize, // Assume Kernel is Square
+		int dim, // Assume Kernel is Square this is the 1d dim
 		int divisor
 	){
-	INT32U result;
-	int numElements = kernelSize*kernelSize;
-	// Get values from image array using supplied
-	// coordinates and width/length and multiply with respective
+	int result = 0; // Must be signed in-case we use a negative kernel
+	// Get values from patch array using supplied
+	// and multiply with respective
 	// Kernel value (use two for loops)
-
+	for (int col=0; col<dim;col++) {
+		for (int row=0; row<dim;row++) {
+			// Add the result of the kernel and array multiplication to a running total
+			result += (*(imgPatch+col+row*dim))*(*(kernel+col+row*dim));
+		}
+	}
 
 	// Divide result by divisor if necessary
 	if (divisor > 1) result /= divisor;
 	return result;
+}
+
+int* downscaleImg2x(int* imageArray, int cols, int rows) {
+	// This requests a new block of memory to put out down-scaled image
+	// Free this afterwards or we will have a memory leak!
+	int outputCols = cols/2;
+	int outputRows = rows/2;
+
+	int* output = (int*)malloc((outputCols*outputRows+2)*sizeof(int));
+	*(output) = outputCols;
+	*(output+1) = outputRows;
+	// Iterate through each row/column and get the relevant pixel, perform the conv
+	int patch[4];
+	int offset[2];
+
+	int bytesToCopy = sizeof(int)*2;
+	int writeIndex = 0;
+	for (int row = 0; row < rows-1; row+=2){
+		for (int col = 0; col < cols-1; col+=2){
+			offset[0] = col+row*cols; 		// Calculate pixel offset row1
+			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
+			memcpy(patch,imageArray+offset[0],bytesToCopy); // Copy first row to patch
+			memcpy(patch+2,imageArray+offset[1],bytesToCopy); // Copy second row to patch
+			*(output+2+writeIndex) = conv(patch,kernDownscale2x,2,4); // Calculate convolution
+			writeIndex++;
+		}
+	}
+	// Return the memory location with the downscaled image
+	return output;
+}
+
+int* reverseImg(int* imageArray, int numPixels) {
+	// Allocate memor for reversed image
+	int* output = (int*)malloc(numPixels*sizeof(int));
+	int reversePixelIdx = numPixels;
+
+	// Store Reversed Image
+	for (int pixel = 0; pixel<numPixels; pixel++) {
+		reversePixelIdx--;
+		*(output+pixel)=*(imageArray+reversePixelIdx);
+	}
+
+	// Return the memory location with the reversed image
+	return output;
+}
+
+int* imgToPtr(int baseAddr, int pixelNum) {
+	// Allocate pointer to hold image
+	int* img = (int*) malloc(pixelNum*sizeof(int));
+	// Extract image to allocated pointer
+	for (int pixel = 0; pixel<pixelNum; pixel++) {
+		*(img+pixel) = IORD_32DIRECT(baseAddr,pixel*4)>>24;
+	}
+	// Return image pointer
+	return img;
+}
+
+void imgToSDRAM(int* imgPtr, int baseAddr, int pixelNum, int padding) {
+	// Save image to SDRAM pointer
+	for (int pixel = 0; pixel<pixelNum; pixel++) {
+		IOWR_32DIRECT(baseAddr,pixel*4,*(imgPtr+pixel+padding)<<24);
+	}
 }
 
 /* ------------------------- *
@@ -333,6 +403,16 @@ void mainTask(void* pdata)
 	/* ------------
 		INDEF LOOP
 	   ------------ */
+	int* img = imgToPtr(SDRAM_BASEADDR,BUF_MAX_PIX);
+	// Reverse Image example usage
+	int* res = reverseImg(img, BUF_MAX_PIX);
+	imgToSDRAM(res, 0x12c00, BUF_MAX_PIX, 0);
+	// Downscaling example usage
+	//int* res = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT);
+	//printf("Test DS: %d,%d -- %d,%d\n",*res,*(res+1),*(res+2),*(res+3));
+	//imgToSDRAM(res, 0x12c00, (*res)*(*(res+1)), 2);
+	free(res);
+	free(img);
 	while (1)
 	{
 		// Delay for ages
