@@ -36,14 +36,15 @@
 #define   TASK_STACKSIZE       2048
 OS_STK    mainTask_stk[TASK_STACKSIZE];
 OS_STK    buttonManagerTask_stk[TASK_STACKSIZE];
+OS_STK    switchManagerTask_stk[TASK_STACKSIZE];
 OS_STK    imageProcessorTask_stk[TASK_STACKSIZE];
-OS_STK    displayImageTask_stk[TASK_STACKSIZE];
 
 /* Definition of Task Priorities */
 #define MAINTASK_PRIORITY      			1
 #define BUTTONMANAGERTASK_PRIORITY      2
-#define IMAGEPROCESSORTASK_PRIORITY 	3
-#define DISPLAYIMAGETASK_PRIORITY      	4
+#define SWITCHMANAGERTASK_PRIORITY      3
+#define IMAGEPROCESSORTASK_PRIORITY 	4
+
 
 // -- Define constants --
 // Define SDRAM BASE
@@ -53,7 +54,10 @@ OS_STK    displayImageTask_stk[TASK_STACKSIZE];
 #define IMG_HEIGHT 120
 #define BUF_LAST_ROW_ADDR 19040
 #define BUF_MAX_PIX 19200
-#define EDGE_THRESHOLD 8
+
+#define FLIPIMG_BASE 0x12C00
+#define EDGEIMG_BASE 0x25800
+#define BLURIMG_BASE 0x38400
 
 // Create global variable to define how image is flipped
 char flipImgFlags = 0x0;
@@ -61,10 +65,15 @@ char flipImgFlags = 0x0;
 // Define edge counter for interrupt context
 // Used to tell which button was pressed
 volatile int keyPressedContext;
+volatile int SwChangedContext;
 
 // Create all required semaphores
 OS_EVENT* semKeyChange;
-OS_EVENT* semLockImgPointers;
+OS_EVENT* semSwChange;
+OS_EVENT* semLockFlipImgPointer;
+OS_EVENT* semLockBlurImgPointer;
+OS_EVENT* semLockEdgeImgPointer;
+OS_EVENT* semLockBaseImgPointer;
 
 // Define reusable kernels
 // Note That convolutions are performed row-wise first
@@ -72,6 +81,13 @@ int kernDownscale2x[4] = { 1, 1, 1, 1};
 int kernEdgeDetectH[9] = {-1,-2,-1, 0, 0, 0, 1, 2, 1};
 int kernEdgeDetectV[9] = {-1, 0, 1,-2, 0, 2,-1, 0, 1};
 int kernBlur3x[9]	   = { 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+// Define Processing Time vars
+INT32U flipTime = 0;
+INT32U blurTime = 0;
+INT32U edgeTime = 0;
+INT32U currentlyDislayed = 0;
+
 
 /* ------------------------- *
  *      END GLOBAL SETUP	 *
@@ -202,6 +218,19 @@ void KEY_IN_ISR(void * isr_context, alt_u32 id)
 	if (err != OS_NO_ERR) printf("Failed to post semaphore semKeyChange: %x\n",err);
 }
 
+void SW_IN_ISR(void * isr_context, alt_u32 id)
+{
+	// Retrieve the memory address to store the edge capture data
+	volatile int* swEdgeCapturePtr = (volatile int*) isr_context;
+	// Get edge capture data
+	*swEdgeCapturePtr = IORD_ALTERA_AVALON_PIO_EDGE_CAP(SW_IN_BASE);
+	// Write to the edge capture register to reset it.
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(SW_IN_BASE, 0);
+	// Post semaphore to acknowledge IRQ data is now available
+	int err = OSSemPost(semSwChange);
+	if (err != OS_NO_ERR) printf("Failed to post semaphore semSwChange: %x\n",err);
+}
+
 /* initButtonIRQ()
  * Initialises the KEY interrupt handler
  */
@@ -224,6 +253,25 @@ static void initButtonIRQ()
   );
 }
 
+static void initSwIRQ()
+{
+	// Recast the edge_capture pointer to match the
+	//alt_irq_register() function prototype.
+	void* SwEdgeCapturePtr = (void*) &SwChangedContext;
+	// Enable interrupts for both key
+	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(SW_IN_BASE, 0x3FF);
+	// Reset the edge capture register.
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(SW_IN_BASE, 0x0);
+	// Register the ISR.
+	alt_ic_isr_register(
+		  SW_IN_IRQ_INTERRUPT_CONTROLLER_ID,
+		  SW_IN_IRQ,
+		  (alt_isr_func) SW_IN_ISR,
+		  SwEdgeCapturePtr,
+		  0x0
+  );
+}
+
 /* ------------------------- *
  *      END IRQ FUNCTIONS	 *
  * ------------------------- */
@@ -231,6 +279,26 @@ static void initButtonIRQ()
 /* ------------------------- *
  *    BEGIN MS2 FUNCTIONS	 *
  * ------------------------- */
+
+// Function to display a digit on a hex dislay
+void displayDigit (int hexBayBase, int digitOffset, int digit) {
+	int data =  IORD(hexBayBase, 0) & (0xffff00ffff >> (2-digitOffset)*8);
+	int digitBits;
+	switch (digit) {
+	case 0: digitBits = 0b11000000; break;
+	case 1: digitBits = 0b11111001; break;
+	case 2: digitBits = 0b10100100; break;
+	case 3: digitBits = 0b10110000; break;
+	case 4: digitBits = 0b10011001; break;
+	case 5: digitBits = 0b10010010; break;
+	case 6: digitBits = 0b10000010; break;
+	case 7: digitBits = 0b11111000; break;
+	case 8: digitBits = 0b10000000; break;
+	case 9: digitBits = 0b10011000; break;
+	}
+	data |= (digitBits << digitOffset*8);
+	IOWR(hexBayBase, 0, data);
+}
 
 int conv(
 		int* imgPatch,
@@ -253,6 +321,8 @@ int conv(
 	if (divisor > 1) result /= divisor;
 	return result;
 }
+
+// [COLS,ROWS,IMGDATA...,IMGDATA...,...]
 
 int* downscaleImg2x(int* imageArray, int cols, int rows, int padding) {
 	// This requests a new block of memory to put our down-scaled image
@@ -446,60 +516,65 @@ void buttonManagerTask (void* pdata) {
 	}
 }
 
-/* Displays the image to the screen */
-void displayImageTask(void* pdata)
-{
-	printf("Image Display Task initialised\n");
-	while (1)
-	{
-		writeImage(flipImgFlags);
-		OSTimeDlyHMSM(0, 0, 0, 100);
-	}
-}
-
-/* Displays the image to the screen */
+/* Processes Images */
 void imageProcessorTask(void* pdata)
 {
 	// Create Sem Error Variable
 	INT8U semPendErr;
+
+	// Define Img Effect Pointers
+	int* img;
+	int* imgFlipped = NULL;
+	int* imgBlurred = NULL;
+	int* imgEdgeDetect = NULL;
+
 	// Preload image (this will be replaced when
 	// we implement image switching with the switches)
-	int* img = imgToPtr(SDRAM_BASEADDR,BUF_MAX_PIX);
-	int* imgDS = NULL;
-	int* imgFlipped = NULL; 	int* imgFlippedDS = NULL;
-	int* imgBlurred = NULL; 	int* imgBlurredDS = NULL;
-	int* imgEdgeDetect = NULL;  int* imgEdgeDetectDS = NULL;
+	OSSemPend(semLockBaseImgPointer,0,&semPendErr);
+	img = imgToPtr(SDRAM_BASEADDR,BUF_MAX_PIX);
+	OSSemPost(semLockBaseImgPointer);
+
 	int* edgeResH = NULL;
 	int* edgeResV = NULL;
+	INT32U timeTemp = 0;
 	while (1)
 	{
 		// Lock Pointers
-		OSSemPend(semLockImgPointers,0,&semPendErr);
+		OSSemPend(semLockFlipImgPointer,0,&semPendErr);
+		OSSemPend(semLockBlurImgPointer,0,&semPendErr);
+		OSSemPend(semLockEdgeImgPointer,0,&semPendErr);
+
 		// Free Pointers to prevent Memory Leak
-		free(imgDS);
-		free(imgFlipped);	 free(imgFlippedDS);
-		free(imgBlurred);	 free(imgBlurredDS);
-		free(imgEdgeDetect); free(imgEdgeDetectDS);
+		free(imgFlipped);
+		free(imgBlurred);
+		free(imgEdgeDetect);
 		//  -- Process Image --
 		// Flip Image
+		timeTemp = OSTimeGet();
 		imgFlipped = reverseImg(img, BUF_MAX_PIX);
+		flipTime = OSTimeGet()-timeTemp;
 
 		// Perform Edge detection
+		timeTemp = OSTimeGet();
 		edgeResH = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 0);
 		edgeResV = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 1);
 		imgEdgeDetect = processEdgeDetection(edgeResH, edgeResV, (*edgeResH)*(*(edgeResH+1)));
+		edgeTime = OSTimeGet()-timeTemp;
 
 		// Blur image
+		timeTemp = OSTimeGet();
 		imgBlurred = blurImgConv(img, IMG_WIDTH, IMG_HEIGHT);
+		blurTime = OSTimeGet()-timeTemp;
 
-		// Create down-scaled Versions (dimensions are same as SRC img)
-		imgDS 			= downscaleImg2x(img,			IMG_WIDTH, IMG_HEIGHT, 0);
-		imgFlippedDS 	= downscaleImg2x(imgFlipped,	IMG_WIDTH, IMG_HEIGHT, 2);
-		imgBlurredDS 	= downscaleImg2x(imgBlurred,	IMG_WIDTH, IMG_HEIGHT, 2);
-		imgEdgeDetectDS = downscaleImg2x(imgEdgeDetect, IMG_WIDTH, IMG_HEIGHT, 2);
+		// Save to SDRAM
+		imgToSDRAM(imgFlipped,    FLIPIMG_BASE, BUF_MAX_PIX, 0);
+		imgToSDRAM(imgEdgeDetect, EDGEIMG_BASE, BUF_MAX_PIX, 2);
+		imgToSDRAM(imgBlurred,    BLURIMG_BASE, BUF_MAX_PIX, 2);
 
-		// Release img Pointers so they can be displayed
-		OSSemPost(semLockImgPointers);
+		// Release img pointers so they can be displayed
+		OSSemPost(semLockFlipImgPointer);
+		OSSemPost(semLockBlurImgPointer);
+		OSSemPost(semLockEdgeImgPointer);
 
 		// Delay for 500ms
 		OSTimeDlyHMSM(0, 0, 0, 500);
@@ -513,9 +588,14 @@ void mainTask(void* pdata)
 	OSStatInit();
 
 	// Create Semaphores and IRQHs
-	semLockImgPointers = OSSemCreate(1);
+	semLockFlipImgPointer = OSSemCreate(1);
+	semLockBlurImgPointer = OSSemCreate(1);
+	semLockEdgeImgPointer = OSSemCreate(1);
+	semLockBaseImgPointer = OSSemCreate(1);
+
 	semKeyChange = OSSemCreate(1);
 	initButtonIRQ();
+	initSwIRQ();
 
 	// For Debug Purposes
 	//printf("OSIdleCtrMax is %ld\n", OSIdleCtrMax);
@@ -540,19 +620,6 @@ void mainTask(void* pdata)
 	printf(" --> ");
 	if (error_code != 0) printf("Error creating buttonManagerTask with error code %d\n", error_code); else printf("Created task successfully\n");
 
-	printf("Attempting to create displayImageTask\n");
-	error_code = OSTaskCreateExt(displayImageTask,
-				  NULL,
-				  (void *)&displayImageTask_stk[TASK_STACKSIZE-1],
-				  DISPLAYIMAGETASK_PRIORITY,
-				  DISPLAYIMAGETASK_PRIORITY,
-				  displayImageTask_stk,
-				  DISPLAYIMAGETASK_PRIORITY,
-				  NULL,
-				  0);
-	printf(" --> ");
-	if (error_code != 0) printf("Error creating displayImageTask with error code %d\n", error_code); else printf("Created task successfully\n");
-
 	printf("Attempting to create imageProcessorTask\n");
 	error_code = OSTaskCreateExt(imageProcessorTask,
 				  NULL,
@@ -575,7 +642,7 @@ void mainTask(void* pdata)
 	//int* res = reverseImg(img, BUF_MAX_PIX);
 	//imgToSDRAM(res, 0x12c00, BUF_MAX_PIX, 0);
 	// Downscaling example usage
-	//int* res = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT);
+
 
 	int* edgeResH = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 0);
 	int* edgeResV = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 1);
@@ -588,8 +655,14 @@ void mainTask(void* pdata)
 	*/
 	while (1)
 	{
-		// Delay for ages
-		OSTimeDlyHMSM(1, 0, 0, 0);
+		displayDigit (HEXDISPLAYS5TO3_BASE, 2, ((OSCPUUsage/10)%10));
+		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
+		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
+		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
+		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
+		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
+		// Delay 1s
+		OSTimeDlyHMSM(0, 0, 0, 200);
 	}
 }
 
@@ -606,6 +679,10 @@ int main(void)
 	   -------------- */
 	// Clear buffer
 	clrBuffer();
+
+	// Clear Hex displays
+	IOWR(HEXDISPLAYS2TO0_BASE, 0, 0xffffff);
+	IOWR(HEXDISPLAYS5TO3_BASE, 0, 0xffffff);
 
 
 	/* ------------------
