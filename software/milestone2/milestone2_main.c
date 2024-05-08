@@ -36,12 +36,14 @@
 #define   TASK_STACKSIZE       2048
 OS_STK    mainTask_stk[TASK_STACKSIZE];
 OS_STK    buttonManagerTask_stk[TASK_STACKSIZE];
+OS_STK    imageProcessorTask_stk[TASK_STACKSIZE];
 OS_STK    displayImageTask_stk[TASK_STACKSIZE];
 
 /* Definition of Task Priorities */
 #define MAINTASK_PRIORITY      			1
 #define BUTTONMANAGERTASK_PRIORITY      2
-#define DISPLAYIMAGETASK_PRIORITY      			3
+#define IMAGEPROCESSORTASK_PRIORITY 	3
+#define DISPLAYIMAGETASK_PRIORITY      	4
 
 // -- Define constants --
 // Define SDRAM BASE
@@ -51,12 +53,10 @@ OS_STK    displayImageTask_stk[TASK_STACKSIZE];
 #define IMG_HEIGHT 120
 #define BUF_LAST_ROW_ADDR 19040
 #define BUF_MAX_PIX 19200
+#define EDGE_THRESHOLD 8
 
 // Create global variable to define how image is flipped
 char flipImgFlags = 0x0;
-
-// Define pointer to the KEY BASE Memory address
-int * key_in_base = KEY_IN_BASE;
 
 // Define edge counter for interrupt context
 // Used to tell which button was pressed
@@ -64,11 +64,14 @@ volatile int keyPressedContext;
 
 // Create all required semaphores
 OS_EVENT* semKeyChange;
+OS_EVENT* semLockImgPointers;
 
 // Define reusable kernels
-int kernDownscale2x[4] = {1,1,1,1};
-int testPatch[6]  = {1,3,5,1,3,5};
-int testKernel[4] = {2,3,-1,1};
+// Note That convolutions are performed row-wise first
+int kernDownscale2x[4] = { 1, 1, 1, 1};
+int kernEdgeDetectH[9] = {-1,-2,-1, 0, 0, 0, 1, 2, 1};
+int kernEdgeDetectV[9] = {-1, 0, 1,-2, 0, 2,-1, 0, 1};
+int kernBlur3x[9]	   = { 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
 /* ------------------------- *
  *      END GLOBAL SETUP	 *
@@ -251,8 +254,8 @@ int conv(
 	return result;
 }
 
-int* downscaleImg2x(int* imageArray, int cols, int rows) {
-	// This requests a new block of memory to put out down-scaled image
+int* downscaleImg2x(int* imageArray, int cols, int rows, int padding) {
+	// This requests a new block of memory to put our down-scaled image
 	// Free this afterwards or we will have a memory leak!
 	int outputCols = cols/2;
 	int outputRows = rows/2;
@@ -270,8 +273,8 @@ int* downscaleImg2x(int* imageArray, int cols, int rows) {
 		for (int col = 0; col < cols-1; col+=2){
 			offset[0] = col+row*cols; 		// Calculate pixel offset row1
 			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
-			memcpy(patch,imageArray+offset[0],bytesToCopy); // Copy first row to patch
-			memcpy(patch+2,imageArray+offset[1],bytesToCopy); // Copy second row to patch
+			memcpy(patch,imageArray+padding+offset[0],bytesToCopy); // Copy first row to patch
+			memcpy(patch+2,imageArray+padding+offset[1],bytesToCopy); // Copy second row to patch
 			*(output+2+writeIndex) = conv(patch,kernDownscale2x,2,4); // Calculate convolution
 			writeIndex++;
 		}
@@ -280,8 +283,117 @@ int* downscaleImg2x(int* imageArray, int cols, int rows) {
 	return output;
 }
 
+int* edgeDetectionConv(int* imageArray, int cols, int rows, int direction) {
+	// This requests a new block of memory to put our image
+	// Free this afterwards or we will have a memory leak!
+	int* output = (int*)malloc(((cols)*(rows)+2)*sizeof(int));
+	*(output) = cols;
+	*(output+1) = rows;
+	// Iterate through each row/column and get the relevant pixel, perform the conv
+	int patch[9];
+	int offset[3];
+	int* kernel = direction == 0 ? kernEdgeDetectH : kernEdgeDetectV;
+
+	int bytesToCopy = sizeof(int)*3;
+	int writeIndex = 0;
+	for (int row = -1; row < rows-1; row++){
+		for (int col = -1; col < cols-1; col++){
+			if ((row == -1) || (row == rows-2) || (col == -1) || (col == cols-2)) {
+				// Skip This loop for padding
+				*(output+2+writeIndex) = 0;
+				writeIndex++;
+				continue;
+			}
+			offset[0] = col+row*cols; 		// Calculate pixel offset row1
+			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
+			offset[2] = col+(row+2)*cols;	// Calculate pixel offset row3
+			memcpy(patch,imageArray+offset[0],bytesToCopy); // Copy first row to patch
+			memcpy(patch+3,imageArray+offset[1],bytesToCopy); // Copy second row to patch
+			memcpy(patch+6,imageArray+offset[2],bytesToCopy); // Copy second row to patch
+			*(output+2+writeIndex) = conv(patch,kernel,3,1); // Calculate convolution
+			writeIndex++;
+		}
+	}
+	// Return the memory location with the downscaled image
+	return output;
+}
+
+int* processEdgeDetection(int* conv1, int* conv2, int numPixels) {
+	// Allocate memory for reversed image
+	int* output = (int*)malloc((numPixels+2)*sizeof(int));
+	*output = *conv1;
+	*(output+1) = *(conv1+1);
+	int maxValue = 0;
+
+	// Perform different operations based on if we supply both edge detections
+	if (conv2 != NULL) {
+		// Sum and ABS
+		for (int pixel = 0; pixel<numPixels; pixel++) {
+			*(output+2+pixel) = abs((*(conv1+2+pixel))+(*(conv2+2+pixel)));
+			if (*(output+2+pixel) > maxValue) maxValue = *(output+pixel);
+		}
+	} else {
+		// ABS
+		for (int pixel = 0; pixel<numPixels; pixel++) {
+			*(output+2+pixel) = abs(*(conv1+2+pixel));
+			if (*(output+2+pixel) > maxValue) maxValue = *(output+2+pixel);
+		}
+	}
+
+	// Perform Threshold
+	maxValue = maxValue/2;
+	if (maxValue > 15) maxValue = 15;
+	for (int pixel = 0; pixel<numPixels; pixel++) {
+		if (*(output+2+pixel) > maxValue){
+			*(output+2+pixel) = maxValue;
+		}
+	}
+
+	// Free memory holding any convolutions as they are no longer required
+	free(conv1);
+	if (conv2 != NULL) {
+		free(conv2);
+	}
+	// Return the memory location with the reversed image
+	return output;
+}
+
+int* blurImgConv(int* imageArray, int cols, int rows) {
+	// This requests a new block of memory to put our image
+	// Free this afterwards or we will have a memory leak!
+	int* output = (int*)malloc(((cols)*(rows)+2)*sizeof(int));
+	*(output) = cols;
+	*(output+1) = rows;
+	// Iterate through each row/column and get the relevant pixel, perform the conv
+	int patch[9];
+	int offset[3];
+
+	int bytesToCopy = sizeof(int)*3;
+	int writeIndex = 0;
+	for (int row = -1; row < rows-1; row++){
+		for (int col = -1; col < cols-1; col++){
+			if ((row == -1) || (row == rows-2) || (col == -1) || (col == cols-2)) {
+				// Skip This loop for padding
+				*(output+2+writeIndex) = 0;
+				writeIndex++;
+				continue;
+			}
+			offset[0] = col+row*cols; 		// Calculate pixel offset row1
+			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
+			offset[2] = col+(row+2)*cols;	// Calculate pixel offset row3
+			memcpy(patch,imageArray+offset[0],bytesToCopy); // Copy first row to patch
+			memcpy(patch+3,imageArray+offset[1],bytesToCopy); // Copy second row to patch
+			memcpy(patch+6,imageArray+offset[2],bytesToCopy); // Copy second row to patch
+			*(output+2+writeIndex) = conv(patch,kernBlur3x,3,9); // Calculate convolution
+			writeIndex++;
+		}
+	}
+	// Return the memory location with the blurred image
+	return output;
+}
+
 int* reverseImg(int* imageArray, int numPixels) {
-	// Allocate memor for reversed image
+	// Allocate memory for reversed image
 	int* output = (int*)malloc(numPixels*sizeof(int));
 	int reversePixelIdx = numPixels;
 
@@ -346,11 +458,51 @@ void displayImageTask(void* pdata)
 }
 
 /* Displays the image to the screen */
-void imageDownscaleTask(void* pdata)
+void imageProcessorTask(void* pdata)
 {
+	// Create Sem Error Variable
+	INT8U semPendErr;
+	// Preload image (this will be replaced when
+	// we implement image switching with the switches)
+	int* img = imgToPtr(SDRAM_BASEADDR,BUF_MAX_PIX);
+	int* imgDS = NULL;
+	int* imgFlipped = NULL; 	int* imgFlippedDS = NULL;
+	int* imgBlurred = NULL; 	int* imgBlurredDS = NULL;
+	int* imgEdgeDetect = NULL;  int* imgEdgeDetectDS = NULL;
+	int* edgeResH = NULL;
+	int* edgeResV = NULL;
 	while (1)
 	{
+		// Lock Pointers
+		OSSemPend(semLockImgPointers,0,&semPendErr);
+		// Free Pointers to prevent Memory Leak
+		free(imgDS);
+		free(imgFlipped);	 free(imgFlippedDS);
+		free(imgBlurred);	 free(imgBlurredDS);
+		free(imgEdgeDetect); free(imgEdgeDetectDS);
+		//  -- Process Image --
+		// Flip Image
+		imgFlipped = reverseImg(img, BUF_MAX_PIX);
 
+		// Perform Edge detection
+		edgeResH = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 0);
+		edgeResV = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 1);
+		imgEdgeDetect = processEdgeDetection(edgeResH, edgeResV, (*edgeResH)*(*(edgeResH+1)));
+
+		// Blur image
+		imgBlurred = blurImgConv(img, IMG_WIDTH, IMG_HEIGHT);
+
+		// Create down-scaled Versions (dimensions are same as SRC img)
+		imgDS 			= downscaleImg2x(img,			IMG_WIDTH, IMG_HEIGHT, 0);
+		imgFlippedDS 	= downscaleImg2x(imgFlipped,	IMG_WIDTH, IMG_HEIGHT, 2);
+		imgBlurredDS 	= downscaleImg2x(imgBlurred,	IMG_WIDTH, IMG_HEIGHT, 2);
+		imgEdgeDetectDS = downscaleImg2x(imgEdgeDetect, IMG_WIDTH, IMG_HEIGHT, 2);
+
+		// Release img Pointers so they can be displayed
+		OSSemPost(semLockImgPointers);
+
+		// Delay for 500ms
+		OSTimeDlyHMSM(0, 0, 0, 500);
 	}
 }
 
@@ -361,6 +513,7 @@ void mainTask(void* pdata)
 	OSStatInit();
 
 	// Create Semaphores and IRQHs
+	semLockImgPointers = OSSemCreate(1);
 	semKeyChange = OSSemCreate(1);
 	initButtonIRQ();
 
@@ -400,19 +553,39 @@ void mainTask(void* pdata)
 	printf(" --> ");
 	if (error_code != 0) printf("Error creating displayImageTask with error code %d\n", error_code); else printf("Created task successfully\n");
 
+	printf("Attempting to create imageProcessorTask\n");
+	error_code = OSTaskCreateExt(imageProcessorTask,
+				  NULL,
+				  (void *)&imageProcessorTask_stk[TASK_STACKSIZE-1],
+				  IMAGEPROCESSORTASK_PRIORITY,
+				  IMAGEPROCESSORTASK_PRIORITY,
+				  imageProcessorTask_stk,
+				  IMAGEPROCESSORTASK_PRIORITY,
+				  NULL,
+				  0);
+	printf(" --> ");
+	if (error_code != 0) printf("Error creating imageProcessorTask with error code %d\n", error_code); else printf("Created task successfully\n");
+
 	/* ------------
 		INDEF LOOP
 	   ------------ */
-	int* img = imgToPtr(SDRAM_BASEADDR,BUF_MAX_PIX);
+
+	/*
 	// Reverse Image example usage
-	int* res = reverseImg(img, BUF_MAX_PIX);
-	imgToSDRAM(res, 0x12c00, BUF_MAX_PIX, 0);
+	//int* res = reverseImg(img, BUF_MAX_PIX);
+	//imgToSDRAM(res, 0x12c00, BUF_MAX_PIX, 0);
 	// Downscaling example usage
 	//int* res = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT);
-	//printf("Test DS: %d,%d -- %d,%d\n",*res,*(res+1),*(res+2),*(res+3));
-	//imgToSDRAM(res, 0x12c00, (*res)*(*(res+1)), 2);
+
+	int* edgeResH = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 0);
+	int* edgeResV = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 1);
+	int* res = processEdgeDetection(edgeResH, edgeResV, (*edgeResH)*(*(edgeResH+1)));
+	//int* res = blurImgConv(img, IMG_WIDTH, IMG_HEIGHT);
+	printf("Test Process: %d,%d -- %d,%d\n",*res,*(res+1),*(res+2),*(res+3));
+	imgToSDRAM(res, 0x12c00, (*res)*(*(res+1)), 2);
 	free(res);
 	free(img);
+	*/
 	while (1)
 	{
 		// Delay for ages
