@@ -38,13 +38,24 @@ OS_STK    mainTask_stk[TASK_STACKSIZE];
 OS_STK    buttonManagerTask_stk[TASK_STACKSIZE];
 OS_STK    switchManagerTask_stk[TASK_STACKSIZE];
 OS_STK    imageProcessorTask_stk[TASK_STACKSIZE];
+OS_STK    imageOneTask_stk[TASK_STACKSIZE];
+OS_STK    imageTwoTask_stk[TASK_STACKSIZE];
+OS_STK    imageThreeTask_stk[TASK_STACKSIZE];
+OS_STK    imageFourTask_stk[TASK_STACKSIZE];
 
 /* Definition of Task Priorities */
 #define MAINTASK_PRIORITY      			1
 #define BUTTONMANAGERTASK_PRIORITY      2
 #define SWITCHMANAGERTASK_PRIORITY      3
-#define IMAGEPROCESSORTASK_PRIORITY 	4
-
+#define MUTEXDISP1_PRIORITY				4
+#define MUTEXDISP2_PRIORITY				5
+#define MUTEXDISP3_PRIORITY				6
+#define MUTEXDISP4_PRIORITY				7
+#define IMAGEPROCESSORTASK_PRIORITY 	12
+#define IMAGEONETASK_PRIORITY			8
+#define IMAGETWOTASK_PRIORITY			9
+#define IMAGETHREETASK_PRIORITY			10
+#define IMAGEFOURTASK_PRIORITY			11
 
 // -- Define constants --
 // Define SDRAM BASE
@@ -57,7 +68,7 @@ OS_STK    imageProcessorTask_stk[TASK_STACKSIZE];
 
 #define FLIPIMG_BASE 0x12C00
 #define EDGEIMG_BASE 0x25800
-#define BLURIMG_BASE 0x38400
+#define BLURING_BASE 0x38400
 
 // Create global variable to define how image is flipped
 char flipImgFlags = 0x0;
@@ -74,6 +85,12 @@ OS_EVENT* semLockFlipImgPointer;
 OS_EVENT* semLockBlurImgPointer;
 OS_EVENT* semLockEdgeImgPointer;
 OS_EVENT* semLockBaseImgPointer;
+OS_EVENT* semSwitchChange;
+OS_EVENT* semDisplay1;
+OS_EVENT* semDisplay2;
+OS_EVENT* semDisplay3;
+OS_EVENT* semDisplay4;
+
 
 // Define reusable kernels
 // Note That convolutions are performed row-wise first
@@ -86,6 +103,7 @@ int kernBlur3x[9]	   = { 1, 1, 1, 1, 1, 1, 1, 1, 1};
 INT32U flipTime = 0;
 INT32U blurTime = 0;
 INT32U edgeTime = 0;
+INT32U totalTime = 0;
 INT32U currentlyDislayed = 0;
 
 
@@ -227,8 +245,9 @@ void SW_IN_ISR(void * isr_context, alt_u32 id)
 	// Write to the edge capture register to reset it.
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(SW_IN_BASE, 0);
 	// Post semaphore to acknowledge IRQ data is now available
-	int err = OSSemPost(semSwChange);
+	int err = OSSemPost(semSwitchChange);
 	if (err != OS_NO_ERR) printf("Failed to post semaphore semSwChange: %x\n",err);
+
 }
 
 /* initButtonIRQ()
@@ -279,7 +298,20 @@ static void initSwIRQ()
 /* ------------------------- *
  *    BEGIN MS2 FUNCTIONS	 *
  * ------------------------- */
-
+void imageToBuffer(int* imgPtr, int horizStart, int vertStart) {
+	int width = IMG_WIDTH/2;
+	int height = IMG_HEIGHT/2;
+	int position;
+	for (int col = 0; col < width; col++) {
+		for (int row = 0; row < height; row++) {
+			position = horizStart + col + vertStart + row*IMG_WIDTH;
+			IOWR_32DIRECT(PB_ADR_BASE,0, position);
+			IOWR_32DIRECT(PBUFF_WREN_BASE,0,1);
+			IOWR_32DIRECT(PB_DATA_BASE,0,*(imgPtr+2+col+row*80));
+			IOWR_32DIRECT(PBUFF_WREN_BASE,0,0);
+		}
+	}
+}
 // Function to display a digit on a hex dislay
 void displayDigit (int hexBayBase, int digitOffset, int digit) {
 	int data =  IORD(hexBayBase, 0) & (0xffff00ffff >> (2-digitOffset)*8);
@@ -339,13 +371,15 @@ int* downscaleImg2x(int* imageArray, int cols, int rows, int padding) {
 
 	int bytesToCopy = sizeof(int)*2;
 	int writeIndex = 0;
+	int temp;
 	for (int row = 0; row < rows-1; row+=2){
 		for (int col = 0; col < cols-1; col+=2){
 			offset[0] = col+row*cols; 		// Calculate pixel offset row1
 			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
 			memcpy(patch,imageArray+padding+offset[0],bytesToCopy); // Copy first row to patch
 			memcpy(patch+2,imageArray+padding+offset[1],bytesToCopy); // Copy second row to patch
-			*(output+2+writeIndex) = conv(patch,kernDownscale2x,2,4); // Calculate convolution
+			temp = conv(patch,kernDownscale2x,2,0); // Calculate convolution
+			*(output+2+writeIndex) = temp >> 2;
 			writeIndex++;
 		}
 	}
@@ -502,7 +536,185 @@ void imgToSDRAM(int* imgPtr, int baseAddr, int pixelNum, int padding) {
 /* ------------------------- *
  *    BEGIN SYSTEM TASKS 	 *
  * ------------------------- */
+void imageOneTask(void* pdata) {
+	//Fetch image from SDRAM, downscale then display
+	// SW0 SW1 for image one
+	int switchVal;
+	int* img;
+	int* imgDS;
+	INT8U err;
+	while (1) {
+		OSSemPend(semDisplay1,0,&err);
+		printf("I1T GO\n");
+		switchVal = IORD(SW_IN_BASE, 0);
+		switchVal = switchVal & 0b11;
+		switch (switchVal) {
+		//Base image
+		case 0b00:
+			//downscale
+			img = imgToPtr(SDRAM_BASEADDR, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,0,0);
+			break;
+		//Flip
+		case 0b01:
+			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,0,0);
+			break;
+		//Blur
+		case 0b10:
+			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,0,0);
+			break;
+		//Edge
+		case 0b11:
+			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,0,0);
+			break;
+		}
+		free(img);
+		free(imgDS);
 
+		OSTimeDlyHMSM(0, 0, 0, 250);
+	}
+}
+
+void imageTwoTask(void* pdata) {
+	// SW2 SW3 for image two
+	int switchVal;
+	int* img;
+	int* imgDS;
+	INT8U err;
+	while (1) {
+		OSSemPend(semDisplay2,0,&err);
+		printf("I2T GO\n");
+		switchVal = IORD(SW_IN_BASE, 0);
+		switchVal = (switchVal & 0b1100) >> 2;
+		switch (switchVal) {
+		//Base image
+		case 0b00:
+			//downscale
+			img = imgToPtr(SDRAM_BASEADDR, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,IMG_WIDTH/2,0);
+			break;
+			//Flip
+		case 0b01:
+			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,IMG_WIDTH/2,0);
+			break;
+			//Blur
+		case 0b10:
+			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,IMG_WIDTH/2,0);
+			break;
+			//Edge
+		case 0b11:
+			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,IMG_WIDTH/2,0);
+			break;
+		}
+		free(img);
+		free(imgDS);
+
+		OSTimeDlyHMSM(0, 0, 0, 250);
+	}
+}
+
+void imageThreeTask(void* pdata) {
+	// SW4 SW5 for image three
+	int switchVal;
+	int* img;
+	int* imgDS;
+	INT8U err;
+	while (1) {
+		OSSemPend(semDisplay3,0,&err);
+		printf("I3T GO\n");
+		switchVal = IORD(SW_IN_BASE, 0);
+		switchVal = (switchVal & 0b110000) >> 4;
+		switch (switchVal) {
+		//Base image
+		case 0b00:
+			//downscale
+			img = imgToPtr(SDRAM_BASEADDR, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,0,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		//Flip
+		case 0b01:
+			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,0,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		//Blur
+		case 0b10:
+			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,0,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		//Edge
+		case 0b11:
+			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,0,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		}
+		free(img);
+		free(imgDS);
+
+		OSTimeDlyHMSM(0, 0, 0, 250);
+	}
+}
+
+void imageFourTask(void* pdata) {
+	// SW6 SW7 for image four
+	int switchVal;
+	int* img;
+	int* imgDS;
+	INT8U err;
+	while (1) {
+		OSSemPend(semDisplay4,0,&err);
+		printf("I4T GO\n");
+		switchVal = IORD(SW_IN_BASE, 0);
+		switchVal = (switchVal & 0b11000000) >> 6;
+		switch (switchVal) {
+		//Base image
+		case 0b00:
+			//downscale
+			img = imgToPtr(SDRAM_BASEADDR, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		//Flip
+		case 0b01:
+			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
+			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		//Blur
+		case 0b10:
+			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		//Edge
+		case 0b11:
+			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
+			break;
+		}
+		free(img);
+		free(imgDS);
+		OSTimeDlyHMSM(0, 0, 0, 250);
+	}
+}
 void buttonManagerTask (void* pdata) {
 	INT8U semPendErr;
 	while (1) {
@@ -511,8 +723,38 @@ void buttonManagerTask (void* pdata) {
 		// Received Interrupt Semaphore (GO TIME)
 		// Flip the flag in the global variable as required and redraw image
 		flipImgFlags ^= keyPressedContext;
-		writeImage(flipImgFlags);
+		//writeImage(flipImgFlags);
 		printf(" FLIP FLAGS %x\n",flipImgFlags);
+	}
+}
+
+void switchManagerTask (void* pdata) {
+	INT8U semPendErr;
+	INT8U err2;
+	while (1) {
+		// Wait for interrupt
+		OSSemPend(semSwitchChange,0,&semPendErr);
+		// Received Interrupt Semaphore (GO TIME)
+		currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
+		//OSMutexPost(mutexSwitchDisplay);
+		printf("SW - %x\n",SwChangedContext);
+		if ((SwChangedContext & 0b11) != 0) {
+			err2 = OSSemPost(semDisplay1);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem1: %x\n",err2);
+			printf("SW1\n");
+		} else if ((SwChangedContext & 0b1100) != 0) {
+			err2 = OSSemPost(semDisplay2);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem2: %x\n",err2);
+			printf("SW2\n");
+		} else if ((SwChangedContext & 0b110000) != 0) {
+			err2 = OSSemPost(semDisplay3);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem3: %x\n",err2);
+			printf("SW3\n");
+		} else if ((SwChangedContext & 0b11000000) != 0) {
+			err2 = OSSemPost(semDisplay4);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem4: %x\n",err2);
+			printf("SW4\n");
+		}
 	}
 }
 
@@ -539,6 +781,7 @@ void imageProcessorTask(void* pdata)
 	INT32U timeTemp = 0;
 	while (1)
 	{
+		printf("ImgProcess GO!");
 		// Lock Pointers
 		OSSemPend(semLockFlipImgPointer,0,&semPendErr);
 		OSSemPend(semLockBlurImgPointer,0,&semPendErr);
@@ -566,10 +809,11 @@ void imageProcessorTask(void* pdata)
 		imgBlurred = blurImgConv(img, IMG_WIDTH, IMG_HEIGHT);
 		blurTime = OSTimeGet()-timeTemp;
 
+		totalTime = flipTime+edgeTime+blurTime;
 		// Save to SDRAM
 		imgToSDRAM(imgFlipped,    FLIPIMG_BASE, BUF_MAX_PIX, 0);
 		imgToSDRAM(imgEdgeDetect, EDGEIMG_BASE, BUF_MAX_PIX, 2);
-		imgToSDRAM(imgBlurred,    BLURIMG_BASE, BUF_MAX_PIX, 2);
+		imgToSDRAM(imgBlurred,    BLURING_BASE, BUF_MAX_PIX, 2);
 
 		// Release img pointers so they can be displayed
 		OSSemPost(semLockFlipImgPointer);
@@ -585,6 +829,7 @@ void imageProcessorTask(void* pdata)
 void mainTask(void* pdata)
 {
 	// Compute CPU capacity with no task running
+	INT8U err;
 	OSStatInit();
 
 	// Create Semaphores and IRQHs
@@ -592,8 +837,14 @@ void mainTask(void* pdata)
 	semLockBlurImgPointer = OSSemCreate(1);
 	semLockEdgeImgPointer = OSSemCreate(1);
 	semLockBaseImgPointer = OSSemCreate(1);
-
+	semSwitchChange = OSSemCreate(1);
 	semKeyChange = OSSemCreate(1);
+	semDisplay1 = OSSemCreate(1);
+	semDisplay2 = OSSemCreate(1);
+	semDisplay3 = OSSemCreate(1);
+	semDisplay4 = OSSemCreate(1);
+	printf("1 %x\n",err);
+
 	initButtonIRQ();
 	initSwIRQ();
 
@@ -632,7 +883,75 @@ void mainTask(void* pdata)
 				  0);
 	printf(" --> ");
 	if (error_code != 0) printf("Error creating imageProcessorTask with error code %d\n", error_code); else printf("Created task successfully\n");
+	//First Quadrant image
+	printf("Attempting to create imageOneTask\n");
+	error_code = OSTaskCreateExt(imageOneTask,
+		NULL,
+		(void*)&imageOneTask_stk[TASK_STACKSIZE - 1],
+		IMAGEONETASK_PRIORITY,
+		IMAGEONETASK_PRIORITY,
+		imageOneTask_stk,
+		IMAGEONETASK_PRIORITY,
+		NULL,
+		0);
+	printf(" --> ");
+	if (error_code != 0) printf("Error creating imageOneTask with error code %d\n", error_code); else printf("Created task successfully\n");
 
+	//Second quadrant image
+	printf("Attempting to create imageTwoTask\n");
+	error_code = OSTaskCreateExt(imageTwoTask,
+		NULL,
+		(void*)&imageTwoTask_stk[TASK_STACKSIZE - 1],
+		IMAGETWOTASK_PRIORITY,
+		IMAGETWOTASK_PRIORITY,
+		imageTwoTask_stk,
+		IMAGETWOTASK_PRIORITY,
+		NULL,
+		0);
+	printf(" --> ");
+	if (error_code != 0) printf("Error creating imageOneTask with error code %d\n", error_code); else printf("Created task successfully\n");
+
+	//Third quadrant image
+	printf("Attempting to create imageThreeTask\n");
+	error_code = OSTaskCreateExt(imageThreeTask,
+		NULL,
+		(void*)&imageThreeTask_stk[TASK_STACKSIZE - 1],
+		IMAGETHREETASK_PRIORITY,
+		IMAGETHREETASK_PRIORITY,
+		imageThreeTask_stk,
+		IMAGETHREETASK_PRIORITY,
+		NULL,
+		0);
+	printf(" --> ");
+	if (error_code != 0) printf("Error creating imageOneTask with error code %d\n", error_code); else printf("Created task successfully\n");
+
+	//Fourth quadrant image
+	printf("Attempting to create imageFourTask\n");
+	error_code = OSTaskCreateExt(imageFourTask,
+		NULL,
+		(void*)&imageFourTask_stk[TASK_STACKSIZE - 1],
+		IMAGEFOURTASK_PRIORITY,
+		IMAGEFOURTASK_PRIORITY,
+		imageFourTask_stk,
+		IMAGEFOURTASK_PRIORITY,
+		NULL,
+		0);
+	printf(" --> ");
+	if (error_code != 0) printf("Error creating imageOneTask with error code %d\n", error_code); else printf("Created task successfully\n");
+
+	//Switch manager
+	printf("Attempting to create SwitchTask\n");
+		error_code = OSTaskCreateExt(switchManagerTask,
+			NULL,
+			(void*)&switchManagerTask_stk[TASK_STACKSIZE - 1],
+			SWITCHMANAGERTASK_PRIORITY,
+			SWITCHMANAGERTASK_PRIORITY,
+			switchManagerTask_stk,
+			SWITCHMANAGERTASK_PRIORITY,
+			NULL,
+			0);
+		printf(" --> ");
+		if (error_code != 0) printf("Error creating imageOneTask with error code %d\n", error_code); else printf("Created task successfully\n");
 	/* ------------
 		INDEF LOOP
 	   ------------ */
@@ -653,14 +972,28 @@ void mainTask(void* pdata)
 	free(res);
 	free(img);
 	*/
+	INT32U dispTime;
 	while (1)
 	{
 		displayDigit (HEXDISPLAYS5TO3_BASE, 2, ((OSCPUUsage/10)%10));
 		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
-		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
-		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
-		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
-		displayDigit (HEXDISPLAYS5TO3_BASE, 1, OSCPUUsage%10);
+		if (currentlyDislayed == 0){
+			dispTime = flipTime;
+		}
+		else if (currentlyDislayed == 1){
+			dispTime = blurTime;
+		}
+		else if (currentlyDislayed == 2){
+			dispTime = edgeTime;
+		}
+		else if (currentlyDislayed == 3){
+			dispTime = totalTime;
+		}
+		displayDigit (HEXDISPLAYS5TO3_BASE, 0, (dispTime/1000)%10);
+		displayDigit (HEXDISPLAYS2TO0_BASE, 2, (dispTime/100)%10);
+		displayDigit (HEXDISPLAYS2TO0_BASE, 1, (dispTime/10)%10);
+		displayDigit (HEXDISPLAYS2TO0_BASE, 0, dispTime%10);
+
 		// Delay 1s
 		OSTimeDlyHMSM(0, 0, 0, 200);
 	}
