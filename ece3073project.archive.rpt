@@ -1,5 +1,5 @@
 Archive Project report for ece3073project
-Tue Apr 16 23:03:23 2024
+Wed May 08 17:51:49 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -35,7 +35,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------+
 ; Archive Project Summary                                        ;
 +------------------------+---------------------------------------+
-; Archive Project Status ; Successful - Tue Apr 16 23:03:23 2024 ;
+; Archive Project Status ; Successful - Wed May 08 17:51:49 2024 ;
 ; Revision Name          ; ece3073project                        ;
 ; Top-level Entity Name  ; init_proc                             ;
 ; Family                 ; MAX 10                                ;
@@ -45,10 +45,9 @@ refer to the applicable agreement for further details.
 +--------------------------+
 ; Archive Project Messages ;
 +--------------------------+
-Info: File Set 'Custom' contains:
-    Info: Programming output files
-    Info: Automatically detected source files
+Info: File Set 'Source control' contains:
     Info: Project source and settings files
+    Info: Automatically detected source files
 Warning: Hierarchical Platform Designer systems and custom IP components(_hw.tcl and associated files) are not archived by the Quartus Archiver
 Info: Archive will store files relative to the closest common parent directory
 Info (13213): Using common directory C:/Users/katja/Documents/ECE3073/Project/
@@ -59,11 +58,11 @@ Info: ----------------------------------------------------------
 Info: ----------------------------------------------------------
 Info: Generated report 'ece3073project.archive.rpt'
 Info (23030): Evaluation of Tcl script c:/intelfpga_lite/18.1/quartus/common/tcl/apps/qpm/qar.tcl was successful
-Info: Quartus Prime Shell was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 4890 megabytes
-    Info: Processing ended: Tue Apr 16 23:03:23 2024
+Info: Quartus Prime Shell was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4865 megabytes
+    Info: Processing ended: Wed May 08 17:51:49 2024
     Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Total CPU time (on all processors): 00:00:05
 
 
 +-------------------------------------------------------------------------------------------------------------------+
@@ -106,6 +105,7 @@ Info: Quartus Prime Shell was successful. 0 errors, 2 warnings
 ; niosII_processor/synthesis/submodules/altera_reset_controller.v                                                   ;
 ; niosII_processor/synthesis/submodules/altera_reset_synchronizer.v                                                 ;
 ; niosII_processor/synthesis/submodules/altera_wrap_burst_converter.sv                                              ;
+; niosII_processor/synthesis/submodules/niosII_processor_HexDisplays2to0.v                                          ;
 ; niosII_processor/synthesis/submodules/niosII_processor_irq_mapper.sv                                              ;
 ; niosII_processor/synthesis/submodules/niosII_processor_KEY_IN.v                                                   ;
 ; niosII_processor/synthesis/submodules/niosII_processor_LEDR_OUT.v                                                 ;
@@ -151,10 +151,6 @@ Info: Quartus Prime Shell was successful. 0 errors, 2 warnings
 ; niosII_processor/synthesis/submodules/niosII_processor_SW_IN.v                                                    ;
 ; niosII_processor/synthesis/submodules/niosII_processor_TIMER.v                                                    ;
 ; niosII_processor/synthesis/submodules/niosII_processor_UART_JTAG.v                                                ;
-; output_files/ece3073project.jdi                                                                                   ;
-; output_files/ece3073project.pof                                                                                   ;
-; output_files/ece3073project.sld                                                                                   ;
-; output_files/ece3073project.sof                                                                                   ;
 ; pll_SDRAM.ppf                                                                                                     ;
 ; pll_SDRAM.qip                                                                                                     ;
 ; pll_SDRAM.v                                                                                                       ;

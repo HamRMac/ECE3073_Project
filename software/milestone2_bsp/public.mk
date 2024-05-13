@@ -139,8 +139,8 @@ QSYS := 1
 ELF_PATCH_FLAG += --qsys true
 
 # Design Name 
-# setting SOPC_NAME is niosII_processor
-SOPC_NAME := niosII_processor
+# setting SOPC_NAME is niosII_ms2HW
+SOPC_NAME := niosII_ms2HW
 
 # SopcBuilder Simulation Enabled 
 # setting SOPC_SIMULATION_ENABLED is false

@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>ucosii</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>02/05/2024 1:19:40 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1714619980544</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>13/05/2024 4:40:35 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1715582435467</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\katja\Documents\ECE3073\Project\software\milestone2_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\niosII_processor.sopcinfo</SopcDesignFile>
@@ -1781,44 +1781,68 @@
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>PBUFF_WREN</slaveDescriptor>
+                <slaveDescriptor>div9_toSW</slaveDescriptor>
                 <addressRange>0x04081020 - 0x0408102F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>PB_DATA</slaveDescriptor>
+                <slaveDescriptor>div9_toHW</slaveDescriptor>
                 <addressRange>0x04081030 - 0x0408103F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>PB_ADR</slaveDescriptor>
+                <slaveDescriptor>HexDisplays5to3</slaveDescriptor>
                 <addressRange>0x04081040 - 0x0408104F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>KEY_IN</slaveDescriptor>
+                <slaveDescriptor>HexDisplays2to0</slaveDescriptor>
                 <addressRange>0x04081050 - 0x0408105F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>SW_IN</slaveDescriptor>
+                <slaveDescriptor>PBUFF_WREN</slaveDescriptor>
                 <addressRange>0x04081060 - 0x0408106F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>LEDR_OUT</slaveDescriptor>
+                <slaveDescriptor>PB_DATA</slaveDescriptor>
                 <addressRange>0x04081070 - 0x0408107F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>PB_ADR</slaveDescriptor>
+                <addressRange>0x04081080 - 0x0408108F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>KEY_IN</slaveDescriptor>
+                <addressRange>0x04081090 - 0x0408109F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>SW_IN</slaveDescriptor>
+                <addressRange>0x040810A0 - 0x040810AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>LEDR_OUT</slaveDescriptor>
+                <addressRange>0x040810B0 - 0x040810BF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>UART_JTAG</slaveDescriptor>
-                <addressRange>0x04081080 - 0x04081087</addressRange>
+                <addressRange>0x040810C0 - 0x040810C7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

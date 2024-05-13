@@ -1,0 +1,41 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst niosII_ms2HW.PB_DATA -pg 1 -lvl 3 -y 1150
+preplace inst niosII_ms2HW.LEDR_OUT -pg 1 -lvl 3 -y 1350
+preplace inst niosII_ms2HW.PBUFF_WREN -pg 1 -lvl 3 -y 1050
+preplace inst niosII_ms2HW.HexDisplays2to0 -pg 1 -lvl 3 -y 670
+preplace inst niosII_ms2HW.KEY_IN -pg 1 -lvl 3 -y 30
+preplace inst niosII_ms2HW.NIOS_PROC.clock_bridge -pg 1
+preplace inst niosII_ms2HW.NIOS_MEM -pg 1 -lvl 3 -y 770
+preplace inst niosII_ms2HW.UART_JTAG -pg 1 -lvl 3 -y 570
+preplace inst niosII_ms2HW.TIMER -pg 1 -lvl 3 -y 470
+preplace inst niosII_ms2HW.SDRAM -pg 1 -lvl 3 -y 1250
+preplace inst niosII_ms2HW.PB_ADR -pg 1 -lvl 3 -y 950
+preplace inst niosII_ms2HW -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst niosII_ms2HW.NIOS_PROC.reset_bridge -pg 1
+preplace inst niosII_ms2HW.CLK -pg 1 -lvl 1 -y 710
+preplace inst niosII_ms2HW.NIOS_PROC -pg 1 -lvl 2 -y 560
+preplace inst niosII_ms2HW.div9_toSW -pg 1 -lvl 3 -y 370
+preplace inst niosII_ms2HW.SW_IN -pg 1 -lvl 3 -y 150
+preplace inst niosII_ms2HW.div9_toHW -pg 1 -lvl 3 -y 270
+preplace inst niosII_ms2HW.NIOS_PROC.cpu -pg 1
+preplace inst niosII_ms2HW.HexDisplays5to3 -pg 1 -lvl 3 -y 850
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)niosII_ms2HW.pb_adr,(SLAVE)PB_ADR.external_connection) 1 0 3 NJ 980 NJ 980 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)LEDR_OUT.external_connection,(SLAVE)niosII_ms2HW.ledr) 1 0 3 NJ 1380 NJ 1380 NJ
+preplace netloc INTERCONNECT<net_container>niosII_ms2HW</net_container>(SLAVE)PB_DATA.reset,(SLAVE)div9_toHW.reset,(SLAVE)div9_toSW.reset,(SLAVE)PB_ADR.reset,(SLAVE)HexDisplays5to3.reset,(SLAVE)UART_JTAG.reset,(SLAVE)NIOS_MEM.reset1,(SLAVE)NIOS_PROC.reset,(SLAVE)SW_IN.reset,(SLAVE)SDRAM.reset,(SLAVE)KEY_IN.reset,(SLAVE)PBUFF_WREN.reset,(SLAVE)HexDisplays2to0.reset,(SLAVE)LEDR_OUT.reset,(SLAVE)TIMER.reset,(MASTER)CLK.clk_reset,(MASTER)NIOS_PROC.debug_reset_request) 1 1 2 350 1400 790
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)CLK.clk_in,(SLAVE)niosII_ms2HW.clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>niosII_ms2HW</net_container>(SLAVE)SW_IN.irq,(SLAVE)KEY_IN.irq,(SLAVE)TIMER.irq,(MASTER)NIOS_PROC.irq,(SLAVE)UART_JTAG.irq) 1 2 1 810
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)div9_toHW.external_connection,(SLAVE)niosII_ms2HW.div9_tohw_external) 1 0 3 NJ 300 NJ 300 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)div9_toSW.external_connection,(SLAVE)niosII_ms2HW.div9_tosw_external) 1 0 3 NJ 400 NJ 400 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)niosII_ms2HW.key,(SLAVE)KEY_IN.external_connection) 1 0 3 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)PBUFF_WREN.external_connection,(SLAVE)niosII_ms2HW.pbuff_wren) 1 0 3 NJ 1080 NJ 1080 NJ
+preplace netloc FAN_OUT<net_container>niosII_ms2HW</net_container>(SLAVE)div9_toHW.clk,(SLAVE)div9_toSW.clk,(SLAVE)HexDisplays5to3.clk,(SLAVE)KEY_IN.clk,(MASTER)CLK.clk,(SLAVE)LEDR_OUT.clk,(SLAVE)PBUFF_WREN.clk,(SLAVE)SW_IN.clk,(SLAVE)SDRAM.clk,(SLAVE)HexDisplays2to0.clk,(SLAVE)PB_ADR.clk,(SLAVE)TIMER.clk,(SLAVE)PB_DATA.clk,(SLAVE)NIOS_PROC.clk,(SLAVE)NIOS_MEM.clk1,(SLAVE)UART_JTAG.clk) 1 1 2 330 1340 830
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)SW_IN.external_connection,(SLAVE)niosII_ms2HW.sw) 1 0 3 NJ 180 NJ 180 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)niosII_ms2HW.reset,(SLAVE)CLK.clk_in_reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)niosII_ms2HW.hexdisplays5to3,(SLAVE)HexDisplays5to3.external_connection) 1 0 3 NJ 700 NJ 700 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)niosII_ms2HW.hexdisplays2to0,(SLAVE)HexDisplays2to0.external_connection) 1 0 3 NJ 520 NJ 520 NJ
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)niosII_ms2HW.pb_data,(SLAVE)PB_DATA.external_connection) 1 0 3 NJ 1180 NJ 1180 NJ
+preplace netloc INTERCONNECT<net_container>niosII_ms2HW</net_container>(SLAVE)SW_IN.s1,(SLAVE)PBUFF_WREN.s1,(SLAVE)div9_toHW.s1,(MASTER)NIOS_PROC.data_master,(SLAVE)UART_JTAG.avalon_jtag_slave,(SLAVE)div9_toSW.s1,(SLAVE)NIOS_MEM.s1,(SLAVE)PB_ADR.s1,(SLAVE)HexDisplays5to3.s1,(MASTER)NIOS_PROC.instruction_master,(SLAVE)LEDR_OUT.s1,(SLAVE)PB_DATA.s1,(SLAVE)HexDisplays2to0.s1,(SLAVE)KEY_IN.s1,(SLAVE)TIMER.s1,(SLAVE)SDRAM.s1,(SLAVE)NIOS_PROC.debug_mem_slave) 1 1 2 370 1420 770
+preplace netloc EXPORT<net_container>niosII_ms2HW</net_container>(SLAVE)SDRAM.wire,(SLAVE)niosII_ms2HW.sdram_wire) 1 0 3 NJ 1320 NJ 1320 NJ
+levelinfo -pg 1 0 120 1020
+levelinfo -hier niosII_ms2HW 130 160 490 860 1010

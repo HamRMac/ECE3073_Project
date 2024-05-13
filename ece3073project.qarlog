@@ -1,7 +1,7 @@
 Quartus Prime Archive log --	C:/Users/katja/Documents/ECE3073/Project/ece3073project.qarlog
 
 Archive:	C:/Users/katja/Documents/ECE3073/Project/ece3073project.qar
-Date:		Tue Apr 16 23:03:22 2024
+Date:		Wed May 08 17:51:48 2024
 Quartus Prime		18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 	=========== Files Selected: ===========
@@ -39,6 +39,7 @@ C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/a
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_controller.v
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_reset_synchronizer.v
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/altera_wrap_burst_converter.sv
+C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_HexDisplays2to0.v
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_KEY_IN.v
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_LEDR_OUT.v
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_NIOS_MEM.v
@@ -84,10 +85,6 @@ C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/n
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_mux.sv
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_mm_interconnect_0_rsp_mux_001.sv
 C:/Users/katja/Documents/ECE3073/Project/niosII_processor/synthesis/submodules/niosII_processor_nios2_gen2_0_cpu.sdc
-C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.jdi
-C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.pof
-C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.sld
-C:/Users/katja/Documents/ECE3073/Project/output_files/ece3073project.sof
 C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.ppf
 C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.qip
 C:/Users/katja/Documents/ECE3073/Project/pll_SDRAM.v
@@ -101,13 +98,7 @@ C:/Users/katja/Documents/ECE3073/Project/ram2port.v
 C:/Users/katja/Documents/ECE3073/Project/ram2port_bb.v
 C:/Users/katja/Documents/ECE3073/Project/vga_controller.v
 c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
-	======= Total: 96 files to archive =======
+	======= Total: 93 files to archive =======
 
 	================ Status: ===============
 All files archived successfully.
-
-
-******* Archived project restoration attempt on Tue Apr 16 23:07:14 2024
-Source archive file:	C:/Users/katja/Documents/ECE3073/Project/ece3073project.qar
-Archive was extracted into	C:/Users/katja/Documents/ECE3073/Project/ece3073project_restored/
-		 - successfully.
