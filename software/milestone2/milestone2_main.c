@@ -50,6 +50,7 @@ OS_STK    imageFourTask_stk[TASK_STACKSIZE];
 #define MAINTASK_PRIORITY      			1
 #define BUTTONMANAGERTASK_PRIORITY      2
 #define SWITCHMANAGERTASK_PRIORITY      3
+
 #define MUTEXDISP1_PRIORITY				4
 #define MUTEXDISP2_PRIORITY				5
 #define MUTEXDISP3_PRIORITY				6
@@ -89,10 +90,12 @@ OS_EVENT* semLockBlurImgPointer;
 OS_EVENT* semLockEdgeImgPointer;
 OS_EVENT* semLockBaseImgPointer;
 OS_EVENT* semSwitchChange;
+
 OS_EVENT* semDisplay1;
 OS_EVENT* semDisplay2;
 OS_EVENT* semDisplay3;
 OS_EVENT* semDisplay4;
+
 
 
 // Define reusable kernels
@@ -628,12 +631,14 @@ void imageOneTask(void* pdata) {
 	int switchVal;
 	int* img;
 	int* imgDS;
+
 	INT8U err;
 	while (1) {
 		OSSemPend(semDisplay1,0,&err);
 		#if ENABLE_DEBUG_OUTPUT
 		printf("I1T GO\n");
 		#endif
+    
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = switchVal & 0b11;
 		switch (switchVal) {
@@ -674,7 +679,8 @@ void imageOneTask(void* pdata) {
 		}
 		free(img);
 		free(imgDS);
-		OSSemPost(semDisplay2);
+
+    OSSemPost(semDisplay2);
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
 }
@@ -684,6 +690,7 @@ void imageTwoTask(void* pdata) {
 	int switchVal;
 	int* img;
 	int* imgDS;
+
 	INT8U err;
 	while (1) {
 		OSSemPend(semDisplay2,0,&err);
@@ -826,7 +833,8 @@ void imageFourTask(void* pdata) {
 			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
 			OSSemPend(semLockBlurImgPointer,0,&err);
 			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
-			OSSemPost(semLockBlurImgPointer);			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			OSSemPost(semLockBlurImgPointer);	
+      imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
 		//Edge
@@ -841,7 +849,6 @@ void imageFourTask(void* pdata) {
 		}
 		free(img);
 		free(imgDS);
-
 		OSSemPost(semDisplay1);
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
@@ -888,6 +895,17 @@ void switchManagerTask (void* pdata) {
 			if (err2 != OS_NO_ERR) printf("Failed to post sem4: %x\n",err2);
 			printf("SW4\n");
 		}*/
+	}
+}
+
+void switchManagerTask (void* pdata) {
+	INT8U semPendErr;
+	while (1) {
+		// Wait for interrupt
+		OSSemPend(semSwitchChange,0,&semPendErr);
+		// Received Interrupt Semaphore (GO TIME)
+		currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
+		OSMutexPost(mutexSwitchDisplay);
 	}
 }
 
