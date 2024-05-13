@@ -1,0 +1,37 @@
+module hvEdge(
+	pixel1,
+	pixel2,
+	pixel3,
+	pixel4,
+	pixel5,
+	pixel6,
+	pixel7,
+	pixel8,
+	pixel9,
+	result
+)
+
+input  [3:0] pixel1;
+input  [3:0] pixel2;
+// input  [3:0] pixel3;
+input  [3:0] pixel4;
+// input  [3:0] pixel5;
+input  [3:0] pixel6;
+//input  [3:0] pixel7;
+input  [3:0] pixel8;
+input  [3:0] pixel9;
+
+output [3:0] result;
+
+assign wire [4:0] pixel1Res = pixel1<< 1;
+assign wire [4:0] pixel2Res = pixel2<< 1;
+assign wire [4:0] pixel4Res = pixel4<< 1;
+assign wire [4:0] pixel6Res = pixel6<< 1;
+assign wire [4:0] pixel8Res = pixel8<< 1;
+assign wire [4:0] pixel9Res = pixel9<< 1;
+
+assign wire [6:0] pixel9Res = pixel1Res+pixel2Res+pixel4Res-pixel6Res-pixel8Res-pixel9Res;
+
+assign result = pixel9Res/9;
+
+endmodule

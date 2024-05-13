@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Tue Apr 16 21:53:03 2024
+Analysis & Synthesis Status : Successful - Mon May 13 16:35:48 2024
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ece3073project
 Top-level Entity Name : init_proc
 Family : MAX 10
-Total logic elements : 5,167
-    Total combinational functions : 4,050
-    Dedicated logic registers : 2,948
-Total registers : 2948
-Total pins : 76
+Total logic elements : 5,460
+    Total combinational functions : 4,282
+    Dedicated logic registers : 3,102
+Total registers : 3102
+Total pins : 124
 Total virtual pins : 0
 Total memory bits : 1,198,080
 Embedded Multiplier 9-bit elements : 6

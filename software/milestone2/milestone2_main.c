@@ -18,6 +18,9 @@
 /* ------------------------- *
  *     BEGIN GLOBAL SETUP	 *
  * ------------------------- */
+// Define Compiler Directives
+#define VERSION 2
+#define ENABLE_DEBUG_OUTPUT 0
 
 // Include dependencies
 #include <stdio.h>
@@ -47,12 +50,16 @@ OS_STK    imageFourTask_stk[TASK_STACKSIZE];
 #define MAINTASK_PRIORITY      			1
 #define BUTTONMANAGERTASK_PRIORITY      2
 #define SWITCHMANAGERTASK_PRIORITY      3
-#define MUTEXSW_PRIORITY				4
-#define IMAGEPROCESSORTASK_PRIORITY 	5
-#define IMAGEONETASK_PRIORITY			6
-#define IMAGETWOTASK_PRIORITY			7
-#define IMAGETHREETASK_PRIORITY			8
-#define IMAGEFOURTASK_PRIORITY			9
+
+#define MUTEXDISP1_PRIORITY				4
+#define MUTEXDISP2_PRIORITY				5
+#define MUTEXDISP3_PRIORITY				6
+#define MUTEXDISP4_PRIORITY				7
+#define IMAGEPROCESSORTASK_PRIORITY 	8
+#define IMAGEONETASK_PRIORITY			9
+#define IMAGETWOTASK_PRIORITY			10
+#define IMAGETHREETASK_PRIORITY			11
+#define IMAGEFOURTASK_PRIORITY			12
 
 // -- Define constants --
 // Define SDRAM BASE
@@ -83,7 +90,12 @@ OS_EVENT* semLockBlurImgPointer;
 OS_EVENT* semLockEdgeImgPointer;
 OS_EVENT* semLockBaseImgPointer;
 OS_EVENT* semSwitchChange;
-OS_EVENT* mutexSwitchDisplay;
+
+OS_EVENT* semDisplay1;
+OS_EVENT* semDisplay2;
+OS_EVENT* semDisplay3;
+OS_EVENT* semDisplay4;
+
 
 
 // Define reusable kernels
@@ -365,13 +377,15 @@ int* downscaleImg2x(int* imageArray, int cols, int rows, int padding) {
 
 	int bytesToCopy = sizeof(int)*2;
 	int writeIndex = 0;
+	int temp;
 	for (int row = 0; row < rows-1; row+=2){
 		for (int col = 0; col < cols-1; col+=2){
 			offset[0] = col+row*cols; 		// Calculate pixel offset row1
 			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
 			memcpy(patch,imageArray+padding+offset[0],bytesToCopy); // Copy first row to patch
 			memcpy(patch+2,imageArray+padding+offset[1],bytesToCopy); // Copy second row to patch
-			*(output+2+writeIndex) = conv(patch,kernDownscale2x,2,4); // Calculate convolution
+			temp = conv(patch,kernDownscale2x,2,0); // Calculate convolution
+			*(output+2+writeIndex) = temp >> 2;
 			writeIndex++;
 		}
 	}
@@ -450,7 +464,56 @@ int* processEdgeDetection(int* conv1, int* conv2, int numPixels) {
 	if (conv2 != NULL) {
 		free(conv2);
 	}
-	// Return the memory location with the reversed image
+	// Return the memory location with the processed image
+	return output;
+}
+
+int* fastEdgeDetection(int* imageArray, int cols, int rows) {
+	// Allocate memory for reversed image
+	int* output = (int*)malloc(((cols)*(rows)+2)*sizeof(int));
+	*(output) = cols;
+	*(output+1) = rows;
+
+	// Iterate through each row/column and get the relevant pixel, perform the fast conv
+	int offset[3];
+	int pixelValue;
+
+	// Go through all pixels
+	int writeIndex = 0;
+	for (int row = -1; row < rows-1; row++){
+		for (int col = -1; col < cols-1; col++){
+			if ((row == -1) || (row == rows-2) || (col == -1) || (col == cols-2)) {
+				// Skip This loop for padding
+				*(output+2+writeIndex) = 0;
+				writeIndex++;
+				continue;
+			}
+			offset[0] = col+row*cols; 		// Calculate pixel offset row1
+			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
+			offset[2] = col+(row+2)*cols;	// Calculate pixel offset row3
+			// Calculate Vertical Edges
+			pixelValue = (*(imageArray+offset[0])   + *(imageArray+offset[0]+2)- *(imageArray+offset[2]) - *(imageArray+offset[2]+2));
+			pixelValue += (*(imageArray+offset[0]+1) - *(imageArray+offset[2]+1)) << 1;
+			// Force to be positive
+			pixelValue = abs(pixelValue);
+
+			// Calculate Horizontal Edges
+			pixelValue += (*(imageArray+offset[0])   + *(imageArray+offset[2])  - *(imageArray+offset[0]+2) - *(imageArray+offset[2]+2));
+			pixelValue += (*(imageArray+offset[1])   - *(imageArray+offset[1]+2)) << 1;
+			// Force to be positive
+			pixelValue = abs(pixelValue);
+
+			// Perform Thresholding
+			if (pixelValue > 7) {
+				*(output+2+writeIndex) = 15; // Set as edge
+			} else {
+				*(output+2+writeIndex) = 0; // Not an edge
+			}
+			writeIndex++;
+		}
+	}
+
+	// Return the memory location with the Edge Detected image
 	return output;
 }
 
@@ -481,6 +544,40 @@ int* blurImgConv(int* imageArray, int cols, int rows) {
 			memcpy(patch+3,imageArray+offset[1],bytesToCopy); // Copy second row to patch
 			memcpy(patch+6,imageArray+offset[2],bytesToCopy); // Copy second row to patch
 			*(output+2+writeIndex) = conv(patch,kernBlur3x,3,9); // Calculate convolution
+			writeIndex++;
+		}
+	}
+	// Return the memory location with the blurred image
+	return output;
+}
+
+int* fastBlurImg(int* imageArray, int cols, int rows) {
+	// This requests a new block of memory to put our image
+	// Free this afterwards or we will have a memory leak!
+	int* output = (int*)malloc(((cols)*(rows)+2)*sizeof(int));
+	*(output) = cols;
+	*(output+1) = rows;
+	// Iterate through each row/column and get the relevant pixel, perform the conv
+	int offset[3];
+	int res;
+
+	int writeIndex = 0;
+	for (int row = -1; row < rows-1; row++){
+		for (int col = -1; col < cols-1; col++){
+			if ((row == -1) || (row == rows-2) || (col == -1) || (col == cols-2)) {
+				// Skip This loop for padding
+				*(output+2+writeIndex) = 0;
+				writeIndex++;
+				continue;
+			}
+			offset[0] = col+row*cols; 		// Calculate pixel offset row1
+			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
+			offset[2] = col+(row+2)*cols;	// Calculate pixel offset row3
+			res  = *(imageArray+offset[0]) + *(imageArray+offset[0]+1) + *(imageArray+offset[0]+2);
+			res += *(imageArray+offset[1]) + *(imageArray+offset[1]+1) + *(imageArray+offset[1]+2);
+			res += *(imageArray+offset[2]) + *(imageArray+offset[2]+1) + *(imageArray+offset[2]+2);
+			IOWR_8DIRECT(DIV9_TOHW_BASE,0,res);
+			*(output+2+writeIndex) = IORD_8DIRECT(DIV9_TOSW_BASE,0); // Calculate convolution
 			writeIndex++;
 		}
 	}
@@ -534,7 +631,14 @@ void imageOneTask(void* pdata) {
 	int switchVal;
 	int* img;
 	int* imgDS;
+
+	INT8U err;
 	while (1) {
+		OSSemPend(semDisplay1,0,&err);
+		#if ENABLE_DEBUG_OUTPUT
+		printf("I1T GO\n");
+		#endif
+    
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = switchVal & 0b11;
 		switch (switchVal) {
@@ -547,25 +651,36 @@ void imageOneTask(void* pdata) {
 			break;
 		//Flip
 		case 0b01:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockFlipImgPointer,0,&err);
 			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockFlipImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
 			imageToBuffer(imgDS,0,0);
 			break;
 		//Blur
 		case 0b10:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockBlurImgPointer,0,&err);
 			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockBlurImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,0,0);
 			break;
 		//Edge
 		case 0b11:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockEdgeImgPointer,0,&err);
 			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockEdgeImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,0,0);
 			break;
 		}
 		free(img);
 		free(imgDS);
+
+    OSSemPost(semDisplay2);
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
 }
@@ -575,7 +690,13 @@ void imageTwoTask(void* pdata) {
 	int switchVal;
 	int* img;
 	int* imgDS;
+
+	INT8U err;
 	while (1) {
+		OSSemPend(semDisplay2,0,&err);
+		#if ENABLE_DEBUG_OUTPUT
+		printf("I2T GO\n");
+		#endif
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = (switchVal & 0b1100) >> 2;
 		switch (switchVal) {
@@ -588,25 +709,35 @@ void imageTwoTask(void* pdata) {
 			break;
 			//Flip
 		case 0b01:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockFlipImgPointer,0,&err);
 			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockFlipImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
 			imageToBuffer(imgDS,IMG_WIDTH/2,0);
 			break;
 			//Blur
 		case 0b10:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockBlurImgPointer,0,&err);
 			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockBlurImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,IMG_WIDTH/2,0);
 			break;
 			//Edge
 		case 0b11:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockEdgeImgPointer,0,&err);
 			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockEdgeImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,IMG_WIDTH/2,0);
 			break;
 		}
 		free(img);
 		free(imgDS);
+		OSSemPost(semDisplay3);
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
 }
@@ -616,7 +747,12 @@ void imageThreeTask(void* pdata) {
 	int switchVal;
 	int* img;
 	int* imgDS;
+	INT8U err;
 	while (1) {
+		OSSemPend(semDisplay3,0,&err);
+		#if ENABLE_DEBUG_OUTPUT
+		printf("I3T GO\n");
+		#endif
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = (switchVal & 0b110000) >> 4;
 		switch (switchVal) {
@@ -629,25 +765,35 @@ void imageThreeTask(void* pdata) {
 			break;
 		//Flip
 		case 0b01:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockFlipImgPointer,0,&err);
 			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockFlipImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
 			imageToBuffer(imgDS,0,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
 		//Blur
 		case 0b10:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockBlurImgPointer,0,&err);
 			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockBlurImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,0,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
 		//Edge
 		case 0b11:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockEdgeImgPointer,0,&err);
 			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockEdgeImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,0,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
 		}
 		free(img);
 		free(imgDS);
+		OSSemPost(semDisplay4);
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
 }
@@ -657,7 +803,12 @@ void imageFourTask(void* pdata) {
 	int switchVal;
 	int* img;
 	int* imgDS;
+	INT8U err;
 	while (1) {
+		OSSemPend(semDisplay4,0,&err);
+		#if ENABLE_DEBUG_OUTPUT
+		printf("I4T GO\n");
+		#endif
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = (switchVal & 0b11000000) >> 6;
 		switch (switchVal) {
@@ -670,25 +821,35 @@ void imageFourTask(void* pdata) {
 			break;
 		//Flip
 		case 0b01:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockFlipImgPointer,0,&err);
 			img = imgToPtr(FLIPIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockFlipImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 0);
 			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
 		//Blur
 		case 0b10:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockBlurImgPointer,0,&err);
 			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
-			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
+			OSSemPost(semLockBlurImgPointer);	
+      imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
 		//Edge
 		case 0b11:
+			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
+			OSSemPend(semLockEdgeImgPointer,0,&err);
 			img = imgToPtr(EDGEIMG_BASE, BUF_MAX_PIX);
+			OSSemPost(semLockEdgeImgPointer);
 			imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
 		}
 		free(img);
 		free(imgDS);
+		OSSemPost(semDisplay1);
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
 }
@@ -701,7 +862,39 @@ void buttonManagerTask (void* pdata) {
 		// Flip the flag in the global variable as required and redraw image
 		flipImgFlags ^= keyPressedContext;
 		//writeImage(flipImgFlags);
-		printf(" FLIP FLAGS %x\n",flipImgFlags);
+		//printf(" FLIP FLAGS %x\n",flipImgFlags);
+	}
+}
+
+void switchManagerTask (void* pdata) {
+	INT8U semPendErr;
+	INT8U err2;
+	while (1) {
+		// Wait for interrupt
+		OSSemPend(semSwitchChange,0,&semPendErr);
+		// Received Interrupt Semaphore (GO TIME)
+		currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
+		//OSMutexPost(mutexSwitchDisplay);
+		#if ENABLE_DEBUG_OUTPUT
+		printf("SW - %x\n",SwChangedContext);
+		#endif
+		/*if ((SwChangedContext & 0b11) != 0) {
+			err2 = OSSemPost(semDisplay1);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem1: %x\n",err2);
+			printf("SW1\n");
+		} else if ((SwChangedContext & 0b1100) != 0) {
+			err2 = OSSemPost(semDisplay2);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem2: %x\n",err2);
+			printf("SW2\n");
+		} else if ((SwChangedContext & 0b110000) != 0) {
+			err2 = OSSemPost(semDisplay3);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem3: %x\n",err2);
+			printf("SW3\n");
+		} else if ((SwChangedContext & 0b11000000) != 0) {
+			err2 = OSSemPost(semDisplay4);
+			if (err2 != OS_NO_ERR) printf("Failed to post sem4: %x\n",err2);
+			printf("SW4\n");
+		}*/
 	}
 }
 
@@ -734,11 +927,17 @@ void imageProcessorTask(void* pdata)
 	img = imgToPtr(SDRAM_BASEADDR,BUF_MAX_PIX);
 	OSSemPost(semLockBaseImgPointer);
 
+	#if VERSION == 1
 	int* edgeResH = NULL;
 	int* edgeResV = NULL;
+	#endif
+
 	INT32U timeTemp = 0;
 	while (1)
 	{
+		#if ENABLE_DEBUG_OUTPUT
+		printf("ImgProcess GO!\n");
+		#endif
 		// Lock Pointers
 		OSSemPend(semLockFlipImgPointer,0,&semPendErr);
 		OSSemPend(semLockBlurImgPointer,0,&semPendErr);
@@ -754,17 +953,25 @@ void imageProcessorTask(void* pdata)
 		imgFlipped = reverseImg(img, BUF_MAX_PIX);
 		flipTime = OSTimeGet()-timeTemp;
 
+		// Blur image
+		timeTemp = OSTimeGet();
+		#if VERSION == 2
+		imgBlurred = fastBlurImg(img, IMG_WIDTH, IMG_HEIGHT);
+		#else
+		imgBlurred = blurImgConv(img, IMG_WIDTH, IMG_HEIGHT);
+		#endif
+		blurTime = OSTimeGet()-timeTemp;
+
 		// Perform Edge detection
 		timeTemp = OSTimeGet();
+		#if VERSION == 2
+		imgEdgeDetect = fastEdgeDetection(img, IMG_WIDTH, IMG_HEIGHT);
+		#else
 		edgeResH = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 0);
 		edgeResV = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 1);
 		imgEdgeDetect = processEdgeDetection(edgeResH, edgeResV, (*edgeResH)*(*(edgeResH+1)));
+		#endif
 		edgeTime = OSTimeGet()-timeTemp;
-
-		// Blur image
-		timeTemp = OSTimeGet();
-		imgBlurred = blurImgConv(img, IMG_WIDTH, IMG_HEIGHT);
-		blurTime = OSTimeGet()-timeTemp;
 
 		totalTime = flipTime+edgeTime+blurTime;
 		// Save to SDRAM
@@ -794,10 +1001,22 @@ void mainTask(void* pdata)
 	semLockBlurImgPointer = OSSemCreate(1);
 	semLockEdgeImgPointer = OSSemCreate(1);
 	semLockBaseImgPointer = OSSemCreate(1);
+
 	semSwitchChange = OSSemCreate(1);
 	semKeyChange = OSSemCreate(1);
-	mutexSwitchDisplay = OSMutexCreate(MUTEXSW_PRIORITY,&err);
-	printf("1 %x\n",err);
+
+	// Semaphores to block the image display tasks
+	semDisplay1 = OSSemCreate(1);
+	semDisplay2 = OSSemCreate(1);
+	semDisplay3 = OSSemCreate(1);
+	semDisplay4 = OSSemCreate(1);
+
+	// Do this to cause the image tasks
+	// to run in a Round-Robin style
+	// Otherwise Disp4 takes forever
+	OSSemPend(semDisplay2,0,&err);
+	OSSemPend(semDisplay3,0,&err);
+	OSSemPend(semDisplay4,0,&err);
 
 	initButtonIRQ();
 	initSwIRQ();

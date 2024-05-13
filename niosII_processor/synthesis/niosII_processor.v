@@ -4,23 +4,25 @@
 
 `timescale 1 ps / 1 ps
 module niosII_processor (
-		input  wire        clk_clk,           //        clk.clk
-		input  wire [1:0]  key_export,        //        key.export
-		output wire [9:0]  ledr_export,       //       ledr.export
-		output wire [14:0] pb_adr_export,     //     pb_adr.export
-		output wire [3:0]  pb_data_export,    //    pb_data.export
-		output wire        pbuff_wren_export, // pbuff_wren.export
-		input  wire        reset_reset_n,     //      reset.reset_n
-		output wire [12:0] sdram_wire_addr,   // sdram_wire.addr
-		output wire [1:0]  sdram_wire_ba,     //           .ba
-		output wire        sdram_wire_cas_n,  //           .cas_n
-		output wire        sdram_wire_cke,    //           .cke
-		output wire        sdram_wire_cs_n,   //           .cs_n
-		inout  wire [15:0] sdram_wire_dq,     //           .dq
-		output wire [1:0]  sdram_wire_dqm,    //           .dqm
-		output wire        sdram_wire_ras_n,  //           .ras_n
-		output wire        sdram_wire_we_n,   //           .we_n
-		input  wire [9:0]  sw_export          //         sw.export
+		input  wire        clk_clk,                //             clk.clk
+		output wire [23:0] hexdisplays2to0_export, // hexdisplays2to0.export
+		output wire [23:0] hexdisplays5to3_export, // hexdisplays5to3.export
+		input  wire [1:0]  key_export,             //             key.export
+		output wire [9:0]  ledr_export,            //            ledr.export
+		output wire [14:0] pb_adr_export,          //          pb_adr.export
+		output wire [3:0]  pb_data_export,         //         pb_data.export
+		output wire        pbuff_wren_export,      //      pbuff_wren.export
+		input  wire        reset_reset_n,          //           reset.reset_n
+		output wire [12:0] sdram_wire_addr,        //      sdram_wire.addr
+		output wire [1:0]  sdram_wire_ba,          //                .ba
+		output wire        sdram_wire_cas_n,       //                .cas_n
+		output wire        sdram_wire_cke,         //                .cke
+		output wire        sdram_wire_cs_n,        //                .cs_n
+		inout  wire [15:0] sdram_wire_dq,          //                .dq
+		output wire [1:0]  sdram_wire_dqm,         //                .dqm
+		output wire        sdram_wire_ras_n,       //                .ras_n
+		output wire        sdram_wire_we_n,        //                .we_n
+		input  wire [9:0]  sw_export               //              sw.export
 	);
 
 	wire  [31:0] nios_proc_data_master_readdata;                            // mm_interconnect_0:NIOS_PROC_data_master_readdata -> NIOS_PROC:d_readdata
@@ -103,14 +105,46 @@ module niosII_processor (
 	wire   [1:0] mm_interconnect_0_pbuff_wren_s1_address;                   // mm_interconnect_0:PBUFF_WREN_s1_address -> PBUFF_WREN:address
 	wire         mm_interconnect_0_pbuff_wren_s1_write;                     // mm_interconnect_0:PBUFF_WREN_s1_write -> PBUFF_WREN:write_n
 	wire  [31:0] mm_interconnect_0_pbuff_wren_s1_writedata;                 // mm_interconnect_0:PBUFF_WREN_s1_writedata -> PBUFF_WREN:writedata
+	wire         mm_interconnect_0_hexdisplays2to0_s1_chipselect;           // mm_interconnect_0:HexDisplays2to0_s1_chipselect -> HexDisplays2to0:chipselect
+	wire  [31:0] mm_interconnect_0_hexdisplays2to0_s1_readdata;             // HexDisplays2to0:readdata -> mm_interconnect_0:HexDisplays2to0_s1_readdata
+	wire   [1:0] mm_interconnect_0_hexdisplays2to0_s1_address;              // mm_interconnect_0:HexDisplays2to0_s1_address -> HexDisplays2to0:address
+	wire         mm_interconnect_0_hexdisplays2to0_s1_write;                // mm_interconnect_0:HexDisplays2to0_s1_write -> HexDisplays2to0:write_n
+	wire  [31:0] mm_interconnect_0_hexdisplays2to0_s1_writedata;            // mm_interconnect_0:HexDisplays2to0_s1_writedata -> HexDisplays2to0:writedata
+	wire         mm_interconnect_0_hexdisplays5to3_s1_chipselect;           // mm_interconnect_0:HexDisplays5to3_s1_chipselect -> HexDisplays5to3:chipselect
+	wire  [31:0] mm_interconnect_0_hexdisplays5to3_s1_readdata;             // HexDisplays5to3:readdata -> mm_interconnect_0:HexDisplays5to3_s1_readdata
+	wire   [1:0] mm_interconnect_0_hexdisplays5to3_s1_address;              // mm_interconnect_0:HexDisplays5to3_s1_address -> HexDisplays5to3:address
+	wire         mm_interconnect_0_hexdisplays5to3_s1_write;                // mm_interconnect_0:HexDisplays5to3_s1_write -> HexDisplays5to3:write_n
+	wire  [31:0] mm_interconnect_0_hexdisplays5to3_s1_writedata;            // mm_interconnect_0:HexDisplays5to3_s1_writedata -> HexDisplays5to3:writedata
 	wire         irq_mapper_receiver0_irq;                                  // UART_JTAG:av_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                  // TIMER:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                  // SW_IN:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                  // KEY_IN:irq -> irq_mapper:receiver3_irq
 	wire  [31:0] nios_proc_irq_irq;                                         // irq_mapper:sender_irq -> NIOS_PROC:irq
-	wire         rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [KEY_IN:reset_n, LEDR_OUT:reset_n, NIOS_MEM:reset, NIOS_PROC:reset_n, PBUFF_WREN:reset_n, PB_ADR:reset_n, PB_DATA:reset_n, SDRAM:reset_n, SW_IN:reset_n, TIMER:reset_n, UART_JTAG:rst_n, irq_mapper:reset, mm_interconnect_0:NIOS_PROC_reset_reset_bridge_in_reset_reset, rst_translator:in_reset]
+	wire         rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [HexDisplays2to0:reset_n, HexDisplays5to3:reset_n, KEY_IN:reset_n, LEDR_OUT:reset_n, NIOS_MEM:reset, NIOS_PROC:reset_n, PBUFF_WREN:reset_n, PB_ADR:reset_n, PB_DATA:reset_n, SDRAM:reset_n, SW_IN:reset_n, TIMER:reset_n, UART_JTAG:rst_n, irq_mapper:reset, mm_interconnect_0:NIOS_PROC_reset_reset_bridge_in_reset_reset, rst_translator:in_reset]
 	wire         rst_controller_reset_out_reset_req;                        // rst_controller:reset_req -> [NIOS_MEM:reset_req, NIOS_PROC:reset_req, rst_translator:reset_req_in]
 	wire         nios_proc_debug_reset_request_reset;                       // NIOS_PROC:debug_reset_request -> rst_controller:reset_in1
+
+	niosII_processor_HexDisplays2to0 hexdisplays2to0 (
+		.clk        (clk_clk),                                         //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                 //               reset.reset_n
+		.address    (mm_interconnect_0_hexdisplays2to0_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_hexdisplays2to0_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_hexdisplays2to0_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_hexdisplays2to0_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_hexdisplays2to0_s1_readdata),   //                    .readdata
+		.out_port   (hexdisplays2to0_export)                           // external_connection.export
+	);
+
+	niosII_processor_HexDisplays2to0 hexdisplays5to3 (
+		.clk        (clk_clk),                                         //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                 //               reset.reset_n
+		.address    (mm_interconnect_0_hexdisplays5to3_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_hexdisplays5to3_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_hexdisplays5to3_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_hexdisplays5to3_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_hexdisplays5to3_s1_readdata),   //                    .readdata
+		.out_port   (hexdisplays5to3_export)                           // external_connection.export
+	);
 
 	niosII_processor_KEY_IN key_in (
 		.clk        (clk_clk),                                //                 clk.clk
@@ -289,6 +323,16 @@ module niosII_processor (
 		.NIOS_PROC_instruction_master_read           (nios_proc_instruction_master_read),                         //                                      .read
 		.NIOS_PROC_instruction_master_readdata       (nios_proc_instruction_master_readdata),                     //                                      .readdata
 		.NIOS_PROC_instruction_master_readdatavalid  (nios_proc_instruction_master_readdatavalid),                //                                      .readdatavalid
+		.HexDisplays2to0_s1_address                  (mm_interconnect_0_hexdisplays2to0_s1_address),              //                    HexDisplays2to0_s1.address
+		.HexDisplays2to0_s1_write                    (mm_interconnect_0_hexdisplays2to0_s1_write),                //                                      .write
+		.HexDisplays2to0_s1_readdata                 (mm_interconnect_0_hexdisplays2to0_s1_readdata),             //                                      .readdata
+		.HexDisplays2to0_s1_writedata                (mm_interconnect_0_hexdisplays2to0_s1_writedata),            //                                      .writedata
+		.HexDisplays2to0_s1_chipselect               (mm_interconnect_0_hexdisplays2to0_s1_chipselect),           //                                      .chipselect
+		.HexDisplays5to3_s1_address                  (mm_interconnect_0_hexdisplays5to3_s1_address),              //                    HexDisplays5to3_s1.address
+		.HexDisplays5to3_s1_write                    (mm_interconnect_0_hexdisplays5to3_s1_write),                //                                      .write
+		.HexDisplays5to3_s1_readdata                 (mm_interconnect_0_hexdisplays5to3_s1_readdata),             //                                      .readdata
+		.HexDisplays5to3_s1_writedata                (mm_interconnect_0_hexdisplays5to3_s1_writedata),            //                                      .writedata
+		.HexDisplays5to3_s1_chipselect               (mm_interconnect_0_hexdisplays5to3_s1_chipselect),           //                                      .chipselect
 		.KEY_IN_s1_address                           (mm_interconnect_0_key_in_s1_address),                       //                             KEY_IN_s1.address
 		.KEY_IN_s1_write                             (mm_interconnect_0_key_in_s1_write),                         //                                      .write
 		.KEY_IN_s1_readdata                          (mm_interconnect_0_key_in_s1_readdata),                      //                                      .readdata

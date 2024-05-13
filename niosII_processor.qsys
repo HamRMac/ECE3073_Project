@@ -17,6 +17,38 @@
          type = "int";
       }
    }
+   element HexDisplays2to0
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element HexDisplays2to0.s1
+   {
+      datum baseAddress
+      {
+         value = "67637296";
+         type = "String";
+      }
+   }
+   element HexDisplays5to3
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element HexDisplays5to3.s1
+   {
+      datum baseAddress
+      {
+         value = "67637280";
+         type = "String";
+      }
+   }
    element KEY_IN
    {
       datum _sortIndex
@@ -37,7 +69,7 @@
    {
       datum baseAddress
       {
-         value = "67637328";
+         value = "67637360";
          type = "String";
       }
    }
@@ -53,7 +85,7 @@
    {
       datum baseAddress
       {
-         value = "67637360";
+         value = "67637392";
          type = "String";
       }
    }
@@ -101,7 +133,7 @@
    {
       datum baseAddress
       {
-         value = "67637280";
+         value = "67637312";
          type = "String";
       }
    }
@@ -117,7 +149,7 @@
    {
       datum baseAddress
       {
-         value = "67637312";
+         value = "67637344";
          type = "String";
       }
    }
@@ -133,7 +165,7 @@
    {
       datum baseAddress
       {
-         value = "67637296";
+         value = "67637328";
          type = "String";
       }
    }
@@ -165,7 +197,7 @@
    {
       datum baseAddress
       {
-         value = "67637344";
+         value = "67637376";
          type = "String";
       }
    }
@@ -197,7 +229,7 @@
    {
       datum baseAddress
       {
-         value = "67637376";
+         value = "67637408";
          type = "String";
       }
    }
@@ -231,6 +263,16 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="CLK.clk_in" type="clock" dir="end" />
+ <interface
+   name="hexdisplays2to0"
+   internal="HexDisplays2to0.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="hexdisplays5to3"
+   internal="HexDisplays5to3.external_connection"
+   type="conduit"
+   dir="end" />
  <interface
    name="key"
    internal="KEY_IN.external_connection"
@@ -269,6 +311,42 @@
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   name="HexDisplays2to0"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="24" />
+ </module>
+ <module
+   name="HexDisplays5to3"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="24" />
  </module>
  <module name="KEY_IN" kind="altera_avalon_pio" version="18.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
@@ -350,7 +428,7 @@
   <parameter name="dataAddrWidth" value="27" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM.s1' start='0x0' end='0x4000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='NIOS_MEM.s1' start='0x4040000' end='0x40603A0' type='altera_avalon_onchip_memory2.s1' /><slave name='NIOS_PROC.debug_mem_slave' start='0x4080800' end='0x4081000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='TIMER.s1' start='0x4081000' end='0x4081020' type='altera_avalon_timer.s1' /><slave name='PBUFF_WREN.s1' start='0x4081020' end='0x4081030' type='altera_avalon_pio.s1' /><slave name='PB_DATA.s1' start='0x4081030' end='0x4081040' type='altera_avalon_pio.s1' /><slave name='PB_ADR.s1' start='0x4081040' end='0x4081050' type='altera_avalon_pio.s1' /><slave name='KEY_IN.s1' start='0x4081050' end='0x4081060' type='altera_avalon_pio.s1' /><slave name='SW_IN.s1' start='0x4081060' end='0x4081070' type='altera_avalon_pio.s1' /><slave name='LEDR_OUT.s1' start='0x4081070' end='0x4081080' type='altera_avalon_pio.s1' /><slave name='UART_JTAG.avalon_jtag_slave' start='0x4081080' end='0x4081088' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM.s1' start='0x0' end='0x4000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='NIOS_MEM.s1' start='0x4040000' end='0x40603A0' type='altera_avalon_onchip_memory2.s1' /><slave name='NIOS_PROC.debug_mem_slave' start='0x4080800' end='0x4081000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='TIMER.s1' start='0x4081000' end='0x4081020' type='altera_avalon_timer.s1' /><slave name='HexDisplays5to3.s1' start='0x4081020' end='0x4081030' type='altera_avalon_pio.s1' /><slave name='HexDisplays2to0.s1' start='0x4081030' end='0x4081040' type='altera_avalon_pio.s1' /><slave name='PBUFF_WREN.s1' start='0x4081040' end='0x4081050' type='altera_avalon_pio.s1' /><slave name='PB_DATA.s1' start='0x4081050' end='0x4081060' type='altera_avalon_pio.s1' /><slave name='PB_ADR.s1' start='0x4081060' end='0x4081070' type='altera_avalon_pio.s1' /><slave name='KEY_IN.s1' start='0x4081070' end='0x4081080' type='altera_avalon_pio.s1' /><slave name='SW_IN.s1' start='0x4081080' end='0x4081090' type='altera_avalon_pio.s1' /><slave name='LEDR_OUT.s1' start='0x4081090' end='0x40810A0' type='altera_avalon_pio.s1' /><slave name='UART_JTAG.avalon_jtag_slave' start='0x40810A0' end='0x40810A8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -585,7 +663,7 @@
   <parameter name="captureEdge" value="true" />
   <parameter name="clockRate" value="50000000" />
   <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
+  <parameter name="edgeType" value="ANY" />
   <parameter name="generateIRQ" value="true" />
   <parameter name="irqType" value="EDGE" />
   <parameter name="resetValue" value="0" />
@@ -630,7 +708,7 @@
    start="NIOS_PROC.data_master"
    end="UART_JTAG.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081080" />
+  <parameter name="baseAddress" value="0x040810a0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -657,7 +735,7 @@
    start="NIOS_PROC.data_master"
    end="LEDR_OUT.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081070" />
+  <parameter name="baseAddress" value="0x04081090" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -666,7 +744,7 @@
    start="NIOS_PROC.data_master"
    end="SW_IN.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081060" />
+  <parameter name="baseAddress" value="0x04081080" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -675,7 +753,7 @@
    start="NIOS_PROC.data_master"
    end="KEY_IN.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081050" />
+  <parameter name="baseAddress" value="0x04081070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -684,7 +762,7 @@
    start="NIOS_PROC.data_master"
    end="PB_ADR.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081040" />
+  <parameter name="baseAddress" value="0x04081060" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -693,7 +771,7 @@
    start="NIOS_PROC.data_master"
    end="PB_DATA.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081030" />
+  <parameter name="baseAddress" value="0x04081050" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -719,6 +797,24 @@
    version="18.1"
    start="NIOS_PROC.data_master"
    end="PBUFF_WREN.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="HexDisplays2to0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="HexDisplays5to3.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x04081020" />
   <parameter name="defaultConnection" value="false" />
@@ -751,6 +847,8 @@
  <connection kind="clock" version="18.1" start="CLK.clk" end="SDRAM.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="NIOS_PROC.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="PBUFF_WREN.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="HexDisplays2to0.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="HexDisplays5to3.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="NIOS_MEM.clk1" />
  <connection
    kind="interrupt"
@@ -798,6 +896,16 @@
    version="18.1"
    start="CLK.clk_reset"
    end="PBUFF_WREN.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="HexDisplays2to0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="HexDisplays5to3.reset" />
  <connection
    kind="reset"
    version="18.1"
@@ -853,6 +961,16 @@
    version="18.1"
    start="NIOS_PROC.debug_reset_request"
    end="PBUFF_WREN.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="HexDisplays2to0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="HexDisplays5to3.reset" />
  <connection
    kind="reset"
    version="18.1"

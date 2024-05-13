@@ -17,6 +17,12 @@ module init_proc(
 	SW,
 	KEY,
 	LEDR,
+	HEX0,
+	HEX1,
+	HEX2,
+	HEX3,	
+	HEX4,	
+	HEX5,	
 	VGA_R,
 	VGA_B,
 	VGA_G,
@@ -41,6 +47,12 @@ module init_proc(
 	input [9:0] SW;
 	input [9:0] LEDR;
 	input [1:0] KEY;
+	output [7:0] HEX0;
+	output [7:0] HEX1;
+	output [7:0] HEX2;
+	output [7:0] HEX3;
+	output [7:0] HEX4;
+	output [7:0] HEX5;
 	
 	// Define SDRAM IO
 	output [12:0] DRAM_ADDR;
@@ -68,6 +80,8 @@ module init_proc(
 	wire [14:0] PB_WA;
 	wire PB_WE;
 	wire [3:0] PB_output;
+	wire [7:0] div9_value;
+	wire [7:0] div9_result;
 	
 	
 	// Define VGA Clock Using PLL
@@ -106,7 +120,7 @@ module init_proc(
 	);
 	
 	// Instantiate NiosII proc
-	niosII_processor nios2_proc(
+	niosII_ms2HW nios2_proc(
 			.clk_clk(CLOCK_50),
 			.reset_reset_n(1'b1),
 			.key_export(KEY[1:0]),
@@ -123,7 +137,21 @@ module init_proc(
 			.sdram_wire_dq(DRAM_DQ[15:0]),
 			.sdram_wire_dqm({DRAM_UDQM,DRAM_LDQM}),
 			.sdram_wire_ras_n(DRAM_RAS_N),
-			.sdram_wire_we_n(DRAM_WE_N)
+			.sdram_wire_we_n(DRAM_WE_N),
+			.hexdisplays2to0_export({HEX2, HEX1, HEX0}),
+		   .hexdisplays5to3_export({HEX5, HEX4, HEX3}),
+			.div9_tohw_external_export(div9_value),
+			.div9_tosw_external_export(div9_result)
+	);
+	
+	// Instantiate Hardware 3x3 Blur Divide-by-9
+	// Perform sum in software since it will be faster
+	// Than writing 9 values to 9 PIOs
+	divide9 (
+		.denom(5'd9),
+		.numer(div9_value),
+		.quotient(div9_result),
+		.remain()
 	);
 
 endmodule

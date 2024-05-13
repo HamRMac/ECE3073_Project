@@ -171,7 +171,7 @@ NIOS2_ELF_FORMAT ?= elf32-littlenios2
 #-------------------------------------
 
 # Memory: NIOS_MEM
-MEM_0 := niosII_processor_NIOS_MEM
+MEM_0 := niosII_ms2HW_NIOS_MEM
 $(MEM_0)_NAME := NIOS_MEM
 $(MEM_0)_MEM_INIT_FILE_PARAM_NAME := INIT_FILE
 HEX_FILES += $(MEM_INIT_DIR)/$(MEM_0).hex

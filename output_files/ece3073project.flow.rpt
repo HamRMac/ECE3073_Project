@@ -1,5 +1,5 @@
 Flow report for ece3073project
-Tue Apr 16 21:54:28 2024
+Mon May 13 16:37:15 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,18 +40,18 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Apr 16 21:54:09 2024       ;
+; Flow Status                        ; Successful - Mon May 13 16:36:56 2024       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ece3073project                              ;
 ; Top-level Entity Name              ; init_proc                                   ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 4,674 / 49,760 ( 9 % )                      ;
-;     Total combinational functions  ; 4,056 / 49,760 ( 8 % )                      ;
-;     Dedicated logic registers      ; 2,839 / 49,760 ( 6 % )                      ;
-; Total registers                    ; 2908                                        ;
-; Total pins                         ; 76 / 360 ( 21 % )                           ;
+; Total logic elements               ; 4,940 / 49,760 ( 10 % )                     ;
+;     Total combinational functions  ; 4,288 / 49,760 ( 9 % )                      ;
+;     Dedicated logic registers      ; 2,993 / 49,760 ( 6 % )                      ;
+; Total registers                    ; 3062                                        ;
+; Total pins                         ; 124 / 360 ( 34 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 1,198,080 / 1,677,312 ( 71 % )              ;
 ; Embedded Multiplier 9-bit elements ; 6 / 288 ( 2 % )                             ;
@@ -66,44 +66,45 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/16/2024 21:50:16 ;
+; Start date & time ; 05/13/2024 16:34:08 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ece3073project      ;
 +-------------------+---------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                          ;
-+-------------------------------------+--------------------------------------------------------------------+----------------+------------------+------------+
-; Assignment Name                     ; Value                                                              ; Default Value  ; Entity Name      ; Section Id ;
-+-------------------------------------+--------------------------------------------------------------------+----------------+------------------+------------+
-; COMPILER_SIGNATURE_ID               ; 24062491136.171326821506528                                        ; --             ; --               ; --         ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                                                 ; --             ; --               ; --         ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                                                  ; --             ; --               ; --         ;
-; MISC_FILE                           ; niosII_processor/synthesis/../niosII_processor.cmp                 ; --             ; --               ; --         ;
-; MISC_FILE                           ; niosII_processor/synthesis/../../niosII_processor.qsys             ; --             ; --               ; --         ;
-; MISC_FILE                           ; ram2port_bb.v                                                      ; --             ; --               ; --         ;
-; MISC_FILE                           ; pll_VGA_bb.v                                                       ; --             ; --               ; --         ;
-; MISC_FILE                           ; pll_VGA.ppf                                                        ; --             ; --               ; --         ;
-; MISC_FILE                           ; pll_SDRAM_bb.v                                                     ; --             ; --               ; --         ;
-; MISC_FILE                           ; pll_SDRAM.ppf                                                      ; --             ; --               ; --         ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                  ; --             ; --               ; --         ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                  ; --             ; --               ; --         ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                         ; --             ; --               ; --         ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                         ; --             ; --               ; --         ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family)                             ; --             ; init_proc        ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                             ; --             ; init_proc        ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                             ; --             ; init_proc        ; Top        ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                ; --             ; --               ; --         ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                              ; --             ; --               ; --         ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                       ; --             ; --               ; --         ;
-; SLD_FILE                            ; niosII_processor/synthesis/niosII_processor.regmap                 ; --             ; --               ; --         ;
-; SLD_FILE                            ; niosII_processor/synthesis/niosII_processor.debuginfo              ; --             ; --               ; --         ;
-; SLD_INFO                            ; QSYS_NAME niosII_processor HAS_SOPCINFO 1 GENERATION_ID 1711460559 ; --             ; niosII_processor ; --         ;
-; SOPCINFO_FILE                       ; niosII_processor/synthesis/../../niosII_processor.sopcinfo         ; --             ; --               ; --         ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                 ; --             ; --               ; --         ;
-; TOP_LEVEL_ENTITY                    ; init_proc                                                          ; ece3073project ; --               ; --         ;
-+-------------------------------------+--------------------------------------------------------------------+----------------+------------------+------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                  ;
++-------------------------------------+----------------------------------------------------------------+----------------+--------------+------------+
+; Assignment Name                     ; Value                                                          ; Default Value  ; Entity Name  ; Section Id ;
++-------------------------------------+----------------------------------------------------------------+----------------+--------------+------------+
+; COMPILER_SIGNATURE_ID               ; 61762877007157.171558204713776                                 ; --             ; --           ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                             ; --             ; --           ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                              ; --             ; --           ; --         ;
+; MISC_FILE                           ; niosII_ms2HW/synthesis/../niosII_ms2HW.cmp                     ; --             ; --           ; --         ;
+; MISC_FILE                           ; niosII_ms2HW/synthesis/../../niosII_ms2HW.qsys                 ; --             ; --           ; --         ;
+; MISC_FILE                           ; ram2port_bb.v                                                  ; --             ; --           ; --         ;
+; MISC_FILE                           ; pll_VGA_bb.v                                                   ; --             ; --           ; --         ;
+; MISC_FILE                           ; pll_VGA.ppf                                                    ; --             ; --           ; --         ;
+; MISC_FILE                           ; pll_SDRAM_bb.v                                                 ; --             ; --           ; --         ;
+; MISC_FILE                           ; pll_SDRAM.ppf                                                  ; --             ; --           ; --         ;
+; MISC_FILE                           ; divide9_bb.v                                                   ; --             ; --           ; --         ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                              ; --             ; --           ; --         ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                              ; --             ; --           ; --         ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                     ; --             ; --           ; --         ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                     ; --             ; --           ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                         ; --             ; init_proc    ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                         ; --             ; init_proc    ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                         ; --             ; init_proc    ; Top        ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                            ; --             ; --           ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                          ; --             ; --           ; --         ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                   ; --             ; --           ; --         ;
+; SLD_FILE                            ; niosII_ms2HW/synthesis/niosII_ms2HW.regmap                     ; --             ; --           ; --         ;
+; SLD_FILE                            ; niosII_ms2HW/synthesis/niosII_ms2HW.debuginfo                  ; --             ; --           ; --         ;
+; SLD_INFO                            ; QSYS_NAME niosII_ms2HW HAS_SOPCINFO 1 GENERATION_ID 1715581654 ; --             ; niosII_ms2HW ; --         ;
+; SOPCINFO_FILE                       ; niosII_ms2HW/synthesis/../../niosII_ms2HW.sopcinfo             ; --             ; --           ; --         ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                             ; --             ; --           ; --         ;
+; TOP_LEVEL_ENTITY                    ; init_proc                                                      ; ece3073project ; --           ; --         ;
++-------------------------------------+----------------------------------------------------------------+----------------+--------------+------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -111,11 +112,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:42     ; 1.0                     ; 5005 MB             ; 00:02:36                           ;
-; Fitter               ; 00:00:52     ; 1.2                     ; 5558 MB             ; 00:01:08                           ;
-; Assembler            ; 00:00:08     ; 1.0                     ; 4714 MB             ; 00:00:06                           ;
-; Timing Analyzer      ; 00:00:17     ; 1.6                     ; 4875 MB             ; 00:00:22                           ;
-; Total                ; 00:03:59     ; --                      ; --                  ; 00:04:12                           ;
+; Analysis & Synthesis ; 00:01:33     ; 1.0                     ; 5021 MB             ; 00:02:05                           ;
+; Fitter               ; 00:00:53     ; 1.3                     ; 5560 MB             ; 00:01:11                           ;
+; Assembler            ; 00:00:08     ; 1.0                     ; 4716 MB             ; 00:00:07                           ;
+; Timing Analyzer      ; 00:00:17     ; 1.6                     ; 4881 MB             ; 00:00:23                           ;
+; Total                ; 00:02:51     ; --                      ; --                  ; 00:03:46                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
