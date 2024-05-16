@@ -45,21 +45,24 @@ OS_STK    imageOneTask_stk[TASK_STACKSIZE];
 OS_STK    imageTwoTask_stk[TASK_STACKSIZE];
 OS_STK    imageThreeTask_stk[TASK_STACKSIZE];
 OS_STK    imageFourTask_stk[TASK_STACKSIZE];
+OS_STK	  singleImageTask_stk[TASK_STACKSIZE];
 
 /* Definition of Task Priorities */
 #define MAINTASK_PRIORITY      			1
 #define BUTTONMANAGERTASK_PRIORITY      2
 #define SWITCHMANAGERTASK_PRIORITY      3
 
-#define MUTEXDISP1_PRIORITY				4
-#define MUTEXDISP2_PRIORITY				5
-#define MUTEXDISP3_PRIORITY				6
-#define MUTEXDISP4_PRIORITY				7
-#define IMAGEPROCESSORTASK_PRIORITY 	8
-#define IMAGEONETASK_PRIORITY			9
-#define IMAGETWOTASK_PRIORITY			10
-#define IMAGETHREETASK_PRIORITY			11
-#define IMAGEFOURTASK_PRIORITY			12
+#define MUTEXSINGIMG_PRIORITY			4
+#define MUTEXDISP1_PRIORITY				5
+#define MUTEXDISP2_PRIORITY				6
+#define MUTEXDISP3_PRIORITY				7
+#define MUTEXDISP4_PRIORITY				8
+#define IMAGEPROCESSORTASK_PRIORITY 	9
+#define SINGLEIMAGETASK_PRIORITY		10
+#define IMAGEONETASK_PRIORITY			11
+#define IMAGETWOTASK_PRIORITY			12
+#define IMAGETHREETASK_PRIORITY			13
+#define IMAGEFOURTASK_PRIORITY			14
 
 // -- Define constants --
 // Define SDRAM BASE
@@ -76,7 +79,7 @@ OS_STK    imageFourTask_stk[TASK_STACKSIZE];
 
 // Create global variable to define how image is flipped
 char flipImgFlags = 0x0;
-
+int  state;
 // Define edge counter for interrupt context
 // Used to tell which button was pressed
 volatile int keyPressedContext;
@@ -90,11 +93,12 @@ OS_EVENT* semLockBlurImgPointer;
 OS_EVENT* semLockEdgeImgPointer;
 OS_EVENT* semLockBaseImgPointer;
 OS_EVENT* semSwitchChange;
-
+OS_EVENT* semSingleImag;
 OS_EVENT* semDisplay1;
 OS_EVENT* semDisplay2;
 OS_EVENT* semDisplay3;
 OS_EVENT* semDisplay4;
+OS_EVENT* mutexKey;
 
 
 
@@ -318,6 +322,20 @@ void imageToBuffer(int* imgPtr, int horizStart, int vertStart) {
 		}
 	}
 }
+void imageToBufferSDRAM(int baseAddress){
+	int data;
+	for (int i = 0; i < BUF_MAX_PIX; i++) {
+		//Read from SDRAM
+		data = IORD_32DIRECT(baseAddress,i*4)>>24;
+		//Write to buffer
+		IOWR_32DIRECT(PB_ADR_BASE,0,i);
+		IOWR_32DIRECT(PBUFF_WREN_BASE,0,1);
+		IOWR_32DIRECT(PB_DATA_BASE,0,data);
+		IOWR_32DIRECT(PBUFF_WREN_BASE,0,0);
+
+	}
+}
+
 // Function to display a digit on a hex dislay
 void displayDigit (int hexBayBase, int digitOffset, int digit) {
 	int data =  IORD(hexBayBase, 0) & (0xffff00ffff >> (2-digitOffset)*8);
@@ -337,6 +355,18 @@ void displayDigit (int hexBayBase, int digitOffset, int digit) {
 	data |= (digitBits << digitOffset*8);
 	IOWR(hexBayBase, 0, data);
 }
+
+//int seperableConv (int* kernel, int* imgPatch,size){
+//	int result = 0;
+//	return result;
+//	for (int col = 0; col<size;col++){
+//
+//	}
+//	for (int row = 0; row<size;row++){
+//		//result += kernal[] * imgPatch[];
+//	}
+//
+//}
 
 int conv(
 		int* imgPatch,
@@ -680,7 +710,7 @@ void imageOneTask(void* pdata) {
 		free(img);
 		free(imgDS);
 
-    OSSemPost(semDisplay2);
+		OSSemPost(semDisplay2);
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
 }
@@ -853,16 +883,51 @@ void imageFourTask(void* pdata) {
 		OSTimeDlyHMSM(0, 0, 0, 250);
 	}
 }
-void buttonManagerTask (void* pdata) {
+
+void singleImageTask (void* pdata) {
 	INT8U semPendErr;
+	int switchVal;
 	while (1) {
+		OSSemPend(semSingleImag,0,&semPendErr);
 		// Wait for interrupt
-		OSSemPend(semKeyChange,0,&semPendErr);
 		// Received Interrupt Semaphore (GO TIME)
 		// Flip the flag in the global variable as required and redraw image
-		flipImgFlags ^= keyPressedContext;
-		//writeImage(flipImgFlags);
-		//printf(" FLIP FLAGS %x\n",flipImgFlags);
+		OSSemPend(semDisplay1,0,&semPendErr);
+
+		switchVal = IORD(SW_IN_BASE, 0);
+		switchVal = switchVal & 0b11;
+		printf("%d\n",switchVal);
+		switch(switchVal){
+		case 0b00:
+			imageToBufferSDRAM(SDRAM_BASEADDR);
+			break;
+				//Flip
+		case 0b01:
+			imageToBufferSDRAM(FLIPIMG_BASE);
+			break;
+				//Blur
+		case 0b10:
+			imageToBufferSDRAM(BLURING_BASE);
+			break;
+				//Edge
+		case 0b11:
+			imageToBufferSDRAM(EDGEIMG_BASE);
+			break;
+		}
+		OSSemPost(semDisplay1);
+	}
+	//printf(" FLIP FLAGS %x\n",flipImgFlags);
+	OSTimeDlyHMSM(0, 0, 0, 200);
+}
+
+
+
+void buttonManagerTask(void* pdata){
+	INT8U semPendErr;
+	int keyVal;
+	while(1){
+		OSSemPend(semKeyChange,0,&semPendErr);
+		state = IORD(KEY_IN_BASE,0)>>1 ^ state;
 	}
 }
 
@@ -870,44 +935,57 @@ void switchManagerTask (void* pdata) {
 	INT8U semPendErr;
 	INT8U err2;
 	while (1) {
-		// Wait for interrupt
-		OSSemPend(semSwitchChange,0,&semPendErr);
-		// Received Interrupt Semaphore (GO TIME)
-		currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
-		//OSMutexPost(mutexSwitchDisplay);
-		#if ENABLE_DEBUG_OUTPUT
-		printf("SW - %x\n",SwChangedContext);
-		#endif
-		/*if ((SwChangedContext & 0b11) != 0) {
-			err2 = OSSemPost(semDisplay1);
-			if (err2 != OS_NO_ERR) printf("Failed to post sem1: %x\n",err2);
-			printf("SW1\n");
-		} else if ((SwChangedContext & 0b1100) != 0) {
-			err2 = OSSemPost(semDisplay2);
-			if (err2 != OS_NO_ERR) printf("Failed to post sem2: %x\n",err2);
-			printf("SW2\n");
-		} else if ((SwChangedContext & 0b110000) != 0) {
-			err2 = OSSemPost(semDisplay3);
-			if (err2 != OS_NO_ERR) printf("Failed to post sem3: %x\n",err2);
-			printf("SW3\n");
-		} else if ((SwChangedContext & 0b11000000) != 0) {
-			err2 = OSSemPost(semDisplay4);
-			if (err2 != OS_NO_ERR) printf("Failed to post sem4: %x\n",err2);
-			printf("SW4\n");
-		}*/
+		if (state == 1){
+			//printf("State1\n");
+			//OSSemPend(semSwitchChange,0,&semPendErr);
+			err2 = OSSemPost(semSingleImag);
+			if (err2 != OS_NO_ERR) printf("Failed to post Single: %d\n",err2);
+			//printf("Single\n");
+		}
+		if (state ==0){
+			//printf("State0\n");
+			// Wait for interrupt
+			//OSSemPend(semSwitchChange,0,&semPendErr);
+			// Received Interrupt Semaphore (GO TIME)
+			currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
+			//OSMutexPost(mutexSwitchDisplay);
+			#if ENABLE_DEBUG_OUTPUT
+			printf("SW - %x\n",SwChangedContext);
+			#endif
+			if ((SwChangedContext & 0b11) != 0) {
+				err2 = OSSemPost(semDisplay1);
+				if (err2 != OS_NO_ERR) printf("Failed to post sem1: %x\n",err2);
+				printf("SW1\n");
+			} else if ((SwChangedContext & 0b1100) != 0) {
+				err2 = OSSemPost(semDisplay2);
+				if (err2 != OS_NO_ERR) printf("Failed to post sem2: %x\n",err2);
+				printf("SW2\n");
+			} else if ((SwChangedContext & 0b110000) != 0) {
+				err2 = OSSemPost(semDisplay3);
+				if (err2 != OS_NO_ERR) printf("Failed to post sem3: %x\n",err2);
+				printf("SW3\n");
+			} else if ((SwChangedContext & 0b11000000) != 0) {
+				err2 = OSSemPost(semDisplay4);
+				if (err2 != OS_NO_ERR) printf("Failed to post sem4: %x\n",err2);
+				printf("SW4\n");
+			}
+		}
+
 	}
+	//OSTimeDly(1);
 }
 
-void switchManagerTask (void* pdata) {
-	INT8U semPendErr;
-	while (1) {
-		// Wait for interrupt
-		OSSemPend(semSwitchChange,0,&semPendErr);
-		// Received Interrupt Semaphore (GO TIME)
-		currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
-		OSMutexPost(mutexSwitchDisplay);
-	}
-}
+//void switchManagerTask (void* pdata) {
+//	INT8U semPendErr;
+//	while (1) {
+//		// Wait for interrupt
+//		OSSemPend(semSwitchChange,0,&semPendErr);
+//		// Received Interrupt Semaphore (GO TIME)
+//		currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
+//		//OSMutexPost(mutexSwitchDisplay);
+//	}
+//}
+
 
 /* Processes Images */
 void imageProcessorTask(void* pdata)
@@ -996,15 +1074,18 @@ void mainTask(void* pdata)
 	INT8U err;
 	OSStatInit();
 
+	//Create mutex
+	mutexKey = OSMutexCreate(MUTEXSINGIMG_PRIORITY,&err);
+
 	// Create Semaphores and IRQHs
 	semLockFlipImgPointer = OSSemCreate(1);
 	semLockBlurImgPointer = OSSemCreate(1);
 	semLockEdgeImgPointer = OSSemCreate(1);
 	semLockBaseImgPointer = OSSemCreate(1);
 
-	semSwitchChange = OSSemCreate(1);
-	semKeyChange = OSSemCreate(1);
-
+	semSwitchChange = OSSemCreate(0);
+	semKeyChange = OSSemCreate(0);
+	semSingleImag = OSSemCreate(0);
 	// Semaphores to block the image display tasks
 	semDisplay1 = OSSemCreate(1);
 	semDisplay2 = OSSemCreate(1);
@@ -1114,17 +1195,30 @@ void mainTask(void* pdata)
 
 	//Switch manager
 	printf("Attempting to create SwitchTask\n");
-		error_code = OSTaskCreateExt(switchManagerTask,
+	error_code = OSTaskCreateExt(switchManagerTask,
+		NULL,
+		(void*)&switchManagerTask_stk[TASK_STACKSIZE - 1],
+		SWITCHMANAGERTASK_PRIORITY,
+		SWITCHMANAGERTASK_PRIORITY,
+		switchManagerTask_stk,
+		SWITCHMANAGERTASK_PRIORITY,
+		NULL,
+		0);
+	printf(" --> ");
+	if (error_code != 0) printf("Error creating imageOneTask with error code %d\n", error_code); else printf("Created task successfully\n");
+
+	printf("Attempting to create singleImageTask_stk\n");
+			error_code = OSTaskCreateExt(singleImageTask,
 			NULL,
-			(void*)&switchManagerTask_stk[TASK_STACKSIZE - 1],
-			SWITCHMANAGERTASK_PRIORITY,
-			SWITCHMANAGERTASK_PRIORITY,
-			switchManagerTask_stk,
-			SWITCHMANAGERTASK_PRIORITY,
+			(void*)&singleImageTask_stk[TASK_STACKSIZE - 1],
+			SINGLEIMAGETASK_PRIORITY,
+			SINGLEIMAGETASK_PRIORITY,
+			singleImageTask_stk,
+			SINGLEIMAGETASK_PRIORITY,
 			NULL,
 			0);
-		printf(" --> ");
-		if (error_code != 0) printf("Error creating imageOneTask with error code %d\n", error_code); else printf("Created task successfully\n");
+	printf(" --> ");
+	if (error_code != 0) printf("Error creating SingleImageTask with error code %d\n", error_code); else printf("Created task successfully\n");
 	/* ------------
 		INDEF LOOP
 	   ------------ */
