@@ -79,7 +79,7 @@ OS_STK	  singleImageTask_stk[TASK_STACKSIZE];
 
 // Create global variable to define how image is flipped
 char flipImgFlags = 0x0;
-int  state;
+int  singleImgMode;
 // Define edge counter for interrupt context
 // Used to tell which button was pressed
 volatile int keyPressedContext;
@@ -242,6 +242,7 @@ void KEY_IN_ISR(void * isr_context, alt_u32 id)
 	// Write to the edge capture register to reset it.
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(KEY_IN_BASE, 0);
 	// Post semaphore to acknowledge IRQ data is now available
+	printf("Posting semaphore semKeyChange\n");
 	int err = OSSemPost(semKeyChange);
 	if (err != OS_NO_ERR) printf("Failed to post semaphore semKeyChange: %x\n",err);
 }
@@ -668,7 +669,7 @@ void imageOneTask(void* pdata) {
 		#if ENABLE_DEBUG_OUTPUT
 		printf("I1T GO\n");
 		#endif
-    
+
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = switchVal & 0b11;
 		switch (switchVal) {
@@ -863,7 +864,7 @@ void imageFourTask(void* pdata) {
 			// Hold Access to image while we retrieve data. Otherwise we will get tearing (if this was video data)
 			OSSemPend(semLockBlurImgPointer,0,&err);
 			img = imgToPtr(BLURING_BASE, BUF_MAX_PIX);
-			OSSemPost(semLockBlurImgPointer);	
+			OSSemPost(semLockBlurImgPointer);
       imgDS = downscaleImg2x(img, IMG_WIDTH, IMG_HEIGHT, 2);
 			imageToBuffer(imgDS,IMG_WIDTH/2,IMG_HEIGHT/2*IMG_WIDTH);
 			break;
@@ -888,12 +889,10 @@ void singleImageTask (void* pdata) {
 	INT8U semPendErr;
 	int switchVal;
 	while (1) {
+		// Wait for single img mode flag
 		OSSemPend(semSingleImag,0,&semPendErr);
-		// Wait for interrupt
-		// Received Interrupt Semaphore (GO TIME)
-		// Flip the flag in the global variable as required and redraw image
-		OSSemPend(semDisplay1,0,&semPendErr);
 
+		// Go Time!
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = switchVal & 0b11;
 		printf("%d\n",switchVal);
@@ -914,78 +913,55 @@ void singleImageTask (void* pdata) {
 			imageToBufferSDRAM(EDGEIMG_BASE);
 			break;
 		}
-		OSSemPost(semDisplay1);
+		OSSemPost(semSingleImag);
+		OSTimeDlyHMSM(0, 0, 0, 200);
 	}
-	//printf(" FLIP FLAGS %x\n",flipImgFlags);
-	OSTimeDlyHMSM(0, 0, 0, 200);
 }
 
 
 
 void buttonManagerTask(void* pdata){
 	INT8U semPendErr;
-	int keyVal;
 	while(1){
 		OSSemPend(semKeyChange,0,&semPendErr);
-		state = IORD(KEY_IN_BASE,0)>>1 ^ state;
+		printf("BMT: Context %d\n",keyPressedContext);
+		if (keyPressedContext & 0x1) {
+			singleImgMode = (keyPressedContext & 0x1) ^ singleImgMode;
+			// Check if we want SIM
+			if (singleImgMode) {
+				printf("BMT: SIM1\n");
+				// Lock out the 4 displays
+				OSSemPend(semDisplay1,0,&semPendErr);
+				printf("BMT: SIM2\n");
+				// Allow SIM task
+				OSSemPost(semSingleImag);
+				printf("BMT: SIM3\n");
+			} else {
+				printf("BMT: QIM1\n");
+				// Lock out SIM task
+				OSSemPend(semSingleImag,0,&semPendErr);
+				printf("BMT: QIM2\n");
+				// Allow the 4 displays
+				OSSemPost(semDisplay1);
+				printf("BMT: QIM3\n");
+			}
+		}
+
 	}
 }
 
 void switchManagerTask (void* pdata) {
 	INT8U semPendErr;
-	INT8U err2;
 	while (1) {
-		if (state == 1){
-			//printf("State1\n");
-			//OSSemPend(semSwitchChange,0,&semPendErr);
-			err2 = OSSemPost(semSingleImag);
-			if (err2 != OS_NO_ERR) printf("Failed to post Single: %d\n",err2);
-			//printf("Single\n");
-		}
-		if (state ==0){
-			//printf("State0\n");
-			// Wait for interrupt
-			//OSSemPend(semSwitchChange,0,&semPendErr);
-			// Received Interrupt Semaphore (GO TIME)
-			currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
-			//OSMutexPost(mutexSwitchDisplay);
-			#if ENABLE_DEBUG_OUTPUT
-			printf("SW - %x\n",SwChangedContext);
-			#endif
-			if ((SwChangedContext & 0b11) != 0) {
-				err2 = OSSemPost(semDisplay1);
-				if (err2 != OS_NO_ERR) printf("Failed to post sem1: %x\n",err2);
-				printf("SW1\n");
-			} else if ((SwChangedContext & 0b1100) != 0) {
-				err2 = OSSemPost(semDisplay2);
-				if (err2 != OS_NO_ERR) printf("Failed to post sem2: %x\n",err2);
-				printf("SW2\n");
-			} else if ((SwChangedContext & 0b110000) != 0) {
-				err2 = OSSemPost(semDisplay3);
-				if (err2 != OS_NO_ERR) printf("Failed to post sem3: %x\n",err2);
-				printf("SW3\n");
-			} else if ((SwChangedContext & 0b11000000) != 0) {
-				err2 = OSSemPost(semDisplay4);
-				if (err2 != OS_NO_ERR) printf("Failed to post sem4: %x\n",err2);
-				printf("SW4\n");
-			}
-		}
+		// Wait for interrupt
+		OSSemPend(semSwitchChange,0,&semPendErr);
 
+		if ((SwChangedContext >> 8) != 0) {
+			currentlyDislayed = IORD_16DIRECT(SW_IN_BASE,0) >> 8;
+		}
 	}
-	//OSTimeDly(1);
+
 }
-
-//void switchManagerTask (void* pdata) {
-//	INT8U semPendErr;
-//	while (1) {
-//		// Wait for interrupt
-//		OSSemPend(semSwitchChange,0,&semPendErr);
-//		// Received Interrupt Semaphore (GO TIME)
-//		currentlyDislayed = IORD(SW_IN_BASE,0) >> 8;
-//		//OSMutexPost(mutexSwitchDisplay);
-//	}
-//}
-
 
 /* Processes Images */
 void imageProcessorTask(void* pdata)
@@ -1083,9 +1059,13 @@ void mainTask(void* pdata)
 	semLockEdgeImgPointer = OSSemCreate(1);
 	semLockBaseImgPointer = OSSemCreate(1);
 
-	semSwitchChange = OSSemCreate(0);
-	semKeyChange = OSSemCreate(0);
-	semSingleImag = OSSemCreate(0);
+	semSwitchChange = OSSemCreate(1);
+	semKeyChange = OSSemCreate(1);
+	OSSemPend(semSwitchChange,0,&err);
+	OSSemPend(semKeyChange,0,&err);
+
+	semSingleImag = OSSemCreate(1);
+
 	// Semaphores to block the image display tasks
 	semDisplay1 = OSSemCreate(1);
 	semDisplay2 = OSSemCreate(1);
@@ -1098,6 +1078,10 @@ void mainTask(void* pdata)
 	OSSemPend(semDisplay2,0,&err);
 	OSSemPend(semDisplay3,0,&err);
 	OSSemPend(semDisplay4,0,&err);
+
+	// Set default to normal mode
+	singleImgMode = 0;
+	OSSemPend(semSingleImag,0,&err);
 
 	initButtonIRQ();
 	initSwIRQ();
