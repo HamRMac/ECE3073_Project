@@ -507,6 +507,8 @@ int* fastEdgeDetection(int* imageArray, int cols, int rows) {
 
 	// Iterate through each row/column and get the relevant pixel, perform the fast conv
 	int offset[3];
+	int pixelValueH;
+	int pixelValueV;
 	int pixelValue;
 
 	// Go through all pixels
@@ -522,21 +524,25 @@ int* fastEdgeDetection(int* imageArray, int cols, int rows) {
 			offset[0] = col+row*cols; 		// Calculate pixel offset row1
 			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
 			offset[2] = col+(row+2)*cols;	// Calculate pixel offset row3
+
+			// Fast convolution using fixed kernels
 			// Calculate Vertical Edges
-			pixelValue = (*(imageArray+offset[0])   + *(imageArray+offset[0]+2)- *(imageArray+offset[2]) - *(imageArray+offset[2]+2));
-			pixelValue += (*(imageArray+offset[0]+1) - *(imageArray+offset[2]+1)) << 1;
+			pixelValueV = (*(imageArray+offset[0])   + *(imageArray+offset[0]+2)- *(imageArray+offset[2]) - *(imageArray+offset[2]+2));
+			pixelValueV += (*(imageArray+offset[0]+1) - *(imageArray+offset[2]+1)) << 1;
 			// Force to be positive
-			pixelValue = abs(pixelValue);
+			pixelValueV = abs(pixelValueV);
 
 			// Calculate Horizontal Edges
-			pixelValue += (*(imageArray+offset[0])   + *(imageArray+offset[2])  - *(imageArray+offset[0]+2) - *(imageArray+offset[2]+2));
-			pixelValue += (*(imageArray+offset[1])   - *(imageArray+offset[1]+2)) << 1;
+			pixelValueH = (*(imageArray+offset[0])   + *(imageArray+offset[2])  - *(imageArray+offset[0]+2) - *(imageArray+offset[2]+2));
+			pixelValueH += (*(imageArray+offset[1])   - *(imageArray+offset[1]+2)) << 1;
 			// Force to be positive
-			pixelValue = abs(pixelValue);
+			pixelValue = abs(pixelValueH)+pixelValueV;
 
 			// Perform Thresholding
-			if (pixelValue > 7) {
-				*(output+2+writeIndex) = 7; // Set as edge
+			if (pixelValue > 15) {
+				*(output+2+writeIndex) = 15; // Set as edge
+			} else if (pixelValue < 7) {
+				*(output+2+writeIndex) = 0; // Set as edge
 			} else {
 				*(output+2+writeIndex) = pixelValue; // Not an edge
 			}
@@ -590,20 +596,22 @@ int* hardwareEdgeDetection(int* imageArray, int cols, int rows) {
 			//In Verilog signed ints are in twos compliment so we convert back
 
 			pixelValue = IORD(CONVX_OUT_BASE,0);
-			if ((pixelValue >> 7) == 1){
+			if ((pixelValue & 0x80) != 0){
 				pixelValue = (pixelValue^0xFF) - 1;
 			}
 			pixelValue = abs(pixelValue);
 			pixelValue2 = IORD(CONVY_OUT_BASE,0);
-			if ((pixelValue2 >> 7) == 1){
+			if ((pixelValue2 & 0x80) != 0){
 				pixelValue2 = (pixelValue2^0xFF) - 1;
 			}
 			// Force to be positive
 			pixelValue += abs(pixelValue2);
-			//printf("Pixel %d\n",pixelValue);
+			
 			// Perform Thresholding
-			if (pixelValue > 7) {
-				*(output+2+writeIndex) = 7; // Set as edge
+			if (pixelValue > 15) {
+				*(output+2+writeIndex) = 15; // Set as edge
+			} else if (pixelValue < 7) {
+				*(output+2+writeIndex) = 0; // Set as edge
 			} else {
 				*(output+2+writeIndex) = pixelValue; // Not an edge
 			}
