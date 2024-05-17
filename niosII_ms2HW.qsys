@@ -29,7 +29,7 @@
    {
       datum baseAddress
       {
-         value = "67637328";
+         value = "67637504";
          type = "String";
       }
    }
@@ -45,7 +45,7 @@
    {
       datum baseAddress
       {
-         value = "67637312";
+         value = "67637488";
          type = "String";
       }
    }
@@ -69,7 +69,7 @@
    {
       datum baseAddress
       {
-         value = "67637392";
+         value = "67637568";
          type = "String";
       }
    }
@@ -85,7 +85,7 @@
    {
       datum baseAddress
       {
-         value = "67637424";
+         value = "67637600";
          type = "String";
       }
    }
@@ -133,7 +133,7 @@
    {
       datum baseAddress
       {
-         value = "67637344";
+         value = "67637520";
          type = "String";
       }
    }
@@ -149,7 +149,7 @@
    {
       datum baseAddress
       {
-         value = "67637376";
+         value = "67637552";
          type = "String";
       }
    }
@@ -165,7 +165,7 @@
    {
       datum baseAddress
       {
-         value = "67637360";
+         value = "67637536";
          type = "String";
       }
    }
@@ -197,7 +197,7 @@
    {
       datum baseAddress
       {
-         value = "67637408";
+         value = "67637584";
          type = "String";
       }
    }
@@ -229,7 +229,7 @@
    {
       datum baseAddress
       {
-         value = "67637440";
+         value = "67637616";
          type = "String";
       }
    }
@@ -238,6 +238,38 @@
       datum _tags
       {
          value = "";
+         type = "String";
+      }
+   }
+   element convx_out
+   {
+      datum _sortIndex
+      {
+         value = "25";
+         type = "int";
+      }
+   }
+   element convx_out.s1
+   {
+      datum baseAddress
+      {
+         value = "67637296";
+         type = "String";
+      }
+   }
+   element convy_out
+   {
+      datum _sortIndex
+      {
+         value = "26";
+         type = "int";
+      }
+   }
+   element convy_out.s1
+   {
+      datum baseAddress
+      {
+         value = "67637280";
          type = "String";
       }
    }
@@ -253,7 +285,7 @@
    {
       datum baseAddress
       {
-         value = "67637296";
+         value = "67637472";
          type = "String";
       }
    }
@@ -269,7 +301,151 @@
    {
       datum baseAddress
       {
-         value = "67637280";
+         value = "67637456";
+         type = "String";
+      }
+   }
+   element pixel1_input
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
+      }
+   }
+   element pixel1_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637440";
+         type = "String";
+      }
+   }
+   element pixel2_input
+   {
+      datum _sortIndex
+      {
+         value = "17";
+         type = "int";
+      }
+   }
+   element pixel2_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637424";
+         type = "String";
+      }
+   }
+   element pixel3_input
+   {
+      datum _sortIndex
+      {
+         value = "18";
+         type = "int";
+      }
+   }
+   element pixel3_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637408";
+         type = "String";
+      }
+   }
+   element pixel4_input
+   {
+      datum _sortIndex
+      {
+         value = "19";
+         type = "int";
+      }
+   }
+   element pixel4_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637392";
+         type = "String";
+      }
+   }
+   element pixel5_input
+   {
+      datum _sortIndex
+      {
+         value = "20";
+         type = "int";
+      }
+   }
+   element pixel5_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637376";
+         type = "String";
+      }
+   }
+   element pixel6_input
+   {
+      datum _sortIndex
+      {
+         value = "21";
+         type = "int";
+      }
+   }
+   element pixel6_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637360";
+         type = "String";
+      }
+   }
+   element pixel7_input
+   {
+      datum _sortIndex
+      {
+         value = "22";
+         type = "int";
+      }
+   }
+   element pixel7_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637344";
+         type = "String";
+      }
+   }
+   element pixel8_input
+   {
+      datum _sortIndex
+      {
+         value = "23";
+         type = "int";
+      }
+   }
+   element pixel8_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637328";
+         type = "String";
+      }
+   }
+   element pixel9_input
+   {
+      datum _sortIndex
+      {
+         value = "24";
+         type = "int";
+      }
+   }
+   element pixel9_input.s1
+   {
+      datum baseAddress
+      {
+         value = "67637312";
          type = "String";
       }
    }
@@ -295,6 +471,16 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="CLK.clk_in" type="clock" dir="end" />
+ <interface
+   name="convx_sw"
+   internal="convx_out.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="convysw"
+   internal="convy_out.external_connection"
+   type="conduit"
+   dir="end" />
  <interface
    name="div9_tohw_external"
    internal="div9_toHW.external_connection"
@@ -338,6 +524,51 @@
  <interface
    name="pbuff_wren"
    internal="PBUFF_WREN.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel1_hw"
+   internal="pixel1_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel2_hw"
+   internal="pixel2_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel3_hw"
+   internal="pixel3_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel4_hw"
+   internal="pixel4_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel5_hw"
+   internal="pixel5_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel6_hw"
+   internal="pixel6_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel7_hw"
+   internal="pixel7_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel8_hw"
+   internal="pixel8_input.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pixel9_hw"
+   internal="pixel9_input.external_connection"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="CLK.clk_in_reset" type="reset" dir="end" />
@@ -470,7 +701,7 @@
   <parameter name="dataAddrWidth" value="27" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM.s1' start='0x0' end='0x4000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='NIOS_MEM.s1' start='0x4040000' end='0x40603A0' type='altera_avalon_onchip_memory2.s1' /><slave name='NIOS_PROC.debug_mem_slave' start='0x4080800' end='0x4081000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='TIMER.s1' start='0x4081000' end='0x4081020' type='altera_avalon_timer.s1' /><slave name='div9_toSW.s1' start='0x4081020' end='0x4081030' type='altera_avalon_pio.s1' /><slave name='div9_toHW.s1' start='0x4081030' end='0x4081040' type='altera_avalon_pio.s1' /><slave name='HexDisplays5to3.s1' start='0x4081040' end='0x4081050' type='altera_avalon_pio.s1' /><slave name='HexDisplays2to0.s1' start='0x4081050' end='0x4081060' type='altera_avalon_pio.s1' /><slave name='PBUFF_WREN.s1' start='0x4081060' end='0x4081070' type='altera_avalon_pio.s1' /><slave name='PB_DATA.s1' start='0x4081070' end='0x4081080' type='altera_avalon_pio.s1' /><slave name='PB_ADR.s1' start='0x4081080' end='0x4081090' type='altera_avalon_pio.s1' /><slave name='KEY_IN.s1' start='0x4081090' end='0x40810A0' type='altera_avalon_pio.s1' /><slave name='SW_IN.s1' start='0x40810A0' end='0x40810B0' type='altera_avalon_pio.s1' /><slave name='LEDR_OUT.s1' start='0x40810B0' end='0x40810C0' type='altera_avalon_pio.s1' /><slave name='UART_JTAG.avalon_jtag_slave' start='0x40810C0' end='0x40810C8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM.s1' start='0x0' end='0x4000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='NIOS_MEM.s1' start='0x4040000' end='0x40603A0' type='altera_avalon_onchip_memory2.s1' /><slave name='NIOS_PROC.debug_mem_slave' start='0x4080800' end='0x4081000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='TIMER.s1' start='0x4081000' end='0x4081020' type='altera_avalon_timer.s1' /><slave name='convy_out.s1' start='0x4081020' end='0x4081030' type='altera_avalon_pio.s1' /><slave name='convx_out.s1' start='0x4081030' end='0x4081040' type='altera_avalon_pio.s1' /><slave name='pixel9_input.s1' start='0x4081040' end='0x4081050' type='altera_avalon_pio.s1' /><slave name='pixel8_input.s1' start='0x4081050' end='0x4081060' type='altera_avalon_pio.s1' /><slave name='pixel7_input.s1' start='0x4081060' end='0x4081070' type='altera_avalon_pio.s1' /><slave name='pixel6_input.s1' start='0x4081070' end='0x4081080' type='altera_avalon_pio.s1' /><slave name='pixel5_input.s1' start='0x4081080' end='0x4081090' type='altera_avalon_pio.s1' /><slave name='pixel4_input.s1' start='0x4081090' end='0x40810A0' type='altera_avalon_pio.s1' /><slave name='pixel3_input.s1' start='0x40810A0' end='0x40810B0' type='altera_avalon_pio.s1' /><slave name='pixel2_input.s1' start='0x40810B0' end='0x40810C0' type='altera_avalon_pio.s1' /><slave name='pixel1_input.s1' start='0x40810C0' end='0x40810D0' type='altera_avalon_pio.s1' /><slave name='div9_toSW.s1' start='0x40810D0' end='0x40810E0' type='altera_avalon_pio.s1' /><slave name='div9_toHW.s1' start='0x40810E0' end='0x40810F0' type='altera_avalon_pio.s1' /><slave name='HexDisplays5to3.s1' start='0x40810F0' end='0x4081100' type='altera_avalon_pio.s1' /><slave name='HexDisplays2to0.s1' start='0x4081100' end='0x4081110' type='altera_avalon_pio.s1' /><slave name='PBUFF_WREN.s1' start='0x4081110' end='0x4081120' type='altera_avalon_pio.s1' /><slave name='PB_DATA.s1' start='0x4081120' end='0x4081130' type='altera_avalon_pio.s1' /><slave name='PB_ADR.s1' start='0x4081130' end='0x4081140' type='altera_avalon_pio.s1' /><slave name='KEY_IN.s1' start='0x4081140' end='0x4081150' type='altera_avalon_pio.s1' /><slave name='SW_IN.s1' start='0x4081150' end='0x4081160' type='altera_avalon_pio.s1' /><slave name='LEDR_OUT.s1' start='0x4081160' end='0x4081170' type='altera_avalon_pio.s1' /><slave name='UART_JTAG.avalon_jtag_slave' start='0x4081170' end='0x4081178' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -744,6 +975,34 @@
   <parameter name="writeBufferDepth" value="64" />
   <parameter name="writeIRQThreshold" value="8" />
  </module>
+ <module name="convx_out" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module name="convy_out" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
  <module name="div9_toHW" kind="altera_avalon_pio" version="18.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
@@ -772,13 +1031,175 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="8" />
  </module>
+ <module
+   name="pixel1_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel2_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel3_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel4_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel5_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel6_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel7_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel8_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="pixel9_input"
+   kind="altera_avalon_pio"
+   version="18.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
  <connection
    kind="avalon"
    version="18.1"
    start="NIOS_PROC.data_master"
    end="UART_JTAG.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x040810c0" />
+  <parameter name="baseAddress" value="0x04081170" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -805,7 +1226,7 @@
    start="NIOS_PROC.data_master"
    end="LEDR_OUT.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x040810b0" />
+  <parameter name="baseAddress" value="0x04081160" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -814,7 +1235,7 @@
    start="NIOS_PROC.data_master"
    end="SW_IN.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x040810a0" />
+  <parameter name="baseAddress" value="0x04081150" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -823,7 +1244,7 @@
    start="NIOS_PROC.data_master"
    end="KEY_IN.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081090" />
+  <parameter name="baseAddress" value="0x04081140" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -832,7 +1253,7 @@
    start="NIOS_PROC.data_master"
    end="PB_ADR.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081080" />
+  <parameter name="baseAddress" value="0x04081130" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -841,7 +1262,7 @@
    start="NIOS_PROC.data_master"
    end="PB_DATA.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081070" />
+  <parameter name="baseAddress" value="0x04081120" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -868,7 +1289,7 @@
    start="NIOS_PROC.data_master"
    end="PBUFF_WREN.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081060" />
+  <parameter name="baseAddress" value="0x04081110" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -877,7 +1298,7 @@
    start="NIOS_PROC.data_master"
    end="HexDisplays2to0.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081050" />
+  <parameter name="baseAddress" value="0x04081100" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -886,7 +1307,7 @@
    start="NIOS_PROC.data_master"
    end="HexDisplays5to3.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081040" />
+  <parameter name="baseAddress" value="0x040810f0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -895,7 +1316,7 @@
    start="NIOS_PROC.data_master"
    end="div9_toHW.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04081030" />
+  <parameter name="baseAddress" value="0x040810e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -903,6 +1324,105 @@
    version="18.1"
    start="NIOS_PROC.data_master"
    end="div9_toSW.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x040810d0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel1_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x040810c0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel2_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x040810b0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel3_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x040810a0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel4_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081090" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel5_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081080" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel6_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081070" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel7_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel8_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081050" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="pixel9_input.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="convx_out.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04081030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="NIOS_PROC.data_master"
+   end="convy_out.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x04081020" />
   <parameter name="defaultConnection" value="false" />
@@ -939,6 +1459,17 @@
  <connection kind="clock" version="18.1" start="CLK.clk" end="HexDisplays5to3.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="div9_toHW.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="div9_toSW.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel1_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel2_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel3_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel4_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel5_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel6_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel7_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel8_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="pixel9_input.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="convx_out.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="convy_out.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="NIOS_MEM.clk1" />
  <connection
    kind="interrupt"
@@ -1006,6 +1537,61 @@
    version="18.1"
    start="CLK.clk_reset"
    end="div9_toSW.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel2_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel1_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel3_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel4_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel5_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel6_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel7_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel8_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="pixel9_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="convx_out.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="convy_out.reset" />
  <connection
    kind="reset"
    version="18.1"
@@ -1081,6 +1667,61 @@
    version="18.1"
    start="NIOS_PROC.debug_reset_request"
    end="div9_toSW.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel1_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel2_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel3_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel4_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel5_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel6_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel7_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel8_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="pixel9_input.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="convx_out.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="NIOS_PROC.debug_reset_request"
+   end="convy_out.reset" />
  <connection
    kind="reset"
    version="18.1"
