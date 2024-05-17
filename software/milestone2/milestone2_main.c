@@ -536,9 +536,76 @@ int* fastEdgeDetection(int* imageArray, int cols, int rows) {
 
 			// Perform Thresholding
 			if (pixelValue > 7) {
-				*(output+2+writeIndex) = 15; // Set as edge
+				*(output+2+writeIndex) = 7; // Set as edge
 			} else {
-				*(output+2+writeIndex) = 0; // Not an edge
+				*(output+2+writeIndex) = pixelValue; // Not an edge
+			}
+			writeIndex++;
+		}
+	}
+
+	// Return the memory location with the Edge Detected image
+	return output;
+}
+
+int* hardwareEdgeDetection(int* imageArray, int cols, int rows) {
+	// Allocate memory for reversed image
+	int* output = (int*)malloc(((cols)*(rows)+2)*sizeof(int));
+	*(output) = cols;
+	*(output+1) = rows;
+
+	// Iterate through each row/column and get the relevant pixel, perform the fast conv
+	int offset[3];
+	int pixelValue;
+	int pixelValue2;
+	IOWR(PIXEL5_INPUT_BASE,0,0);
+	// Go through all pixels
+	int writeIndex = 0;
+	for (int row = -1; row < rows-1; row++){
+		for (int col = -1; col < cols-1; col++){
+			if ((row == -1) || (row == rows-2) || (col == -1) || (col == cols-2)) {
+				// Skip This loop for padding
+				*(output+2+writeIndex) = 0;
+				writeIndex++;
+				continue;
+			}
+			offset[0] = col+row*cols; 		// Calculate pixel offset row1
+			offset[1] = col+(row+1)*cols;	// Calculate pixel offset row2
+			offset[2] = col+(row+2)*cols;	// Calculate pixel offset row3
+			// Calculate Vertical Edges
+			//printf("%d\n",sizeof(*(imageArray+offset[0])));
+			//printf("%d\n",*(imageArray+offset[0])&0xFF);
+			IOWR(PIXEL1_INPUT_BASE,0,*(imageArray+offset[0]));
+			IOWR(PIXEL2_INPUT_BASE,0,*(imageArray+offset[0]+1));
+			IOWR(PIXEL3_INPUT_BASE,0,*(imageArray+offset[0]+2));
+			IOWR(PIXEL4_INPUT_BASE,0,*(imageArray+offset[1]));
+			IOWR(PIXEL6_INPUT_BASE,0,*(imageArray+offset[1]+2));
+			IOWR(PIXEL7_INPUT_BASE,0,*(imageArray+offset[2]));
+			IOWR(PIXEL8_INPUT_BASE,0,*(imageArray+offset[2]+1));
+			IOWR(PIXEL9_INPUT_BASE,0,*(imageArray+offset[2]+2));
+			//printf("CONVX %d ",IORD(CONVX_OUT_BASE,0));
+
+			// Force to be positive
+
+			//In Verilog signed ints are in twos compliment so we convert back
+
+			pixelValue = IORD(CONVX_OUT_BASE,0);
+			if ((pixelValue >> 7) == 1){
+				pixelValue = (pixelValue^0xFF) - 1;
+			}
+			pixelValue = abs(pixelValue);
+			pixelValue2 = IORD(CONVY_OUT_BASE,0);
+			if ((pixelValue2 >> 7) == 1){
+				pixelValue2 = (pixelValue2^0xFF) - 1;
+			}
+			// Force to be positive
+			pixelValue += abs(pixelValue2);
+			//printf("Pixel %d\n",pixelValue);
+			// Perform Thresholding
+			if (pixelValue > 7) {
+				*(output+2+writeIndex) = 7; // Set as edge
+			} else {
+				*(output+2+writeIndex) = pixelValue; // Not an edge
 			}
 			writeIndex++;
 		}
@@ -895,7 +962,7 @@ void singleImageTask (void* pdata) {
 		// Go Time!
 		switchVal = IORD(SW_IN_BASE, 0);
 		switchVal = switchVal & 0b11;
-		printf("%d\n",switchVal);
+		//printf("%d\n",switchVal);
 		switch(switchVal){
 		case 0b00:
 			imageToBufferSDRAM(SDRAM_BASEADDR);
@@ -1019,7 +1086,7 @@ void imageProcessorTask(void* pdata)
 		// Perform Edge detection
 		timeTemp = OSTimeGet();
 		#if VERSION == 2
-		imgEdgeDetect = fastEdgeDetection(img, IMG_WIDTH, IMG_HEIGHT);
+		imgEdgeDetect = hardwareEdgeDetection(img, IMG_WIDTH, IMG_HEIGHT);
 		#else
 		edgeResH = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 0);
 		edgeResV = edgeDetectionConv(img, IMG_WIDTH, IMG_HEIGHT, 1);
